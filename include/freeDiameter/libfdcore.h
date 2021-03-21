@@ -2,7 +2,7 @@
 * Software License Agreement (BSD License)                                                               *
 * Author: Sebastien Decugis <sdecugis@freediameter.net>							 *
 *													 *
-* Copyright (c) 2016, WIDE Project and NICT								 *
+* Copyright (c) 2020, WIDE Project and NICT								 *
 * All rights reserved.											 *
 * 													 *
 * Redistribution and use of this software in source and binary forms, with or without modification, are  *
@@ -44,6 +44,7 @@ extern "C" {
 #include <freeDiameter/libfdproto.h>
 #include <gnutls/gnutls.h>
 #include <gnutls/x509.h>
+#include <regex.h>
 
 /* GNUTLS version */
 #ifndef GNUTLS_VERSION
@@ -132,9 +133,16 @@ struct fd_config {
 	uint16_t	 cnf_sctp_str;	/* default max number of streams for SCTP associations (def: 30) */
 	struct fd_list	 cnf_endpoints;	/* the local endpoints to bind the server to. list of struct fd_endpoint. default is empty (bind all). After servers are started, this is the actual list of endpoints including port information. */
 	int		 cnf_thr_srv;	/* Number of threads per servers handling the connection state machines */
+	int		 cnf_processing_peers_minimum;	/* Number of processing peers that must be connected before other peers may connect */
+	regex_t		 cnf_processing_peers_pattern_regex;	/* Regex pattern for identifying processing peers */
 	struct fd_list	 cnf_apps;	/* Applications locally supported (except relay, see flags). Use fd_disp_app_support to add one. list of struct fd_app. */
 	uint16_t	 cnf_dispthr;	/* Number of dispatch threads to create */
+	uint16_t     cnf_rtinthr;  /* Number of routing in threads to create */
+	uint16_t     cnf_rtoutthr;  /* Number of routing out threads to create */
 	uint16_t	 cnf_rr_in_answers;	/* include Route-Record AVP in answers */
+	int		 cnf_qin_limit;	/* limit for incoming queue*/
+	int		 cnf_qout_limit;	/* limit for outgoing queue */
+	int		 cnf_qlocal_limit;	/* limit for local queue */
 	struct {
 		unsigned no_fwd : 1;	/* the peer does not relay messages (0xffffff app id) */
 		unsigned no_ip4 : 1;	/* disable IP */
@@ -143,6 +151,7 @@ struct fd_config {
 		unsigned no_sctp: 1;	/* disable the use of SCTP */
 		unsigned pr_tcp	: 1;	/* prefer TCP over SCTP */
 		unsigned tls_alg: 1;	/* TLS algorithm for initiated cnx. 0: separate port. 1: inband-security (old) */
+		unsigned no_bind: 1;	/* disable client bind to cnf_endpoints if non configured (bind all) */
 	} 		 cnf_flags;
 	
 	struct {
@@ -544,6 +553,30 @@ int fd_msg_send ( struct msg ** pmsg, void (*anscb)(void *, struct msg **), void
 int fd_msg_send_timeout ( struct msg ** pmsg, void (*anscb)(void *, struct msg **), void * data, void (*expirecb)(void *, DiamId_t, size_t, struct msg **), const struct timespec *timeout );
 
 /*
+ * FUNCTION:	fd_msg_add_result
+ *
+ * PARAMETERS:
+ *  msg		: A msg object -- it must be an answer.
+ *  vendor	: Vendor. If 0, add Result-Code else add Experimental-Result.
+ *  restype	: DICT_TYPE containing rescode (ex: from TYPE_BY_NAME "Enumerated(Result-Code)").
+ *  rescode	: The name of the returned error code (ex: "DIAMETER_INVALID_AVP").
+ *  errormsg	: (optional) human-readable error message to put in Error-Message AVP.
+ *  optavp	: (optional) If provided, the content will be put inside a Failed-AVP.
+ *  type_id	: 0 => nothing; 1 => adds Origin-Host and Origin-Realm with local info. 2=> adds Error-Reporting-Host.
+ *
+ * DESCRIPTION:
+ *  This function adds a Result-Code AVP (if vendor is 0) or Experimental-Result AVP (vendor is not 0)
+ *  to a message, and optionally
+ *  - sets the 'E' error flag in the header,
+ *  - adds Error-Message, Error-Reporting-Host and Failed-AVP AVPs.
+ *
+ * RETURN VALUE:
+ *  0		: Operation complete.
+ *  !0		: an error occurred.
+ */
+int fd_msg_add_result( struct msg * msg, vendor_id_t vendor, struct dict_object * restype, char * rescode, char * errormsg, struct avp * optavp, int type_id );
+
+/*
  * FUNCTION:	fd_msg_rescode_set
  *
  * PARAMETERS:
@@ -553,14 +586,15 @@ int fd_msg_send_timeout ( struct msg ** pmsg, void (*anscb)(void *, struct msg *
  *  optavp	: (optional) If provided, the content will be put inside a Failed-AVP
  *  type_id	: 0 => nothing; 1 => adds Origin-Host and Origin-Realm with local info. 2=> adds Error-Reporting-Host.
  *
- * DESCRIPTION: 
- *   This function adds a Result-Code AVP to a message, and optionally
+ * DESCRIPTION:
+ *  This function adds a Result-Code AVP to a message, and optionally
  *  - sets the 'E' error flag in the header,
  *  - adds Error-Message, Error-Reporting-Host and Failed-AVP AVPs.
+ *  Uses fd_msg_add_result with vendor 0 and restype for Enumerated(Result-Code).
  *
  * RETURN VALUE:
- *  0      	: Operation complete.
- *  !0      	: an error occurred.
+ *  0		: Operation complete.
+ *  !0		: an error occurred.
  */
 int fd_msg_rescode_set( struct msg * msg, char * rescode, char * errormsg, struct avp * optavp, int type_id );
 

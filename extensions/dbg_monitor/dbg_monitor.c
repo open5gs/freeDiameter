@@ -2,7 +2,7 @@
 * Software License Agreement (BSD License)                                                               *
 * Author: Sebastien Decugis <sdecugis@freediameter.net>							 *
 *													 *
-* Copyright (c) 2013, WIDE Project and NICT								 *
+* Copyright (c) 2020, WIDE Project and NICT								 *
 * All rights reserved.											 *
 * 													 *
 * Redistribution and use of this software in source and binary forms, with or without modification, are  *
@@ -75,7 +75,9 @@ static void display_info(char * queue_desc, char * peer, int current_count, int 
 static pthread_t thr;
 static void * mn_thr(void * arg)
 {
+#ifdef DEBUG
 	int i = 0;
+#endif
 	fd_log_threadname("Monitor thread");
 	char * buf = NULL;
 	size_t len;

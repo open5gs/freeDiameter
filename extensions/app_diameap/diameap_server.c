@@ -1674,6 +1674,7 @@ union avp_value diameap_get_num(char * num, enum dict_avp_basetype datatype)
 		break;
 	default:
 		TRACE_DEBUG(INFO, "%sUnknown AVP Base Type.",DIAMEAP_EXTENSION)
+		memset(&val, 0, sizeof(val));
 		;
 	}
 	return val;
@@ -1959,22 +1960,16 @@ char * diameap_attribute_operator(char * op, int * toadd, boolean *isrule)
 	switch (*toadd)
 	{
 	case 1:
-		attribute_op = malloc(strlen(op));
-		memset(attribute_op, 0, strlen(op));
-		strncpy(attribute_op, op + 1, strlen(op) - 1);
-		attribute_op[strlen(op)] = '\0';
+		attribute_op = calloc(strlen(op), sizeof(char *));
+		memcpy(attribute_op, op + 1, strlen(op) - 1);
 		break;
 	case 2:
-		attribute_op = malloc(strlen(op));
-		memset(attribute_op, 0, strlen(op));
-		strncpy(attribute_op, op, strlen(op) - 1);
-		attribute_op[strlen(op)] = '\0';
+		attribute_op = calloc(strlen(op), sizeof(char *));
+		memcpy(attribute_op, op, strlen(op) - 1);
 		break;
 	default:
-		attribute_op = malloc(strlen(op) + 1);
-		memset(attribute_op, 0, strlen(op) + 1);
-		strcpy(attribute_op, op);
-		attribute_op[strlen(op) + 1] = '\0';
+		attribute_op = calloc(strlen(op) + 1, sizeof(char *));
+		memcpy(attribute_op, op, strlen(op));
 	}
 	if (strcmp(attribute_op, "=") == 0)
 	{
@@ -3064,7 +3059,7 @@ static int diameap_server_callback(struct msg ** rmsg, struct avp * ravp,
 	struct sess_state * diameap_sess_data = NULL;
 	struct diameap_state_machine * diameap_sm = NULL;
 	struct diameap_eap_interface eap_i;
-	struct msg *req, *ans;
+	struct msg *req, *ans = NULL;
 	boolean non_fatal_error = FALSE;
 
 	if (rmsg == NULL)

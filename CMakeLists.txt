@@ -10,8 +10,8 @@ SET(FD_PROJECT_COPYRIGHT "Copyright (c) 2008-2015, WIDE Project (www.wide.ad.jp)
 
 # Version of the source code
 SET(FD_PROJECT_VERSION_MAJOR 1)
-SET(FD_PROJECT_VERSION_MINOR 3)
-SET(FD_PROJECT_VERSION_REV 2)
+SET(FD_PROJECT_VERSION_MINOR 5)
+SET(FD_PROJECT_VERSION_REV 0)
 
 # Version of the API with the library
 SET(FD_PROJECT_VERSION_API 6)
@@ -71,6 +71,12 @@ IF (CMAKE_BUILD_TYPE MATCHES "Debug|Profiling|DebugValgrind")
   SET(DEBUG 1)
 ENDIF (CMAKE_BUILD_TYPE MATCHES "Debug|Profiling|DebugValgrind")
 
+# Build with fatal warnings?
+IF (ERRORS_ON_WARNINGS)
+  SET(CMAKE_C_FLAGS "-Wall -Werror ${CMAKE_C_FLAGS}")
+  SET(CMAKE_REQUIRED_FLAGS "-Wno-error ${CMAKE_REQUIRED_FLAGS}")
+ENDIF (ERRORS_ON_WARNINGS)
+
 # some subfolders use yacc and lex parsers
 SET(BISON_GENERATE_DEFINES TRUE)
 SET(BISON_PREFIX_OUTPUTS TRUE)
@@ -109,4 +115,3 @@ SUBDIRS(extensions)
 IF ( BUILD_TESTING )
 	SUBDIRS(tests)
 ENDIF ( BUILD_TESTING )
-

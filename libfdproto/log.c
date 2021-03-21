@@ -2,7 +2,7 @@
 * Software License Agreement (BSD License)                                                               *
 * Author: Sebastien Decugis <sdecugis@freediameter.net>							 *
 *													 *
-* Copyright (c) 2015, WIDE Project and NICT								 *
+* Copyright (c) 2020, WIDE Project and NICT								 *
 * All rights reserved.											 *
 * 													 *
 * Redistribution and use of this software in source and binary forms, with or without modification, are  *
@@ -112,6 +112,7 @@ static void fd_internal_logger( int printlevel, const char *format, va_list ap )
     switch(printlevel) {
 	    case FD_LOG_ANNOYING:  printf("%s	A   ", (use_colors == 1) ? "\e[0;37m" : ""); break;
 	    case FD_LOG_DEBUG:     printf("%s DBG   ", (use_colors == 1) ? "\e[0;37m" : ""); break;
+	    case FD_LOG_INFO:      printf("%sINFO   ", (use_colors == 1) ? "\e[1;37m" : ""); break;
 	    case FD_LOG_NOTICE:    printf("%sNOTI   ", (use_colors == 1) ? "\e[1;37m" : ""); break;
 	    case FD_LOG_ERROR:     printf("%sERROR  ", (use_colors == 1) ? "\e[0;31m" : ""); break;
 	    case FD_LOG_FATAL:     printf("%sFATAL! ", (use_colors == 1) ? "\e[0;31m" : ""); break;

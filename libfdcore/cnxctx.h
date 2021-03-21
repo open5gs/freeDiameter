@@ -2,7 +2,7 @@
 * Software License Agreement (BSD License)                                                               *
 * Author: Sebastien Decugis <sdecugis@freediameter.net>							 *
 *													 *
-* Copyright (c) 2013, WIDE Project and NICT								 *
+* Copyright (c) 2020, WIDE Project and NICT								 *
 * All rights reserved.											 *
 * 													 *
 * Redistribution and use of this software in source and binary forms, with or without modification, are  *
@@ -43,14 +43,14 @@
 
 /* The connection context structure */
 struct cnxctx {
-	char		cc_id[60];	/* The name of this connection. the first 5 chars are reserved for flags display (cc_state). */
+	char		cc_id[100];	/* The name of this connection. the first 5 chars are reserved for flags display (cc_state). */
 	char		cc_remid[60];	/* Id of remote peer */
-	
+
 	int 		cc_socket;	/* The socket object of the connection -- <=0 if no socket is created */
 
 	int 		cc_family;	/* AF_INET or AF_INET6 (mixed) */
 	int 		cc_proto;	/* IPPROTO_TCP or IPPROTO_SCTP */
-	
+
 	uint32_t	cc_state;	/* True if the object is being destroyed: we don't send events anymore. access with fd_cnx_getstate() */
 	#define 	CC_STATUS_CLOSING	1
 	#define 	CC_STATUS_ERROR		2
@@ -59,7 +59,7 @@ struct cnxctx {
 
 	pthread_t	cc_rcvthr;	/* thread for receiving messages on the connection */
 	int		cc_loop;	/* tell the thread if it loops or stops after the first message is received */
-	
+
 	struct fifo *	cc_incoming;	/* FIFO queue of events received on the connection, FDEVP_CNX_* */
 	struct fifo *	cc_alt;		/* alternate fifo to send FDEVP_CNX_* events to. */
 
@@ -117,7 +117,7 @@ int fd_tcp_get_remote_ep(int sock, sSS * ss, socklen_t *sl);
 /* SCTP */
 int fd_sctp_create_bind_server( int * sock, int family, struct fd_list * list, uint16_t port );
 int fd_sctp_listen( int sock );
-int fd_sctp_client( int *sock, int no_ip6, uint16_t port, struct fd_list * list );
+int fd_sctp_client( int *sock, int no_ip6, uint16_t port, struct fd_list * list, struct fd_list * src_list );
 int fd_sctp_get_local_ep(int sock,  struct fd_list * list);
 int fd_sctp_get_remote_ep(int sock, struct fd_list * list);
 int fd_sctp_get_str_info( int sock, uint16_t *in, uint16_t *out, sSS *primary );

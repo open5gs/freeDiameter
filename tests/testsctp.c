@@ -2,7 +2,7 @@
 * Software License Agreement (BSD License)                                                               *
 * Author: Sebastien Decugis <sdecugis@freediameter.net>							 *
 *													 *
-* Copyright (c) 2013, WIDE Project and NICT								 *
+* Copyright (c) 2020, WIDE Project and NICT								 *
 * All rights reserved.											 *
 * 													 *
 * Redistribution and use of this software in source and binary forms, with or without modification, are  *
@@ -98,7 +98,7 @@ int main(int argc, char *argv[])
 	CHECK( 0, fd_sctp_listen( sock ));
 	
 	/* Now, create the client socket */
-	CHECK( 0, fd_sctp_client( &cli.cc_socket, 0, TEST_PORT, &eps ));
+	CHECK( 0, fd_sctp_client( &cli.cc_socket, 0, TEST_PORT, &eps, NULL ));
 	
 	/* Accept this connection */
 	srv.cc_socket = accept(sock, NULL, NULL);

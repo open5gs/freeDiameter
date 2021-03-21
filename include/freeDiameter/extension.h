@@ -2,7 +2,7 @@
 * Software License Agreement (BSD License)                                                               *
 * Author: Sebastien Decugis <sdecugis@freediameter.net>							 *
 *													 *
-* Copyright (c) 2013, WIDE Project and NICT								 *
+* Copyright (c) 2020, WIDE Project and NICT								 *
 * All rights reserved.											 *
 * 													 *
 * Redistribution and use of this software in source and binary forms, with or without modification, are  *
@@ -46,8 +46,11 @@ extern "C" {
 
 /* Macro that define the entry point of the extension */
 #define EXTENSION_ENTRY(_name, _function, _depends...)					\
+__attribute__((visibility("default")))							\
 const char *fd_ext_depends[] = { _name , ## _depends , NULL };				\
 static int extension_loaded = 0;							\
+											\
+__attribute__((visibility("default")))							\
 int fd_ext_init(int major, int minor, char * conffile) {				\
 	if ((major != FD_PROJECT_VERSION_MAJOR)						\
 		|| (minor != FD_PROJECT_VERSION_MINOR)) {				\
@@ -63,7 +66,11 @@ int fd_ext_init(int major, int minor, char * conffile) {				\
 	}										\
 	extension_loaded++;								\
 	return (_function)(conffile);							\
-}														
+}
+
+/* Optional exit point (finish function) of the extension */
+__attribute__((visibility("default")))
+void fd_ext_fini(void);
 
 #ifdef __cplusplus
 }

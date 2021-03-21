@@ -2,7 +2,7 @@
 * Software License Agreement (BSD License)                                                               *
 * Author: Sebastien Decugis <sdecugis@freediameter.net>							 *
 *													 *
-* Copyright (c) 2015, WIDE Project and NICT								 *
+* Copyright (c) 2020, WIDE Project and NICT								 *
 * All rights reserved.											 *
 * 													 *
 * Redistribution and use of this software in source and binary forms, with or without modification, are  *
@@ -48,7 +48,7 @@
 /* #define OLD_SCTP_SOCKET_API */
 
 /* Automatically fallback to old API if some of the new symbols are not defined */
-#if (!defined(SCTP_CONNECTX_4_ARGS) || (!defined(SCTP_RECVRCVINFO)) || (!defined(SCTP_SNDINFO))) 
+#if (!defined(SCTP_CONNECTX_4_ARGS) || (!defined(SCTP_RECVRCVINFO)) || (!defined(SCTP_SNDINFO)) || (!defined(SCTP_SEND_FAILED_EVENT)))
 # define OLD_SCTP_SOCKET_API
 #endif
 
@@ -57,6 +57,34 @@
 #ifndef USE_DEFAULT_SCTP_RTX_PARAMS	/* make this a configuration option if useful */
 #define ADJUST_RTX_PARAMS
 #endif /* USE_DEFAULT_SCTP_RTX_PARAMS */
+
+
+DECLARE_FD_DUMP_PROTOTYPE(fd_sa_dump_array, sSA * saddrs, int saddrs_count)
+{
+	union {
+		sSA	*sa;
+		uint8_t *buf;
+	} ptr;
+	int i;
+	int salen;
+
+	FD_DUMP_HANDLE_OFFSET();
+
+	ptr.sa = saddrs;
+	for (i = 0; i < saddrs_count; i++) {
+		salen = sSAlen(ptr.sa);
+		if (salen == 0) {
+			LOG_E("fd_sa_dump_array: Unknown sockaddr family");
+			break;
+		}
+		if (i > 0) {
+			CHECK_MALLOC_DO( fd_dump_extend( FD_DUMP_STD_PARAMS, " "), return NULL);
+		}
+		CHECK_MALLOC_DO( fd_sa_dump( FD_DUMP_STD_PARAMS, ptr.sa, NI_NUMERICHOST | NI_NUMERICSERV), return NULL);
+		ptr.buf += salen;
+	}
+	return *buf;
+}
 
 /* Pre-binding socket options -- # streams read in config */
 static int fd_setsockopt_prebind(int sk)
@@ -82,7 +110,7 @@ static int fd_setsockopt_prebind(int sk)
 		if (TRACE_BOOL(ANNOYING)) {
 			sz = sizeof(rtoinfo);
 			/* Read socket defaults */
-			CHECK_SYS(  getsockopt(sk, IPPROTO_SCTP, SCTP_RTOINFO, &rtoinfo, &sz)  );
+			CHECK_SYS(  sctp_opt_info(sk, 0, SCTP_RTOINFO, &rtoinfo, &sz)  );
 			if (sz != sizeof(rtoinfo))
 			{
 				TRACE_DEBUG(INFO, "Invalid size of socket option: %d / %d", sz, (socklen_t)sizeof(rtoinfo));
@@ -102,7 +130,7 @@ static int fd_setsockopt_prebind(int sk)
 		
 		if (TRACE_BOOL(ANNOYING)) {
 			/* Check new values */
-			CHECK_SYS(  getsockopt(sk, IPPROTO_SCTP, SCTP_RTOINFO, &rtoinfo, &sz)  );
+			CHECK_SYS(  sctp_opt_info(sk, 0, SCTP_RTOINFO, &rtoinfo, &sz)  );
 			fd_log_debug( "New SCTP_RTOINFO : srto_initial : %u", rtoinfo.srto_initial);
 			fd_log_debug( "                   srto_max     : %u", rtoinfo.srto_max);
 			fd_log_debug( "                   srto_min     : %u", rtoinfo.srto_min);
@@ -121,7 +149,7 @@ static int fd_setsockopt_prebind(int sk)
 		if (TRACE_BOOL(ANNOYING)) {
 			sz = sizeof(assoc);
 			/* Read socket defaults */
-			CHECK_SYS(  getsockopt(sk, IPPROTO_SCTP, SCTP_ASSOCINFO, &assoc, &sz)  );
+			CHECK_SYS(  sctp_opt_info(sk, 0, SCTP_ASSOCINFO, &assoc, &sz)  );
 			if (sz != sizeof(assoc))
 			{
 				TRACE_DEBUG(INFO, "Invalid size of socket option: %d / %d", sz, (socklen_t)sizeof(assoc));
@@ -142,7 +170,7 @@ static int fd_setsockopt_prebind(int sk)
 		
 		if (TRACE_BOOL(ANNOYING)) {
 			/* Check new values */
-			CHECK_SYS(  getsockopt(sk, IPPROTO_SCTP, SCTP_ASSOCINFO, &assoc, &sz)  );
+			CHECK_SYS(  sctp_opt_info(sk, 0, SCTP_ASSOCINFO, &assoc, &sz)  );
 			fd_log_debug( "New SCTP_ASSOCINFO : sasoc_asocmaxrxt               : %hu", assoc.sasoc_asocmaxrxt);
 			fd_log_debug( "                     sasoc_number_peer_destinations : %hu", assoc.sasoc_number_peer_destinations);
 			fd_log_debug( "                     sasoc_peer_rwnd                : %u" , assoc.sasoc_peer_rwnd);
@@ -318,7 +346,7 @@ static int fd_setsockopt_prebind(int sk)
 			sz = sizeof(parms);
 
 			/* Read socket defaults */
-			CHECK_SYS(  getsockopt(sk, IPPROTO_SCTP, SCTP_PEER_ADDR_PARAMS, &parms, &sz)  );
+			CHECK_SYS(  sctp_opt_info(sk, 0, SCTP_PEER_ADDR_PARAMS, &parms, &sz)  );
 			if (sz != sizeof(parms))
 			{
 				TRACE_DEBUG(INFO, "Invalid size of socket option: %d / %d", sz, (socklen_t)sizeof(parms));
@@ -347,7 +375,7 @@ static int fd_setsockopt_prebind(int sk)
 		
 		if (TRACE_BOOL(ANNOYING)) {
 			/* Check new values */
-			CHECK_SYS(  getsockopt(sk, IPPROTO_SCTP, SCTP_PEER_ADDR_PARAMS, &parms, &sz)  );
+			CHECK_SYS(  sctp_opt_info(sk, 0, SCTP_PEER_ADDR_PARAMS, &parms, &sz)  );
 			fd_log_debug( "New SCTP_PEER_ADDR_PARAMS : spp_hbinterval    : %u",  parms.spp_hbinterval);
 			fd_log_debug( "                            spp_pathmaxrxt    : %hu", parms.spp_pathmaxrxt);
 			fd_log_debug( "                            spp_pathmtu       : %u",  parms.spp_pathmtu);
@@ -814,21 +842,16 @@ redo:
 			bind_default = 1;
 			goto redo;
 		}
-		
-		#if 0
-			union {
-				sSA	*sa;
-				uint8_t *buf;
-			} ptr;
-			int i;
-			ptr.sa = sar;
-			fd_log_debug("Calling sctp_bindx with the following address array:");
-			for (i = 0; i < count; i++) {
-				TRACE_sSA(FD_LOG_DEBUG, FULL, "    - ", ptr.sa, NI_NUMERICHOST | NI_NUMERICSERV, "" );
-				ptr.buf += (ptr.sa->sa_family == AF_INET) ? sizeof(sSA4) : sizeof(sSA6) ;
-			}
-		#endif
-		
+
+		/* Debug: show bound addresses */
+		{
+			char * buf = NULL;
+			size_t len = 0;
+			CHECK_MALLOC_DO( fd_sa_dump_array( &buf, &len, 0, sar, count), );
+			LOG_D("SCTP server binding local addresses: %s", buf);
+			free(buf);
+		}
+
 		/* Bind to this array */
 		CHECK_SYS(  sctp_bindx(*sock, sar, count, SCTP_BINDX_ADD_ADDR)  );
 		
@@ -840,22 +863,19 @@ redo:
 	CHECK_FCT( fd_setsockopt_postbind(*sock, bind_default) );
 	
 	/* Debug: show all local listening addresses */
-	#if 0
-		sSA *sar;
-		union {
-			sSA	*sa;
-			uint8_t *buf;
-		} ptr;
-		int sz;
-		
+	{
+		sSA *sar = NULL;
+		int sz = 0;
+		char * buf = NULL;
+		size_t len = 0;
+
 		CHECK_SYS(  sz = sctp_getladdrs(*sock, 0, &sar)  );
-		
-		fd_log_debug("SCTP server bound on :");
-		for (ptr.sa = sar; sz-- > 0; ptr.buf += (ptr.sa->sa_family == AF_INET) ? sizeof(sSA4) : sizeof(sSA6)) {
-			TRACE_sSA(FD_LOG_DEBUG, FULL, "    - ", ptr.sa, NI_NUMERICHOST | NI_NUMERICSERV, "" );
-		}
+
+		CHECK_MALLOC_DO( fd_sa_dump_array( &buf, &len, 0, sar, sz), );
+		LOG_D("SCTP server locally bound addresses: %s", buf);
 		sctp_freeladdrs(sar);
-	#endif
+		free(buf);
+	}
 
 	return 0;
 }
@@ -869,7 +889,7 @@ int fd_sctp_listen( int sock )
 }
 
 /* Create a client socket and connect to remote server */
-int fd_sctp_client( int *sock, int no_ip6, uint16_t port, struct fd_list * list )
+int fd_sctp_client( int *sock, int no_ip6, uint16_t port, struct fd_list * list, struct fd_list * src_list )
 {
 	int family;
 	union {
@@ -879,11 +899,13 @@ int fd_sctp_client( int *sock, int no_ip6, uint16_t port, struct fd_list * list 
 	size_t size = 0;
 	int count = 0;
 	int ret;
+	int bind_default = 1;	/* enable ASCONF in postbind */
 	
 	sar.buf = NULL;
 	
-	TRACE_ENTRY("%p %i %hu %p", sock, no_ip6, port, list);
+	TRACE_ENTRY("%p %i %hu %p %p", sock, no_ip6, port, list, src_list);
 	CHECK_PARAMS( sock && list && (!FD_IS_LIST_EMPTY(list)) );
+	CHECK_PARAMS( !src_list || (src_list && (!FD_IS_LIST_EMPTY(src_list))) );
 	
 	if (no_ip6) {
 		family = AF_INET;
@@ -899,31 +921,47 @@ int fd_sctp_client( int *sock, int no_ip6, uint16_t port, struct fd_list * list 
 	
 	/* Set the socket options */
 	CHECK_FCT_DO( ret = fd_setsockopt_prebind(*sock), goto out );
-	
+
+	/* Bind to explicit source addresses if requested */
+	if (src_list && !FD_IS_LIST_EMPTY(src_list)) {
+		sSA * bindsar = NULL; /* array of addresses */
+		size_t sz = 0; /* size of the array */
+		int sarcount = 0; /* number of sock addr in the array */
+
+		/* Create the array of configured addresses */
+		CHECK_FCT_DO( ret = add_addresses_from_list_mask((void *)&bindsar, &sz, &sarcount, family, 0, src_list, EP_FL_CONF, EP_FL_CONF), goto out );
+
+		if (sarcount) {
+			char * buf = NULL;
+			size_t len = 0;
+			CHECK_MALLOC_DO( fd_sa_dump_array( &buf, &len, 0, bindsar, sarcount), goto out );
+			LOG_A("SCTP client binding local addresses: %s", buf);
+			free(buf);
+
+			CHECK_SYS_DO( ret = sctp_bindx(*sock, bindsar, sarcount, SCTP_BINDX_ADD_ADDR), goto out );
+		}
+
+		/* Disable ASCONF option in postbind */
+		bind_default = 0;
+
+		/* We don't need bindsar anymore */
+		free(bindsar);
+	}
+
 	/* Create the array of addresses, add first the configured addresses, then the discovered, then the other ones */
 	CHECK_FCT_DO( ret = add_addresses_from_list_mask(&sar.buf, &size, &count, family, htons(port), list, EP_FL_CONF,              EP_FL_CONF	), goto out );
 	CHECK_FCT_DO( ret = add_addresses_from_list_mask(&sar.buf, &size, &count, family, htons(port), list, EP_FL_CONF | EP_FL_DISC, EP_FL_DISC	), goto out );
 	CHECK_FCT_DO( ret = add_addresses_from_list_mask(&sar.buf, &size, &count, family, htons(port), list, EP_FL_CONF | EP_FL_DISC, 0		), goto out );
 	
 	/* Try connecting */
-	LOG_A("Attempting SCTP connection (%d addresses attempted) ", count);
-		
-#if 0
-		/* Dump the SAs */
-		union {
-			uint8_t *buf;
-			sSA	*sa;
-			sSA4	*sin;
-			sSA6	*sin6;
-		} ptr;
-		int i;
-		ptr.buf = sar.buf;
-		for (i=0; i< count; i++) {
-			TRACE_sSA(FD_LOG_DEBUG, FULL, "  - ", ptr.sa, NI_NUMERICHOST | NI_NUMERICSERV, "" );
-			ptr.buf += (ptr.sa->sa_family == AF_INET) ? sizeof(sSA4) : sizeof(sSA6);
-		}
-#endif
-	
+	{
+		char * buf = NULL;
+		size_t len = 0;
+		CHECK_MALLOC_DO( fd_sa_dump_array( &buf, &len, 0, sar.sa, count), goto out );
+		LOG_A("SCTP client connecting to addresses: %s", buf);
+		free(buf);
+	}
+
 	/* Bug in some Linux kernel, the sctp_connectx is not a cancellation point. To avoid blocking freeDiameter, we allow async cancel here */
 	pthread_setcanceltype(PTHREAD_CANCEL_ASYNCHRONOUS, NULL);
 #ifdef SCTP_CONNECTX_4_ARGS
@@ -944,7 +982,7 @@ int fd_sctp_client( int *sock, int no_ip6, uint16_t port, struct fd_list * list 
 	free(sar.buf); sar.buf = NULL;
 	
 	/* Set the remaining sockopts */
-	CHECK_FCT_DO( ret = fd_setsockopt_postbind(*sock, 1), 
+	CHECK_FCT_DO( ret = fd_setsockopt_postbind(*sock, bind_default),
 		{ 
 			CHECK_SYS_DO( shutdown(*sock, SHUT_RDWR), /* continue */ );
 		} );
@@ -982,7 +1020,7 @@ int fd_sctp_get_str_info( int sock, uint16_t *in, uint16_t *out, sSS *primary )
 	}
 #if 0
 		char sa_buf[sSA_DUMP_STRLEN];
-		fd_sa_sdump_numeric(sa_buf, &status.sstat_primary.spinfo_address);
+		fd_sa_sdump_numeric(sa_buf, (sSA *)&status.sstat_primary.spinfo_address);
 		fd_log_debug( "SCTP_STATUS : sstat_state                  : %i" , status.sstat_state);
 		fd_log_debug( "              sstat_rwnd  	          : %u" , status.sstat_rwnd);
 		fd_log_debug( "		     sstat_unackdata	          : %hu", status.sstat_unackdata);
@@ -1218,6 +1256,7 @@ again:
 	/* Handle the case where the data received is a notification */
 	if (mhdr.msg_flags & MSG_NOTIFICATION) {
 		union sctp_notification * notif = (union sctp_notification *) data;
+		char sa_buf[sSA_DUMP_STRLEN];
 		
 		TRACE_DEBUG(FULL, "Received %zdb data of notification on socket %d", datasize, conn->cc_socket);
 	
@@ -1235,7 +1274,8 @@ again:
 	
 			case SCTP_PEER_ADDR_CHANGE:
 				TRACE_DEBUG(FULL, "Received SCTP_PEER_ADDR_CHANGE notification");
-				/* TRACE_sSA(FD_LOG_DEBUG, ANNOYING, "    intf_change : ", &(notif->sn_paddr_change.spc_aaddr), NI_NUMERICHOST | NI_NUMERICSERV, "" ); */
+				fd_sa_sdump_numeric(sa_buf, (sSA *)&(notif->sn_paddr_change.spc_aaddr));
+				TRACE_DEBUG(ANNOYING, "    intf_change : %s", sa_buf);
 				TRACE_DEBUG(ANNOYING, "          state : %d", notif->sn_paddr_change.spc_state);
 				TRACE_DEBUG(ANNOYING, "          error : %d", notif->sn_paddr_change.spc_error);
 				
@@ -1271,10 +1311,12 @@ again:
 				break;
 				
 #ifndef OLD_SCTP_SOCKET_API
+#ifdef SCTP_NOTIFICATIONS_STOPPED_EVENT
 			case SCTP_NOTIFICATIONS_STOPPED_EVENT:
 				TRACE_DEBUG(INFO, "Received SCTP_NOTIFICATIONS_STOPPED_EVENT notification, marking the association in error state");
 				*event = FDEVP_CNX_ERROR;
 				break;
+#endif	/*  SCTP_NOTIFICATIONS_STOPPED_EVENT  */
 #endif	/*  OLD_SCTP_SOCKET_API */		
 			
 			default:	

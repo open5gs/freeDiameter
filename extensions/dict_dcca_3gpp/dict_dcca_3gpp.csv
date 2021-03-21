@@ -1,0 +1,2421 @@
+Attribute Name,AVP Code,Section defined,Value Type,MUST,MAY,SHOULD NOT,MUST NOT
+@vendor,10415,,,,,,
+,,,,,,,
+@standard,3GPP TS 29.061,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.061 V15.5.0 (2018-12),,,,,,,
+# Interworking between the Public Land Mobile Network (PLMN),,,,,,,
+# supporting packet based services and,,,,,,,
+# Packet Data Networks (PDN),,,,,,,
+# ,,,,,,,
+# From 3GPP 29061-f50.doc,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.061 Table 9a: Gi/Sgi specific AVPs,,,,,,,
+#,,,,,,,
+# Note: 3GPP TS 29.061 is unclear and inconsistent about M.,,,,,,,
+"# For this reason, other sources are assumed more trustworthy.",,,,,,,
+#=,,,,,,,
+#,,,,,,,
+# Fix: 3GPP-IMSI (1) changed to Must M.,,,,,,,
+3GPP-IMSI,1,16.4.7,UTF8String,"M,V",P,,
+"# Fix: 3GPP-Charging-Id (2) type changed from OctetString to Unsigned32,",,,,,,,
+# per 3GPP TS 29.061 clause 16.4.7.2/2 and packet dumps.,,,,,,,
+3GPP-Charging-Id,2,16.4.7,Unsigned32,"M,V",P,,
+# Fix: 3GPP-PDP-Type (3) changed to Must M.,,,,,,,
+3GPP-PDP-Type,3,16.4.7,Enumerated,"M,V",P,,
+3GPP-CG-Address,4,16.4.7,OctetString,V,P,,M
+# Fix: 3GPP-GPRS-Negotiated-QoS-Profile (5) changed to Must M per contrib/3gpp.,,,,,,,
+3GPP-GPRS-Negotiated-QoS-Profile,5,16.4.7,UTF8String,"M,V",P,,
+3GPP-SGSN-Address,6,16.4.7,OctetString,V,P,,M
+3GPP-GGSN-Address,7,16.4.7,OctetString,V,P,,M
+# Fix: 3GPP-IMSI-MCC-MNC (8) changed to Must M per packet dumps.,,,,,,,
+3GPP-IMSI-MCC-MNC,8,16.4.7,UTF8String,"M,V",P,,
+# Fix: 3GPP-GGSN-MCC-MNC (9) changed to Must M per contrib/3gpp.,,,,,,,
+3GPP-GGSN-MCC-MNC,9,16.4.7,UTF8String,"M,V",P,,
+# Fix: 3GPP-NSAPI (10) changed to Must M per contrib/3gpp.,,,,,,,
+3GPP-NSAPI,10,16.4.7,OctetString,"M,V",P,,
+# Note: 3GPP TS 29.061 Table 9a does not define,,,,,,,
+# 3GPP-Session-Stop-Indicator (11) even when it is referenced,,,,,,,
+# by other 3GPP Diameter AVPs including PS-Information (874).,,,,,,,
+# ,,,,,,,
+# Fix: Add 3GPP-Session-Stop-Indicator (11) OctetString.,,,,,,,
+3GPP-Session-Stop-Indicator,11,16.4.7,OctetString,V,P,,M
+# Fix: 3GPP-Selection-Mode (12) changed to Must M per contrib/3gpp.,,,,,,,
+3GPP-Selection-Mode,12,16.4.7,UTF8String,"M,V",P,,
+# Fix: 3GPP-Charging-Characteristics (13) changed to Must M per contrib/3gpp.,,,,,,,
+3GPP-Charging-Characteristics,13,16.4.7,UTF8String,"M,V",P,,
+# Note: 3GPP TS 29.061 V12.6.0 (2014-06) renamed,,,,,,,
+# 3GPP-CG-IPv6-Address (14) to 3GPP-CG-Ipv6-Address.,,,,,,,
+# ,,,,,,,
+# Fix: 3GPP-CG-Ipv6-Address (14) changed to Must M per contrib/3gpp.,,,,,,,
+# Change-1.4.0: 3GPP-CG-IPv6-Address (14) renamed to 3GPP-CG-Ipv6-Address (14).,,,,,,,
+3GPP-CG-Ipv6-Address,14,16.4.7,OctetString,"M,V",P,,
+# Note: 3GPP TS 29.061 V12.6.0 (2014-06) renamed,,,,,,,
+# 3GPP-SGSN-IPv6-Address (15) to 3GPP-SGSN-Ipv6-Address.,,,,,,,
+# ,,,,,,,
+# Fix: 3GPP-SGSN-Ipv6-Address (15) changed to Must M per contrib/3gpp.,,,,,,,
+# Change-1.4.0: 3GPP-SGSN-IPv6-Address (15) renamed to 3GPP-SGSN-Ipv6-Address (15).,,,,,,,
+3GPP-SGSN-Ipv6-Address,15,16.4.7,OctetString,"M,V",P,,
+# Note: 3GPP TS 29.061 V12.6.0 (2014-06) renamed,,,,,,,
+# 3GPP-GGSN-IPv6-Address (16) to 3GPP-GGSN-Ipv6-Address.,,,,,,,
+# ,,,,,,,
+# Fix: 3GPP-GGSN-Ipv6-Address (16) changed to Must M per contrib/3gpp.,,,,,,,
+# Change-1.4.0: 3GPP-GGSN-IPv6-Address (16) renamed to 3GPP-GGSN-Ipv6-Address (16).,,,,,,,
+3GPP-GGSN-Ipv6-Address,16,16.4.7,OctetString,"M,V",P,,
+# Note: 3GPP TS 29.061 V12.6.0 (2014-06) renamed,,,,,,,
+# 3GPP-IPv6-DNS-Servers (17) to 3GPP-Ipv6-DNS-Servers.,,,,,,,
+# ,,,,,,,
+# Fix: 3GPP-Ipv6-DNS-Servers (17) changed to Must M per contrib/3gpp.,,,,,,,
+# Change-1.4.0: 3GPP-IPv6-DNS-Servers (17) renamed to 3GPP-Ipv6-DNS-Servers (17).,,,,,,,
+3GPP-Ipv6-DNS-Servers,17,16.4.7,OctetString,"M,V",P,,
+# Fix: 3GPP-SGSN-MCC-MNC (18) changed to Must M per contrib/3gpp.,,,,,,,
+3GPP-SGSN-MCC-MNC,18,16.4.7,UTF8String,"M,V",P,,
+# Fix: 3GPP-IMEISV (20) changed to Must M.,,,,,,,
+3GPP-IMEISV,20,16.4.7,OctetString,"M,V",P,,
+# Fix: 3GPP-RAT-Type (21) changed to Must M.,,,,,,,
+3GPP-RAT-Type,21,16.4.7,OctetString,"M,V",P,,
+# Fix: 3GPP-User-Location-Info (22) changed to Must M.,,,,,,,
+3GPP-User-Location-Info,22,16.4.7,OctetString,"M,V",P,,
+# Fix: 3GPP-MS-TimeZone (23) changed to Must M.,,,,,,,
+3GPP-MS-TimeZone,23,16.4.7,OctetString,"M,V",P,,
+3GPP-CAMEL-Charging-Info,24,16.4.7,OctetString,V,P,,M
+3GPP-Packet-Filter,25,16.4.7,OctetString,V,P,,M
+3GPP-Negotiated-DSCP,26,16.4.7,OctetString,V,P,,M
+3GPP-Allocate-IP-Type,27,16.4.7,OctetString,V,P,,M
+# Note: 3GPP TS 29.061 Table 9a does not define,,,,,,,
+# External-Identifier (28) for Diameter; it is RADIUS only.,,,,,,,
+# 3GPP TS 29.061 Table 9b refers to 3GPP TS 29.336,,,,,,,
+# for External-Identifier (3111).,,,,,,,
+# ,,,,,,,
+# Change-1.4.0: External-Identifier (28) OctetString replaced by External-Identifier (3111) UTF8String.,,,,,,,
+#,,,,,,,
+TWAN-Identifier,29,16.4.7,OctetString,V,P,,M
+3GPP-User-Location-Info-Time,30,16.4.7,OctetString,V,P,,M
+3GPP-Secondary-RAT-Usage,31,16.4.7,OctetString,V,P,,M
+#=,,,,,,,
+# 3GPP TS 29.061 Table 10: Gmb specific AVPs,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+TMGI,900,17.7.2,OctetString,"M,V",P,,
+Required-MBMS-Bearer-Capabilities,901,17.7.3,UTF8String,"M,V",P,,
+MBMS-StartStop-Indication,902,17.7.5,Enumerated,"M,V",P,,
+MBMS-Service-Area,903,17.7.6,OctetString,"M,V",P,,
+MBMS-Session-Duration,904,17.7.7,OctetString,"M,V",P,,
+Alternative-APN,905,17.7.8,UTF8String,"M,V",P,,
+MBMS-Service-Type,906,17.7.9,Enumerated,"M,V",P,,
+MBMS-2G-3G-Indicator,907,17.7.10,Enumerated,"M, V",P,,
+MBMS-Session-Identity,908,17.7.11,OctetString,"M,V",P,,
+RAI,909,17.7.12,UTF8String,"M, V",P,,
+Additional-MBMS-Trace-Info,910,17.7.13,OctetString,"M,V",P,,
+MBMS-Time-To-Data-Transfer,911,17.7.14,OctetString,"M,V",P,,
+MBMS-Session-Repetition-Number,912,17.7.15,OctetString,"M,V",P,,
+MBMS-Required-QoS,913,17.7.16,UTF8String,"M,V",P,,
+MBMS-Counting-Information,914,17.7.17,Enumerated,"M,V",P,,
+MBMS-User-Data-Mode-Indication,915,17.7.18,Enumerated,"M,V",P,,
+MBMS-GGSN-Address,916,17.7.19,OctetString,"M,V",P,,
+# Note: 3GPP TS 29.061 V12.6.0 (2014-06) renamed,,,,,,,
+# MBMS-GGSN-IPv6-Address (917) to MBMS-GGSN-Ipv6-Address.,,,,,,,
+# ,,,,,,,
+# Change-1.4.0: MBMS-GGSN-IPv6-Address (917) renamed to MBMS-GGSN-Ipv6-Address (917).,,,,,,,
+MBMS-GGSN-Ipv6-Address,917,17.7.20,OctetString,"M,V",P,,
+MBMS-BMSC-SSM-IP-Address,918,17.7.21,OctetString,"M,V",P,,
+# Note: 3GPP TS 29.061 V12.6.0 (2014-06) renamed,,,,,,,
+# MBMS-BMSC-SSM-IPv6-Address (919) to MBMS-BMSC-SSM-Ipv6-Address.,,,,,,,
+# ,,,,,,,
+# Change-1.4.0: MBMS-BMSC-SSM-IPv6-Address (919) renamed to MBMS-BMSC-SSM-Ipv6-Address (919).,,,,,,,
+MBMS-BMSC-SSM-Ipv6-Address,919,17.7.22,OctetString,"M,V",P,,
+MBMS-Flow-Identifier,920,17.7.23,OctetString,"M,V",P,,
+CN-IP-Multicast-Distribution,921,17.7.24,Enumerated,"M,V",P,,
+MBMS-HC-Indicator,922,17.7.25,Enumerated,"M,V",P,,
+#=,,,,,,,
+# 3GPP TS 29.061 Table 20.5a.1: SGmb specific AVPs,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+MBMS-Access-Indicator,923,20.5a.1,Enumerated,"M,V",P,,
+# Note: Name conflict with 3GPP TS 29.061 MBMS-GW-SSM-IP-Address (3522).,,,,,,,
+# 3GPP TS 29.061 V10.4.0 (2011-09) CR 0355 added MBMS-GW-SSM-IP-Address (924).,,,,,,,
+# 3GPP TS 29.468 V14.0.0 (2016-12) CR 0021 added MBMS-GW-SSM-IP-Address (3522).,,,,,,,
+MBMS-GW-SSM-IP-Address,924,20.5a.2,OctetString,V,P,,M
+# Note: 3GPP TS 29.061 V12.6.0 (2014-06) renamed,,,,,,,
+# MBMS-GW-SSM-IPv6-Address (925) to MBMS-GW-SSM-Ipv6-Address.,,,,,,,
+# Note: Name conflict with 3GPP TS 29.061 MBMS-GW-SSM-IPv6-Address (3523).,,,,,,,
+# 3GPP TS 29.061 V10.4.0 (2011-09) CR 0355 added MBMS-GW-SSM-IPv6-Address (925).,,,,,,,
+# 3GPP TS 29.061 V12.6.0 (2014-06) renamed,,,,,,,
+# MBMS-GW-SSM-IPv6-Address (925) to MBMS-GW-SSM-Ipv6-Address.,,,,,,,
+# 3GPP TS 29.468 V14.0.0 (2016-12) CR 0021 added MBMS-GW-SSM-IPv6-Address (3523).,,,,,,,
+MBMS-GW-SSM-IPv6-Address,925,20.5a.3,OctetString,V,P,,M
+MBMS-BMSC-SSM-UDP-Port,926,20.5a.4,OctetString,V,P,,M
+MBMS-GW-UDP-Port,927,20.5a.5,OctetString,V,P,,M
+MBMS-GW-UDP-Port-Indicator,928,20.5a.6,Enumerated,V,P,,M
+MBMS-Data-Transfer-Start,929,20.5a.7,Unsigned64,V,P,,M
+MBMS-Data-Transfer-Stop,930,20.5a.8,Unsigned64,V,P,,M
+# Note: 3GPP TS 29.061 Table 20.5a.1 row MBMS-Flag (931) has,,,,,,,
+"# incorrect name and should be ""MBMS-Flags"" per clause 20.5a.9.",,,,,,,
+# ,,,,,,,
+# Fix: MBMS-Flag (931) renamed to MBMS-Flags (931).,,,,,,,
+MBMS-Flags,931,20.5a.9,Unsigned32,V,P,,M
+Restart-Counter,932,20.5a.10,Unsigned32,V,P,,M
+Diagnostic-Info,933,20.5a.11,Unsigned32,V,P,,M
+MBMS-Cell-List,934,20.5a.12,OctetString,V,P,,M
+,,,,,,,
+@standard,3GPP TS 29.109,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.109 V15.0.0 (2017-06),,,,,,,
+# Generic Authentication Architecture (GAA);,,,,,,,
+# Zh and Zn Interfaces based on the Diameter protocol;,,,,,,,
+# Stage 3,,,,,,,
+# ,,,,,,,
+# From 3GPP 29109-f00.doc,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.109 Table 6.1: New Diameter Multimedia Application AVPs,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+GBA-UserSecSettings,400,6.3.1.1,OctetString,"M, V",,,
+Transaction-Identifier,401,6.3.1.2,OctetString,"M, V",,,
+NAF-Id,402,6.3.1.3,OctetString,"M, V",,,
+GAA-Service-Identifier,403,6.3.1.4,OctetString,"M, V",,,
+Key-ExpiryTime,404,6.3.1.5,Time,"M, V",,,
+ME-Key-Material,405,6.3.1.6,OctetString,"M, V",,,
+UICC-Key-Material,406,6.3.1.7,OctetString,"M, V",,,
+# Note: 3GPP TS 29.109 Table 6.1 row GBA_U-Awareness-Indicator (407),,,,,,,
+# has an underscore in the name (contrary to RFC 6733 section 4.1).,,,,,,,
+# ,,,,,,,
+# Fix: GBA_U-Awareness-Indicator (407) renamed to GBA-U-Awareness-Indicator (407).,,,,,,,
+GBA-U-Awareness-Indicator,407,6.3.1.8,Enumerated,"M, V",,,
+BootstrapInfoCreationTime,408,6.3.1.9,Time,"M, V",,,
+GUSS-Timestamp,409,6.3.1.10,Time,V,,,M
+GBA-Type,410,6.3.1.11,Enumerated,"M, V",,,
+UE-Id,411,6.3.1.12,OctetString,"M, V",,,
+UE-Id-Type,412,6.3.1.13,Enumerated,"M, V",,,
+UICC-App-Label,413,6.3.1.14,OctetString,"M, V",,,
+UICC-ME,414,6.3.1.15,Enumerated,"M, V",,,
+Requested-Key-Lifetime,415,6.3.1.16,Time,"M, V",,,
+Private-Identity-Request,416,6.3.1.17,Enumerated,"M, V",,,
+GBA-Push-Info,417,6.3.1.18,OctetString,"M, V",,,
+NAF-SA-Identifier,418,6.3.1.19,OctetString,"M, V",,,
+Security-Feature-Request,419,6.3.1.20,OctetString,"M,V",,,
+Security-Feature-Response,420,6.3.1.21,OctetString,"M,V",,,
+,,,,,,,
+@standard,3GPP TS 29.128,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.128 V15.6.0 (2019-09),,,,,,,
+# Mobility Management Entity (MME) and Serving GPRS Support,,,,,,,
+# Node (SGSN) interfaces for interworking with packet data,,,,,,,
+# networks and applications,,,,,,,
+# ,,,,,,,
+# From 3GPP 29128-f60.docx,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.128 Table 6.4.1-1: T6a/T6b specific Diameter AVPs,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+Communication-Failure-Information,4300,6.4.4,Grouped,"M,V",,,
+Cause-Type,4301,6.4.5,Unsigned32,"M,V",,,
+S1AP-Cause,4302,6.4.6,Unsigned32,"M,V",,,
+RANAP-Cause,4303,6.4.7,Unsigned32,"M,V",,,
+BSSGP-Cause,4309,6.4.8,Unsigned32,"M,V",,,
+GMM-Cause,4304,6.4.9,Unsigned32,"M,V",,,
+SM-Cause,4305,6.4.10,Unsigned32,"M,V",,,
+Number-Of-UE-Per-Location-Configuration,4306,6.4.11,Grouped,"M,V",,,
+Number-Of-UE-Per-Location-Report,4307,6.4.12,Grouped,"M,V",,,
+UE-Count,4308,6.4.13,Unsigned32,"M,V",,,
+Connection-Action,4314,6.4.18,Unsigned32,"M,V",,,
+Non-IP-Data,4315,6.4.19,OctetString,"M,V",,,
+Serving-PLMN-Rate-Control,4310,6.4.21,Grouped,"M,V",,,
+Uplink-Rate-Limit,4311,6.4.23,Unsigned32,"M,V",,,
+Downlink-Rate-Limit,4312,6.4.22,Unsigned32,"M,V",,,
+Extended-PCO,4313,6.4.26,OctetString,"M,V",,,
+SCEF-Wait-Time,4316,6.4.24,Time,"M,V",,,
+CMR-Flags,4317,6.4.25,Unsigned32,"M,V",,,
+RRC-Cause-Counter,4318,6.4.27,Grouped,"M,V",,,
+Counter-Value,4319,6.4.28,Unsigned32,"M,V",,,
+RRC-Counter-Timestamp,4320,6.4.29,Time,"M,V",,,
+TDA-Flags,4321,6.4.31,Unsigned32,V,,,M
+Idle-Status-Indication,4322,6.4.32,Grouped,V,,,M
+Idle-Status-Timestamp,4323,6.4.33,Time,V,,,M
+Active-Time,4324,6.4.34,Unsigned32,V,,,M
+,,,,,,,
+@standard,3GPP TS 29.140,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.140 V7.0.0 (2007-06),,,,,,,
+# MM10 interface based on Diameter protocol;,,,,,,,
+# Stage 3,,,,,,,
+# ,,,,,,,
+# From 3GPP 29140-700.doc,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.140 Table 6.3.1: Diameter MM10 Application AVPs,,,,,,,
+# ,,,,,,,
+# Note: AVPs referenced from other sources are not added here.,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+Served-User-Identity,1100,6.3.1,Grouped,"M,V",,,
+VASP-ID,1101,6.3.3,UTF8String,"M,V",,,
+VAS-ID,1102,6.3.4,UTF8String,"M,V",,,
+Trigger-Event,1103,6.3.5,Enumerated,"M,V",,,
+Sender-Address,1104,6.3.7,UTF8String,"M,V",,,
+Initial-Recipient-Address,1105,6.3.8,Grouped,"M,V",,,
+Result-Recipient-Address,1106,6.3.9,Grouped,"M,V",,,
+# Note: Name conflict with 3GPP TS 29.329 Sequence-Number (716),,,,,,,
+# and 3GPP TS 29.283 Sequence-Number (4512).,,,,,,,
+# 3GPP TS 29.140 V6.1.0 (2005-06) allocated Sequence-Number (1107).,,,,,,,
+# 3GPP TS 29.329 V10.0.0 (2010-09) CR 0163 added Sequence-Number (716).,,,,,,,
+# 3GPP TS 29.283 V13.1.0 (2016-06) allocated Sequence-Number (4512).,,,,,,,
+# ,,,,,,,
+# Fix: Sequence-Number (1107) renamed to Sequence-Number-29.140 (1107).,,,,,,,
+Sequence-Number-29.140,1107,6.3.10,Unsigned32,"M,V",,,
+# Note: Name conflict with 3GPP TS 32.299 Recipient-Address (1201);,,,,,,,
+# 3GPP TS 29.140 V6.1.0 (2005-06) allocated Recipient-Address (1108).,,,,,,,
+# 3GPP TS 32.299 V6.4.0 (2005-09) CR 0028 added Recipient-Address (1201).,,,,,,,
+# ,,,,,,,
+# Fix: Recipient-Address (1108) renamed to Recipient-Address-29.140 (1108).,,,,,,,
+Recipient-Address-29.140,1108,6.3.11,UTF8String,"M,V",,,
+Routeing-Address,1109,6.3.12,UTF8String,"M,V",,,
+Originating-Interface,1110,6.3.13,Enumerated,"M,V",,,
+Delivery-Report,1111,6.3.14,Enumerated,"M,V",,,
+Read-Reply,1112,6.3.15,Enumerated,"M,V",,,
+Sender-Visibility,1113,6.3.16,Enumerated,"M,V",,,
+Service-Key,1114,6.3.17,UTF8String,"M,V",,,
+Billing-Information,1115,6.3.18,UTF8String,"M,V",,,
+# Note: Name conflict with 3GPP TS 32.299 V11.6.0 Status (2702).,,,,,,,
+# 3GPP TS 32.299 V11.10.0 (2013-12) CR 0566 renamed,,,,,,,
+# Status (2702) to Status-Code (2702).,,,,,,,
+# 3GPP TS 32.299 V11.14.0 (2014-12) CR 0617 renamed,,,,,,,
+# Status-Code (2702) to Status-AS-Code (2702).,,,,,,,
+# ,,,,,,,
+# TODO: rename back to Status ?,,,,,,,
+# Fix: Status (1116) renamed to Status-29.140 (1116).,,,,,,,
+Status-29.140,1116,6.3.19,Grouped,"M,V",,,
+Status-Code,1117,6.3.20,UTF8String,"M,V",,,
+Status-Text,1118,6.3.21,UTF8String,"M,V",,,
+Routeing-Address-Resolution,1119,6.3.22,Enumerated,"M,V",,,
+,,,,,,,
+@standard,3GPP TS 29.153,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.153 V15.1.0 (2019-09),,,,,,,
+# Service capability exposure functionality over Ns,,,,,,,
+# reference point,,,,,,,
+# ,,,,,,,
+# From 3GPP 29153-f10.doc,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.153 Table 5.3.1.1: Ns specific Diameter AVPs ,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+Network-Congestion-Area-Report,4101,5.3.2,Grouped,"M,V",P,,
+Ns-Request-Type,4102,5.3.3,Unsigned32,"M,V",P,,
+,,,,,,,
+@standard,3GPP TS 29.154,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.154 V15.3.0 (2019-09),,,,,,,
+# Service capability exposure functionality over,,,,,,,
+# Nt reference point,,,,,,,
+# ,,,,,,,
+# From 3GPP 29154-f30.doc,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.154 Table 5.3.1.1: Nt specific Diameter AVPs,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+Network-Area-Info-List,4201,5.3.2,OctetString,"M,V",P,,
+Number-Of-UEs,4209,5.3.10,Unsigned32,"M,V",P,,
+Reference-Id,4202,5.3.3,OctetString,"M,V",P,,
+Transfer-Request-Type,4203,5.3.4,Unsigned32,"M,V",P,,
+# Note: Name conflict with 3GPP TS 29.345 Time-Window (3818).,,,,,,,
+# Time-Window (3818) in 3GPP TS 29.345 V12.1.0 (2014-12) predates,,,,,,,
+# Time-Window (4204) in 3GPP TS 29.154 V13.1.0 (2016-03).,,,,,,,
+# ,,,,,,,
+# Fix: Time-Window (4204) renamed to Time-Window-29.154 (4204).,,,,,,,
+Time-Window-29.154,4204,5.3.5,Grouped,"M,V",P,,
+Transfer-End-Time,4205,5.3.6,Time,"M,V",P,,
+Transfer-Policy,4207,5.3.8,Grouped,"M,V",P,,
+Transfer-Policy-Id,4208,5.3.9,Unsigned32,"M,V",P,,
+Transfer-Start-Time,4206,5.3.7,Time,"M,V",P,,
+#=,,,,,,,
+# 3GPP TS 29.154 Table A.6.3.1-1: Nta specific Diameter AVPs,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+Access-Network-Reports,4210,A.6.3.2,Grouped,"M,V",P,,
+Event-Configuration,4211,A.6.3.3,Grouped,"M,V",P,,
+Event-Configuration-State,4212,A.6.3.4,Unsigned32,"M,V",P,,
+Event-Configuration-Status,4213,A.6.3.5,Grouped,"M,V",P,,
+Event-Reporting-Results,4214,A.6.3.6,Unsigned32,"M,V",P,,
+Event-Reports,4215,A.6.3.7,Grouped,"M,V",P,,
+Extended-SCEF-Reference-ID,4216,A.6.3.8,Unsigned64,"M,V",P,,
+,,,,,,,
+@standard,3GPP TS 29.172,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.172 V15.2.0 (2019-12),,,,,,,
+# Location Services (LCS);,,,,,,,
+# Evolved Packet Core (EPC) LCS Protocol (ELP) between the,,,,,,,
+# Gateway Mobile Location Centre (GMLC) and the,,,,,,,
+# Mobile Management Entity (MME);,,,,,,,
+# SLg interface,,,,,,,
+# ,,,,,,,
+# From 3GPP 29172-f20.docx,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.172 Table 7.4.1-1: Diameter ELP Application AVPs,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+SLg-Location-Type,2500,7.4.2,Enumerated,"M, V",,,
+LCS-EPS-Client-Name,2501,7.4.3,Grouped,"M, V",,,
+LCS-Requestor-Name,2502,7.4.4,Grouped,"M, V",,,
+LCS-Priority,2503,7.4.5,Unsigned32,"M, V",,,
+LCS-QoS,2504,7.4.6,Grouped,"M, V",,,
+Horizontal-Accuracy,2505,7.4.7,Unsigned32,"M, V",,,
+Vertical-Accuracy,2506,7.4.8,Unsigned32,"M, V",,,
+Vertical-Requested,2507,7.4.9,Enumerated,"M, V",,,
+Velocity-Requested,2508,7.4.10,Enumerated,"M, V",,,
+Response-Time,2509,7.4.11,Enumerated,"M, V",,,
+Supported-GAD-Shapes,2510,7.4.12,Unsigned32,"M, V",,,
+LCS-Codeword,2511,7.4.13,UTF8String,"M, V",,,
+LCS-Privacy-Check,2512,7.4.14,Enumerated,"M, V",,,
+Accuracy-Fulfilment-Indicator,2513,7.4.15,Enumerated,"M, V",,,
+Age-Of-Location-Estimate,2514,7.4.16,Unsigned32,"M, V",,,
+Velocity-Estimate,2515,7.4.17,OctetString,"M, V",,,
+EUTRAN-Positioning-Data,2516,7.4.18,OctetString,"M, V",,,
+ECGI,2517,7.4.19,OctetString,"M, V",,,
+Location-Event,2518,7.4.20,Enumerated,"M, V",,,
+Pseudonym-Indicator,2519,7.4.21,Enumerated,"M, V",,,
+LCS-Service-Type-ID,2520,7.4.22,Unsigned32,"M, V",,,
+LCS-Privacy-Check-Non-Session,2521,7.4.23,Grouped,"M, V",,,
+LCS-Privacy-Check-Session,2522,7.4.24,Grouped,"M, V",,,
+LCS-QoS-Class,2523,7.4.27,Enumerated,"M, V",,,
+GERAN-Positioning-Info,2524,7.4.29,Grouped,V,,,M
+GERAN-Positioning-Data,2525,7.4.30,OctetString,V,,,M
+GERAN-GANSS-Positioning-Data,2526,7.4.31,OctetString,V,,,M
+UTRAN-Positioning-Info,2527,7.4.32,Grouped,V,,,M
+UTRAN-Positioning-Data,2528,7.4.33,OctetString,V,,,M
+UTRAN-GANSS-Positioning-Data,2529,7.4.34,OctetString,V,,,M
+LRR-Flags,2530,7.4.35,Unsigned32,V,,,M
+LCS-Reference-Number,2531,7.4.37,OctetString,V,,,M
+Deferred-Location-Type,2532,7.4.36,Unsigned32,V,,,M
+Area-Event-Info,2533,7.4.38,Grouped,V,,,M
+Area-Definition,2534,7.4.39,Grouped,V,,,M
+Area,2535,7.4.40,Grouped,V,,,M
+Area-Type,2536,7.4.41,Unsigned32,V,,,M
+Area-Identification,2537,7.4.42,Grouped,V,,,M
+Occurrence-Info,2538,7.4.43,Enumerated,V,,,M
+Interval-Time,2539,7.4.44,Unsigned32,V,,,M
+Periodic-LDR-Information,2540,7.4.45,Grouped,V,,,M
+Reporting-Amount,2541,7.4.46,Unsigned32,V,,,M
+Reporting-Interval,2542,7.4.47,Unsigned32,V,,,M
+Reporting-PLMN-List,2543,7.4.48,Grouped,V,,,M
+PLMN-ID-List,2544,7.4.49,Grouped,V,,,M
+PLR-Flags,2545,7.4.52,Unsigned32,V,,,M
+PLA-Flags,2546,7.4.53,Unsigned32,V,,,M
+Deferred-MT-LR-Data,2547,7.4.54,Grouped,V,,,M
+Termination-Cause,2548,7.4.55,Unsigned32,V,,,M
+LRA-Flags,2549,7.4.56,Unsigned32,V,,,M
+Periodic-Location-Support-Indicator,2550,7.4.50,Enumerated,V,,,M
+Prioritized-List-Indicator,2551,7.4.51,Enumerated,V,,,M
+ESMLC-Cell-Info,2552,7.4.57,Grouped,V,,,M
+Cell-Portion-ID,2553,7.4.58,Unsigned32,V,,,M
+1xRTT-RCID,2554,7.4.59,OctetString,V,,,M
+Delayed-Location-Reporting-Data,2555,7.4.60,Grouped,V,,,M
+Civic-Address,2556,7.4.61,UTF8String,V,,,M
+Barometric-Pressure,2557,7.4.62,Unsigned32,V,,,M
+UTRAN-Additional-Positioning-Data,2558,7.4.63,OctetString,V,,,M
+Motion-Event-Info,2559,7.4.64,Grouped,V,,,M
+Linear-Distance,2560,7.4.65,Unsigned32,V,,,M
+Maximum-Interval,2561,7.4.66,Unsigned32,V,,,M
+Sampling-Interval,2562,7.4.67,Unsigned32,V,,,M
+Reporting-Duration,2563,7.4.68,Unsigned32,V,,,M
+Reporting-Location-Requirements,2564,7.4.69,Unsigned32,V,,,M
+Additional-Area,2565,7.4.70,Grouped,V,,,M
+,,,,,,,
+@standard,3GPP TS 29.173,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.173 V15.0.0 (2018-06),,,,,,,
+# Location Services (LCS);,,,,,,,
+# Diameter-based SLh interface for Control Plane LCS,,,,,,,
+# ,,,,,,,
+# From 3GPP 29173-f00.doc,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.173 Table 6.4.1/1: SLh specific Diameter AVPs,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+LMSI,2400,6.4.2,OctetString,"M,V",,,
+Serving-Node,2401,6.4.3,Grouped,"M,V",,,
+MME-Name,2402,6.4.4,DiameterIdentity,"M,V",,,
+MSC-Number,2403,6.4.5,OctetString,"M,V",,,
+LCS-Capabilities-Sets,2404,6.4.6,Unsigned32,"M,V",,,
+GMLC-Address,2405,6.4.7,Address,"M,V",,,
+Additional-Serving-Node,2406,6.4.8,Grouped,"M,V",,,
+PPR-Address,2407,6.4.9,Address,"M,V",,,
+MME-Realm,2408,6.4.12,DiameterIdentity,V,,,M
+SGSN-Name,2409,6.4.13,DiameterIdentity,V,,,M
+SGSN-Realm,2410,6.4.14,DiameterIdentity,V,,,M
+RIA-Flags,2411,6.4.15,Unsigned32,V,,,M
+,,,,,,,
+@standard,3GPP TS 29.209,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.209 V6.8.0 (2011-09),,,,,,,
+# Policy control over Gq interface,,,,,,,
+# ,,,,,,,
+# From 3GPP 29209-680.doc,,,,,,,
+# ,,,,,,,
+# Replaced by 3GPP TS 29.214.,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.209 Table 6.5.1: Gq specific Diameter AVPs,,,,,,,
+# Note: Only AVPs not provided by 3GPP TS 29.214.,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+Authorization-Token,506,6.5.7,OctetString,"M,V",P,,
+Flow-Grouping,508,6.5.9,Grouped,"M,V",P,,
+,,,,,,,
+@standard,3GPP TS 29.210,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.210 V6.7.0 (2006-12),,,,,,,
+# Charging rule provisioning over Gx interface,,,,,,,
+# ,,,,,,,
+# From 3GPP 29210-670.doc,,,,,,,
+# ,,,,,,,
+# Replaced by 3GPP TS 29.212.,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.210 Table 5.2: Gx specific Diameter AVPs,,,,,,,
+# Note: Only AVPs not provided by 3GPP TS 29.212.,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+PDP-Session-Operation,1015,5.2.21,Enumerated,"M,V",P,,
+,,,,,,,
+@standard,3GPP TS 29.212,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.212 V15.9.0 (2019-12),,,,,,,
+# Policy and Charging Control (PCC); Reference points,,,,,,,
+# ,,,,,,,
+# From 3GPP 29212-f90.doc,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.212 Table 5.3.0.1: Gx specific Diameter AVPs,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+# Change-1.4.0: ADC-Revalidation-Time (2801) Time removed in 3GPP TS 29.212 V12.1.0 (2013-06).,,,,,,,
+#,,,,,,,
+# Note: Name conflict with 3GPP TS 32.299 3GPP-PS-Data-Off-Status (4406).,,,,,,,
+# 3GPP TS 29.212 V14.3.0 (2017-03) CR 1559 added 3GPP-PS-Data-Off-Status (2847).,,,,,,,
+# 3GPP TS 32.299 V14.3.0 (2017-03) CR 0760 added 3GPP-PS-Data-Off-Status (4406).,,,,,,,
+3GPP-PS-Data-Off-Status,2847,5.3.133,Enumerated,V,P,,M
+Access-Availability-Change-Reason,2833,5.3.121,Unsigned32,V,P,,M
+Access-Network-Charging-Identifier-Gx,1022,5.3.22,Grouped,"M,V",P,,
+Allocation-Retention-Priority,1034,5.3.32,Grouped,V,P,,M
+AN-GW-Address,1050,5.3.49,Address,V,P,,M
+AN-GW-Status,2811,5.3.100,Enumerated,V,P,,M
+APN-Aggregate-Max-Bitrate-DL,1040,5.3.39,Unsigned32,V,P,,M
+APN-Aggregate-Max-Bitrate-UL,1041,5.3.40,Unsigned32,V,P,,M
+Application-Detection-Information,1098,5.3.91,Grouped,V,P,,M
+Bearer-Control-Mode,1023,5.3.23,Enumerated,"M,V",P,,
+Bearer-Identifier,1020,5.3.20,OctetString,"M,V",P,,
+Bearer-Operation,1021,5.3.21,Enumerated,"M,V",P,,
+Bearer-Usage,1000,5.3.1,Enumerated,"M,V",P,,
+Charging-Correlation-Indicator,1073,5.3.67,Enumerated,V,P,,M
+Charging-Rule-Base-Name,1004,5.3.5,UTF8String,"M,V",P,,
+Charging-Rule-Definition,1003,5.3.4,Grouped,"M,V",P,,
+Charging-Rule-Install,1001,5.3.2,Grouped,"M,V",P,,
+Charging-Rule-Name,1005,5.3.6,OctetString,"M,V",P,,
+Charging-Rule-Remove,1002,5.3.3,Grouped,"M,V",P,,
+Charging-Rule-Report,1018,5.3.18,Grouped,"M,V",P,,
+CoA-Information,1039,5.3.37,Grouped,V,P,,M
+CoA-IP-Address,1035,5.3.33,Address,V,P,,M
+Conditional-APN-Aggregate-Max-Bitrate,2818,5.3.105,Grouped,V,P,,M
+Conditional-Policy-Information,2840,5.3.128,Grouped,V,P,,M
+Credit-Management-Status,1082,5.3.102,Unsigned32,V,P,,M
+CSG-Information-Reporting,1071,5.3.64,Enumerated,V,P,,M
+Default-Access,2829,5.3.120,Enumerated,V,P,,M
+Default-Bearer-Indication,2844,5.3.132,Enumerated,V,P,,M
+Default-EPS-Bearer-QoS,1049,5.3.48,Grouped,V,P,,M
+Default-QoS-Information,2816,5.3.103,Grouped,V,P,,M
+Default-QoS-Name,2817,5.3.104,UTF8String,V,P,,M
+Event-Report-Indication,1033,5.3.30,Grouped,V,P,,M
+Event-Trigger,1006,5.3.7,Enumerated,"M,V",P,,
+Execution-Time,2839,5.3.127,Time,V,P,,M
+Extended-APN-AMBR-DL,2848,5.3.134,Unsigned32,V,P,,M
+Extended-APN-AMBR-UL,2849,5.3.135,Unsigned32,V,P,,M
+Extended-GBR-DL,2850,5.3.136,Unsigned32,V,P,,M
+Extended-GBR-UL,2851,5.3.137,Unsigned32,V,P,,M
+Flow-Direction,1080,5.3.65,Enumerated,V,P,,M
+Flow-Information,1058,5.3.53,Grouped,V,P,,M
+Flow-Label,1057,5.3.52,OctetString,V,P,,M
+Fixed-User-Location-Info,2825,5.3.112,Grouped,V,P,,M
+Guaranteed-Bitrate-DL,1025,5.3.25,Unsigned32,"M,V",P,,
+Guaranteed-Bitrate-UL,1026,5.3.26,Unsigned32,"M,V",P,,
+# Note: HeNB-BBF-FQDN (2803) UTF8String removed in 3GPP TS 29.212 V11.8.0 (2013-03).,,,,,,,
+#,,,,,,,
+HeNB-Local-IP-Address,2804,5.3.95,Address,V,P,,M
+IP-CAN-Session-Charging-Scope,2827,5.3.114,Enumerated,V,P,,M
+IP-CAN-Type,1027,5.3.27,Enumerated,"M,V",P,,
+# Note: 3GPP TS 29.212 Table 5.3.0.1 row Max-PLR-DL (2852),,,,,,,
+# incorrectly lists type as Unsigned32 instead of Float32.,,,,,,,
+# 3GPP TS 29.212 clause 5.3.138 uses Float32.,,,,,,,
+# ,,,,,,,
+# Fix: Max-PLR-DL (2852) type changed from Float32 to Unsigned32.,,,,,,,
+Max-PLR-DL,2852,5.3.138,Unsigned32,V,P,,M
+# Note: 3GPP TS 29.212 Table 5.3.0.1 row Max-PLR-UL (2853),,,,,,,
+# incorrectly lists type as Unsigned32 instead of Float32.,,,,,,,
+# 3GPP TS 29.212 clause 5.3.139 uses Float32.,,,,,,,
+# ,,,,,,,
+# Fix: Max-PLR-UL (2853) type changed from Float32 to Unsigned32.,,,,,,,
+Max-PLR-UL,2853,5.3.139,Unsigned32,V,P,,M
+Metering-Method,1007,5.3.8,Enumerated,"M,V",P,,
+Monitoring-Flags,2828,5.3.115,Unsigned32,V,,,M
+Monitoring-Key,1066,5.3.59,OctetString,V,P,,M
+Mute-Notification,2809,5.3.98,Enumerated,V,P,,M
+Monitoring-Time,2810,5.3.99,Time,V,P,,M
+NBIFOM-Mode,2830,5.3.117,Enumerated,V,P,,M
+NBIFOM-Support,2831,5.3.116,Enumerated,V,P,,M
+NetLoc-Access-Support,2824,5.3.111,Unsigned32,V,P,,M
+Network-Request-Support,1024,5.3.24,Enumerated,"M,V",P,,
+Offline,1008,5.3.9,Enumerated,"M,V",P,,
+Online,1009,5.3.10,Enumerated,"M,V",P,,
+Packet-Filter-Content,1059,5.3.54,IPFilterRule,V,P,,M
+Packet-Filter-Identifier,1060,5.3.55,OctetString,V,P,,M
+Packet-Filter-Information,1061,5.3.56,Grouped,V,P,,M
+Packet-Filter-Operation,1062,5.3.57,Enumerated,V,P,,M
+Packet-Filter-Usage,1072,5.3.66,Enumerated,V,P,,M
+PCC-Rule-Status,1019,5.3.19,Enumerated,"M,V",P,,
+# Note: 3GPP TS 29.212 Table 5.3.0.1 row PDN-Connection-ID (1065),,,,,,,
+"# missing M, assume MUST NOT.",,,,,,,
+# ,,,,,,,
+# Change-1.4.0: PDN-Connection-ID (1065) flag M MUST NOT.,,,,,,,
+PDN-Connection-ID,1065,5.3.58,OctetString,V,P,,M
+PRA-Install,2845,5.3.130,Grouped,V,P,,M
+PRA-Remove,2846,5.3.131,Grouped,V,P,,M
+Precedence,1010,5.3.11,Unsigned32,"M,V",P,,
+Pre-emption-Capability,1047,5.3.46,Enumerated,V,P,,M
+Pre-emption-Vulnerability,1048,5.3.47,Enumerated,V,P,,M
+Presence-Reporting-Area-Elements-List,2820,5.3.107,OctetString,V,P,,M
+Presence-Reporting-Area-Identifier,2821,5.3.108,OctetString,V,P,,M
+Presence-Reporting-Area-Information,2822,5.3.109,Grouped,V,P,,M
+Presence-Reporting-Area-Node,2855,5.3.141,Unsigned32,V,P,,M
+Presence-Reporting-Area-Status,2823,5.3.110,Unsigned32,V,P,,M
+Priority-Level,1046,5.3.45,Unsigned32,V,P,,M
+# Note: 3GPP TS 29.212 Table 5.3.0.1 row PS-to-CS-Session-Continuity (1099),,,,,,,
+"# missing M, assume MUST NOT.",,,,,,,
+# ,,,,,,,
+# Change-1.4.0: PS-to-CS-Session-Continuity (1099) flag M MUST NOT.,,,,,,,
+PS-to-CS-Session-Continuity,1099,5.3.84,Enumerated,V,P,,M
+QoS-Class-Identifier,1028,5.3.17,Enumerated,"M,V",P,,
+QoS-Information,1016,5.3.16,Grouped,"M,V",P,,
+QoS-Negotiation,1029,5.3.28,Enumerated,"M,V",P,,
+QoS-Upgrade,1030,5.3.29,Enumerated,"M,V",P,,
+RAN-NAS-Release-Cause,2819,5.3.106,OctetString,V,P,,M
+RAN-Rule-Support,2832,5.3.122,Unsigned32,V,P,,M
+RAT-Type,1032,5.3.31,Enumerated,V,P,,M
+Redirect-Information,1085,5.3.82,Grouped,V,P,,M
+Redirect-Support,1086,5.3.83,Enumerated,V,P,,M
+Removal-Of-Access,2842,5.3.126,Enumerated,V,P,,M
+Reporting-Level,1011,5.3.12,Enumerated,"M,V",P,,
+Resource-Allocation-Notification,1063,5.3.50,Enumerated,V,P,,M
+Resource-Release-Notification,2841,5.3.125,Enumerated,V,P,,M
+Revalidation-Time,1042,5.3.41,Time,"M,V",P,,
+Routing-Filter,1078,5.3.72,Grouped,V,P,,M
+Routing-IP-Address,1079,5.3.73,Address,V,P,,M
+Routing-Rule-Definition,1076,5.3.70,Grouped,V,P,,M
+Routing-Rule-Identifier,1077,5.3.71,OctetString,V,P,,M
+Routing-Rule-Install,1081,5.3.68,Grouped,V,P,,M
+Routing-Rule-Remove,1075,5.3.69,Grouped,V,P,,M
+Routing-Rule-Failure-Code,2834,5.3.119,Unsigned32,V,P,,M
+Routing-Rule-Report,2835,5.3.118,Grouped,V,P,,M
+Rule-Activation-Time,1043,5.3.42,Time,"M,V",P,,
+Rule-Deactivation-Time,1044,5.3.43,Time,"M,V",P,,
+Rule-Failure-Code,1031,5.3.38,Enumerated,"M,V",P,,
+Security-Parameter-Index,1056,5.3.51,OctetString,V,P,,M
+Session-Release-Cause,1045,5.3.44,Enumerated,"M,V",P,,
+TCP-Source-Port,2843,5.3.129,Unsigned32,V,P,,M
+TDF-Information,1087,5.3.78,Grouped,V,P,,M
+TDF-Application-Identifier,1088,5.3.77,OctetString,V,P,,M
+TDF-Application-Instance-Identifier,2802,5.3.92,OctetString,V,P,,M
+TDF-Destination-Host,1089,5.3.80,DiameterIdentity,V,P,,M
+TDF-Destination-Realm,1090,5.3.79,DiameterIdentity,V,P,,M
+TDF-IP-Address,1091,5.3.81,Address,V,P,,M
+TFT-Filter,1012,5.3.13,IPFilterRule,"M,V",P,,
+TFT-Packet-Filter-Information,1013,5.3.14,Grouped,"M,V",P,,
+Traffic-Steering-Policy-Identifier-DL,2836,5.3.123,OctetString,V,P,,M
+Traffic-Steering-Policy-Identifier-UL,2837,5.3.124,OctetString,V,P,,M
+ToS-Traffic-Class,1014,5.3.15,OctetString,"M,V",P,,
+Tunnel-Header-Filter,1036,5.3.34,IPFilterRule,V,P,,M
+Tunnel-Header-Length,1037,5.3.35,Unsigned32,V,P,,M
+Tunnel-Information,1038,5.3.36,Grouped,V,P,,M
+UDP-Source-Port,2806,5.3.97,Unsigned32,V,P,,M
+UE-Local-IP-Address,2805,5.3.96,Address,V,P,,M
+UE-Status,2854,5.3.140,Unsigned32,V,P,,M
+Usage-Monitoring-Information,1067,5.3.60,Grouped,V,P,,M
+Usage-Monitoring-Level,1068,5.3.61,Enumerated,V,P,,M
+Usage-Monitoring-Report,1069,5.3.62,Enumerated,V,P,,M
+Usage-Monitoring-Support,1070,5.3.63,Enumerated,V,P,,M
+User-Location-Info-Time,2812,5.3.101,Time,V,P,,M
+PCSCF-Restoration-Indication,2826,5.3.113,Unsigned32,V,P,,M
+#=,,,,,,,
+# 3GPP TS 29.212 Table 5a.3.0.1: Gxx specific Diameter AVPs,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+QoS-Rule-Install,1051,5a.3.1,Grouped,"M,V",P,,
+QoS-Rule-Remove,1052,5a.3.2,Grouped,"M,V",P,,
+QoS-Rule-Definition,1053,5a.3.3,Grouped,"M,V",P,,
+QoS-Rule-Name,1054,5a.3.4,OctetString,"M,V",P,,
+QoS-Rule-Base-Name,1074,5a.3.7,UTF8String,V,P,,M
+QoS-Rule-Report,1055,5a.3.5,Grouped,"M,V",P,,
+Session-Linking-Indicator,1064,5a.3.6,Enumerated,"M,V",P,,
+#=,,,,,,,
+# 3GPP TS 29.212 Table 5b.3.0.1: Sd specific Diameter AVPs,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+# Change-1.4.0: ADC-Rule-Base-Name (1095) flag M MUST.,,,,,,,
+ADC-Rule-Base-Name,1095,5b.3.4,UTF8String,"M,V",P,,
+# Change-1.4.0: ADC-Rule-Definition (1094) flag M MUST.,,,,,,,
+ADC-Rule-Definition,1094,5b.3.3,Grouped,"M,V",P,,
+# Change-1.4.0: ADC-Rule-Install (1092) flag M MUST.,,,,,,,
+ADC-Rule-Install,1092,5b.3.1,Grouped,"M,V",P,,
+# Change-1.4.0: ADC-Rule-Name (1096) flag M MUST.,,,,,,,
+ADC-Rule-Name,1096,5b.3.5,OctetString,"M,V",P,,
+# Change-1.4.0: ADC-Rule-Remove (1093) flag M MUST.,,,,,,,
+ADC-Rule-Remove,1093,5b.3.2,Grouped,"M,V",P,,
+# Change-1.4.0: ADC-Rule-Report (1097) flag M MUST.,,,,,,,
+ADC-Rule-Report,1097,5b.3.6,Grouped,"M,V",P,,
+#=,,,,,,,
+# 3GPP TS 29.212 Table 5c.3.1.1: St specific Diameter AVPs,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+Request-Type,2838,5c.3.2,Unsigned32,"M,V",P,,
+#=,,,,,,,
+# 3GPP TS 29.212 Table E.6.3.1.1: S15 specific Diameter AVPs,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+CS-Service-Qos-Request-Identifier,2807,E.6.3.2,OctetString,"M, V",P,,
+CS-Service-QoS-Request-Operation,2808,E.6.3.3,Enumerated,"M, V",P,,
+CS-Service-Resource-Report,2813,E.6.3.6,Grouped,"M, V",P,,
+CS-Service-Resource-Failure-Cause,2814,E.6.3.5,Enumerated,"M, V",P,,
+CS-Service-Resource-Result-Operation,2815,E.6.3.4,Enumerated,"M, V",P,,
+,,,,,,,
+@standard,3GPP TS 29.214,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.214 V15.7.0 (2019-09),,,,,,,
+# Policy and Charging Control over Rx reference point,,,,,,,
+# ,,,,,,,
+# From 3GPP 29214-f70.doc,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.214 Table 5.3.0.1: Rx specific Diameter AVPs,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+Abort-Cause,500,5.3.1,Enumerated,"M,V",P,,
+Access-Network-Charging-Address,501,5.3.2,Address,"M,V",P,,
+Access-Network-Charging-Identifier,502,5.3.3,Grouped,"M,V",P,,
+Access-Network-Charging-Identifier-Value,503,5.3.4,OctetString,"M,V",P,,
+Acceptable-Service-Info,526,5.3.24,Grouped,"M,V",P,,
+AF-Application-Identifier,504,5.3.5,OctetString,"M,V",P,,
+AF-Charging-Identifier,505,5.3.6,OctetString,"M,V",P,,
+AF-Requested-Data,551,5.3.50,Unsigned32,V,P,,M
+AF-Signalling-Protocol,529,5.3.26,Enumerated,V,P,,M
+Application-Service-Provider-Identity,532,5.3.29,UTF8String,V,P,,M
+Codec-Data,524,5.3.7,OctetString,"M,V",P,,
+Content-Version,552,5.3.49,Unsigned64,V,P,,M
+Extended-Max-Requested-BW-DL,554,5.3.52,Unsigned32,V,P,,M
+Extended-Max-Requested-BW-UL,555,5.3.53,Unsigned32,V,P,,M
+Extended-Max-Supported-BW-DL,556,5.3.54,Unsigned32,V,P,,M
+Extended-Max-Supported-BW-UL,557,5.3.55,Unsigned32,V,P,,M
+Extended-Min-Desired-BW-DL,558,5.3.56,Unsigned32,V,P,,M
+Extended-Min-Desired-BW-UL,559,5.3.57,Unsigned32,V,P,,M
+Extended-Min-Requested-BW-DL,560,5.3.58,Unsigned32,V,P,,M
+Extended-Min-Requested-BW-UL,561,5.3.59,Unsigned32,V,P,,M
+Flow-Description,507,5.3.8,IPFilterRule,"M,V",P,,
+Flow-Number,509,5.3.9,Unsigned32,"M,V",P,,
+Flows,510,5.3.10,Grouped,"M,V",P,,
+Flow-Status,511,5.3.11,Enumerated,"M,V",P,,
+Flow-Usage,512,5.3.12,Enumerated,"M,V",P,,
+GCS-Identifier,538,5.3.36,OctetString,V,P,,M
+# Note: 3GPP TS 29.214 Table 5.3.0.1 row IMS-Content-Identifier (563),,,,,,,
+"# missing M, assume MUST NOT.",,,,,,,
+# ,,,,,,,
+# Fix: IMS-Content-Identifier (563) flag M MUST NOT.,,,,,,,
+IMS-Content-Identifier,563,5.3.60,OctetString,V,P,,M
+# Note: 3GPP TS 29.214 Table 5.3.0.1 row IMS-Content (564),,,,,,,
+"# missing M, assume MUST NOT.",,,,,,,
+# ,,,,,,,
+# Fix: IMS-Content (564) flag M MUST NOT.,,,,,,,
+IMS-Content-Type,564,5.3.61,Enumerated,V,P,,M
+IP-Domain-Id,537,5.3.35,OctetString,V,P,,M
+Max-Requested-Bandwidth-DL,515,5.3.14,Unsigned32,"M,V",P,,
+Max-Requested-Bandwidth-UL,516,5.3.15,Unsigned32,"M,V",P,,
+Max-Supported-Bandwidth-DL,543,5.3.41,Unsigned32,V,P,,M
+Max-Supported-Bandwidth-UL,544,5.3.42,Unsigned32,V,P,,M
+MCPTT-Identifier,547,5.3.45,OctetString,V,P,,M
+MCVideo-Identifier,562,5.3.45a,OctetString,V,P,,M
+Media-Component-Description,517,5.3.16,Grouped,"M,V",P,,
+Media-Component-Number,518,5.3.17,Unsigned32,"M,V",P,,
+Media-Component-Status,549,5.3.48,Unsigned32,V,P,,M
+Media-Sub-Component,519,5.3.18,Grouped,"M,V",P,,
+Media-Type,520,5.3.19,Enumerated,"M,V",P,,
+MPS-Identifier,528,5.3.30,OctetString,V,P,,M
+Min-Desired-Bandwidth-DL,545,5.3.43,Unsigned32,V,P,,M
+Min-Desired-Bandwidth-UL,546,5.3.44,Unsigned32,V,P,,M
+Min-Requested-Bandwidth-DL,534,5.3.32,Unsigned32,V,P,,M
+Min-Requested-Bandwidth-UL,535,5.3.33,Unsigned32,V,P,,M
+Priority-Sharing-Indicator,550,5.3.47,Enumerated,V,P,,M
+Pre-emption-Control-Info,553,5.3.51,Unsigned32,V,P,,M
+Required-Access-Info,536,5.3.34,Enumerated,V,P,,M
+Retry-Interval,541,5.3.39,Unsigned32,V,P,,M
+Rx-Request-Type,533,5.3.31,Enumerated,V,P,,M
+RR-Bandwidth,521,5.3.20,Unsigned32,"M,V",P,,
+RS-Bandwidth,522,5.3.21,Unsigned32,"M,V",P,,
+Service-Authorization-Info,548,5.3.46,Unsigned32,V,P,,M
+Service-URN,525,5.3.23,OctetString,"M,V",P,,
+Service-Info-Status,527,5.3.25,Enumerated,"M,V",P,,
+Sharing-Key-DL,539,5.3.37,Unsigned32,V,P,,M
+Sharing-Key-UL,540,5.3.38,Unsigned32,V,P,,M
+Specific-Action,513,5.3.13,Enumerated,"M,V",P,,
+SIP-Forking-Indication,523,5.3.22,Enumerated,"M,V",P,,
+Sponsor-Identity,531,5.3.28,UTF8String,V,P,,M
+Sponsored-Connectivity-Data,530,5.3.27,Grouped,V,P,,M
+Sponsoring-Action,542,5.3.40,Enumerated,V,P,,M
+,,,,,,,
+@standard,3GPP TS 29.215,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.215 V15.2.0 (2019-09),,,,,,,
+# Policy and Charging Control (PCC) over S9 reference point;,,,,,,,
+# Stage 3,,,,,,,
+# ,,,,,,,
+# From 3GPP 29215-f20.doc,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.215 Table 5.3.0.1: S9 specific Diameter AVPs,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+DRA-Deployment,2206,5.3.7,Enumerated,V,P,,M
+Multiple-BBERF-Action,2204,5.3.6,Enumerated,"M,V",P,,
+Subsession-Decision-Info,2200,5.3.1,Grouped,"M,V",P,,
+Subsession-Enforcement-Info,2201,5.3.2,Grouped,"M,V",P,,
+Subsession-Id,2202,5.3.3,Unsigned32,"M,V",P,,
+Subsession-Operation,2203,5.3.4,Enumerated,"M,V",P,,
+DRA-Binding,2208,5.3.x,Enumerated,V,P,,M
+#=,,,,,,,
+# 3GPP TS 29.215 Table A.7.3.1.1: S9a specific Diameter AVPs,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+PCRF-Address,2207,A.7.3.1.1,DiameterIdentity,"V,M",P,,
+#=,,,,,,,
+# 3GPP TS 29.215 Table A.8.3.1.1: S9a* specific Diameter AVPs,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+UE-Local-IPv6-Prefix,2205,A.8.3.1,OctetString,"V,M",P,,
+,,,,,,,
+@standard,3GPP TS 29.217,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.217 V15.1.0 (2019-09),,,,,,,
+# Policy and Charging Control (PCC);,,,,,,,
+# Congestion reporting over Np reference point,,,,,,,
+# ,,,,,,,
+# From 3GPP 29217-f10.doc,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.217 Table 5.3.1.1: Np specific Diameter AVPs,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+Aggregated-Congestion-Info,4000,5.3.2,Grouped,"V, M",P,,
+Aggregated-RUCI-Report,4001,5.3.3,Grouped,"V, M",P,,
+Congestion-Level-Definition,4002,5.3.4,Grouped,V,P,,M
+Congestion-Level-Range,4003,5.3.5,Unsigned32,V,P,,M
+Congestion-Level-Set-Id,4004,5.3.6,Unsigned32,V,P,,M
+Congestion-Level-Value,4005,5.3.7,Unsigned32,"V, M",P,,
+Congestion-Location-Id,4006,5.3.8,Grouped,V,P,,M
+Conditional-Restriction,4007,5.3.9,Unsigned32,V,P,,M
+eNodeB-Id,4008,5.3.10,OctetString,"V, M",P,,
+IMSI-List,4009,5.3.11,OctetString,"V, M",P,,
+RCAF-Id,4010,5.3.12,DiameterIdentity,"V, M",P,,
+Reporting-Restriction,4011,5.3.13,Unsigned32,V,P,,M
+RUCI-Action,4012,5.3.14,Unsigned32,V,P,,M
+Extended-eNodeB-Id,4013,5.3.15,OctetString,"V, ",P,,M
+,,,,,,,
+@standard,3GPP TS 29.219,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.219 V15.3.0 (2019-09),,,,,,,
+# Policy and Charging Control: Spending Limit Reporting over,,,,,,,
+# Sy reference point,,,,,,,
+# ,,,,,,,
+# From 3GPP 29219-f30.doc,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.219 Table 5.3.0.1: Sy specific Diameter AVPs,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+Pending-Policy-Counter-Information,2905,5.3.5,Grouped,"M,V",P,,
+Pending-Policy-Counter-Change-Time,2906,5.3.6,Time,"M,V",P,,
+Policy-Counter-Identifier,2901,5.3.1,UTF8String,"M,V",P,,
+Policy-Counter-Status,2902,5.3.2,UTF8String,"M,V",P,,
+Policy-Counter-Status-Report,2903,5.3.3,Grouped,"M,V",P,,
+SL-Request-Type,2904,5.3.4,Enumerated,"M,V",P,,
+SN-Request-Type,2907,5.3.7,Unsigned32,V,P,,M
+,,,,,,,
+@standard,3GPP TS 29.229,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.229 V15.2.0 (2019-09),,,,,,,
+# Cx and Dx interfaces based on the Diameter protocol;,,,,,,,
+# Protocol details,,,,,,,
+# ,,,,,,,
+# From 3GPP 29229-f20.doc,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.229 Table 6.3.1: Diameter Multimedia Application AVPs,,,,,,,
+# ,,,,,,,
+# Note: AVPs referenced from other sources are not added here.,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+Visited-Network-Identifier,600,6.3.1,OctetString,"M, V",,,
+Public-Identity,601,6.3.2,UTF8String,"M, V",,,
+Server-Name,602,6.3.3,UTF8String,"M, V",,,
+Server-Capabilities,603,6.3.4,Grouped,"M, V",,,
+Mandatory-Capability,604,6.3.5,Unsigned32,"M, V",,,
+Optional-Capability,605,6.3.6,Unsigned32,"M, V",,,
+# Note: Name conflict with 3GPP TS 29.329 User-Data (702).,,,,,,,
+# 3GPP TS 29.229 V6.2.0 (2004-09) allocated User-Data (606).,,,,,,,
+# 3GPP TS 29.329 V6.2.0 (2004-09) allocated User-Data (702).,,,,,,,
+User-Data,606,6.3.7,OctetString,"M, V",,,
+SIP-Number-Auth-Items,607,6.3.8,Unsigned32,"M, V",,,
+SIP-Authentication-Scheme,608,6.3.9,UTF8String,"M, V",,,
+SIP-Authenticate,609,6.3.10,OctetString,"M, V",,,
+SIP-Authorization,610,6.3.11,OctetString,"M, V",,,
+SIP-Authentication-Context,611,6.3.12,OctetString,"M, V",,,
+SIP-Auth-Data-Item,612,6.3.13,Grouped,"M, V",,,
+SIP-Item-Number,613,6.3.14,Unsigned32,"M, V",,,
+Server-Assignment-Type,614,6.3.15,Enumerated,"M, V",,,
+Deregistration-Reason,615,6.3.16,Grouped,"M, V",,,
+Reason-Code,616,6.3.17,Enumerated,"M, V",,,
+Reason-Info,617,6.3.18,UTF8String,"M, V",,,
+Charging-Information,618,6.3.19,Grouped,"M, V",,,
+Primary-Event-Charging-Function-Name,619,6.3.20,DiameterURI,"M, V",,,
+Secondary-Event-Charging-Function-Name,620,6.3.21,DiameterURI,"M, V",,,
+Primary-Charging-Collection-Function-Name,621,6.3.22,DiameterURI,"M, V",,,
+Secondary-Charging-Collection-Function-Name,622,6.3.23,DiameterURI,"M, V",,,
+User-Authorization-Type,623,6.3.24,Enumerated,"M, V",,,
+User-Data-Already-Available,624,6.3.26,Enumerated,"M, V",,,
+Confidentiality-Key,625,6.3.27,OctetString,"M, V",,,
+Integrity-Key,626,6.3.28,OctetString,"M, V",,,
+# Note: User-Data-Request-Type (627) removed in 3GPP TS 29.229 V6.5.0 (2005-06).,,,,,,,
+#,,,,,,,
+Supported-Features,628,6.3.29,Grouped,V,M,,
+Feature-List-ID,629,6.3.30,Unsigned32,V,,,M
+Feature-List,630,6.3.31,Unsigned32,V,,,M
+Supported-Applications,631,6.3.32,Grouped,V,,,M
+Associated-Identities,632,6.3.33,Grouped,V,,,M
+Originating-Request,633,6.3.34,Enumerated,"M,V",,,
+Wildcarded-Public-Identity,634,6.3.35,UTF8String,V,,,M
+SIP-Digest-Authenticate,635,6.3.36,Grouped,V,,,M
+Wildcarded-IMPU,636,6.3.43,UTF8String,V,,,M
+UAR-Flags,637,6.3.44,Unsigned32,V,,,M
+Loose-Route-Indication,638,6.3.45,Enumerated,V,,,M
+SCSCF-Restoration-Info,639,6.3.46,Grouped,V,,,M
+Path,640,6.3.47,OctetString,V,,,M
+Contact,641,6.3.48,OctetString,V,,,M
+Subscription-Info,642,6.3.49,Grouped,V,,,M
+Call-ID-SIP-Header,643,6.3.49.1,OctetString,V,,,M
+From-SIP-Header,644,6.3.49.2,OctetString,V,,,M
+To-SIP-Header,645,6.3.49.3,OctetString,V,,,M
+Record-Route,646,6.3.49.4,OctetString,V,,,M
+Associated-Registered-Identities,647,6.3.50,Grouped,V,,,M
+Multiple-Registration-Indication,648,6.3.51,Enumerated,V,,,M
+Restoration-Info,649,6.3.52,Grouped,V,,,M
+Session-Priority,650,6.3.56,Enumerated,V,,,M
+Identity-with-Emergency-Registration,651,6.3.57,Grouped,V,,,M
+Priviledged-Sender-Indication,652,6.3.58,Enumerated,V,,,M
+LIA-Flags,653,6.3.59,Unsigned32,V,,,M
+Initial-CSeq-Sequence-Number,654,6.3.62,Unsigned32,V,,,M
+SAR-Flags,655,6.3.63,Unsigned32,V,,,M
+Allowed-WAF-WWSF-Identities,656,6.3.64,Grouped,V,,,M
+WebRTC-Authentication-Function-Name,657,6.3.65,UTF8String,V,,,M
+WebRTC-Web-Server-Function-Name,658,6.3.66,UTF8String,V,,,M
+RTR-Flags,659,6.3.69,Unsigned32,V,,,M
+,,,,,,,
+@standard,3GPP TS 29.234,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.234 V11.2.0 (2013-06),,,,,,,
+# 3GPP system to Wireless Local Area Network (WLAN),,,,,,,
+# interworking;,,,,,,,
+# Stage 3,,,,,,,
+# ,,,,,,,
+# From 3GPP 29234-b20.doc,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.234 Table 10.1.1: Diameter Multimedia Application AVPs,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+3GPP-WLAN-APN-Id,100,10.1.15,OctetString,"M, V",,,
+Authentication-Method,300,10.1.5,Enumerated,"M, V",,,
+Authentication-Information-SIM,301,10.1.6,OctetString,"M, V",,,
+Authorization-Information-SIM,302,10.1.7,OctetString,"M,V",,,
+WLAN-User-Data,303,10.1.8,Grouped,"M, V",,,
+Charging-Data,304,10.1.10,Grouped,"M, V",,,
+WLAN-Access,305,10.1.11,Enumerated,"M, V",,,
+WLAN-3GPP-IP-Access,306,10.1.12,Enumerated,"M, V",,,
+APN-Authorized,307,10.1.14,Grouped,"M, V",,,
+# Note: APN-Id (308) OctetString removed in 3GPP TS 29.234 V6.5.0 (2005-12).,,,,,,,
+#,,,,,,,
+APN-Barring-Type,309,10.1.16,Enumerated,"M, V",,,
+WLAN-Direct-IP-Access,310,10.1.17,Enumerated,"M, V",,,
+Session-Request-Type,311,10.1.23,Enumerated,"M, V",,,
+Routing-Policy,312,10.1.24,IPFilterRule,"M, V",,,
+Max-Requested-Bandwidth,313,10.1.26,OctetString,"M, V",,,
+Charging-Characteristics,314,10.1.27,Integer32,"M, V",,,
+Charging-Nodes,315,10.1.28,Grouped,"M, V",,,
+Primary-OCS-Charging-Function-Name,316,10.1.29,DiameterIdentity,"M, V",,,
+Secondary-OCS-Charging-Function-Name,317,10.1.30,DiameterIdentity,"M, V",,,
+# Note: 3GPP TS 29.273 from Release 12 now defines 3GPP-AAA-Server-Name (318).,,,,,,,
+# ,,,,,,,
+Maximum-Number-Accesses,319,10.1.38,Unsigned32,"M, V",,,
+,,,,,,,
+@standard,3GPP TS 29.272,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.272 V15.10.0 (2019-12),,,,,,,
+# Mobility Management Entity (MME),,,,,,,
+# and Serving GPRS Support Node (SGSN) related interfaces,,,,,,,
+# based on Diameter protocol,,,,,,,
+# ,,,,,,,
+# From 3GPP 29272-fa0.docx,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+#=,,,,,,,
+"# 3GPP TS 29.272 Table 7.3.1/1: S6a/S6d, S7a/S7d and S13/S13' specific DiameterAVPs",,,,,,,
+#=,,,,,,,
+#,,,,,,,
+Subscription-Data,1400,7.3.2,Grouped,"M,V",,,
+Terminal-Information,1401,7.3.3,Grouped,"M,V",,,
+IMEI,1402,7.3.4,UTF8String,"M,V",,,
+Software-Version,1403,7.3.5,UTF8String,"M,V",,,
+QoS-Subscribed,1404,7.3.77,OctetString,"M,V",,,
+ULR-Flags,1405,7.3.7,Unsigned32,"M,V",,,
+ULA-Flags,1406,7.3.8,Unsigned32,"M,V",,,
+Visited-PLMN-Id,1407,7.3.9,OctetString,"M,V",,,
+Requested-EUTRAN-Authentication-Info,1408,7.3.11,Grouped,"M,V",,,
+Requested-UTRAN-GERAN-Authentication-Info,1409,7.3.12,Grouped,"M,V",,,
+Number-Of-Requested-Vectors,1410,7.3.14,Unsigned32,"M,V",,,
+Re-Synchronization-Info,1411,7.3.15,OctetString,"M,V",,,
+Immediate-Response-Preferred,1412,7.3.16,Unsigned32,"M,V",,,
+Authentication-Info,1413,7.3.17,Grouped,"M,V",,,
+E-UTRAN-Vector,1414,7.3.18,Grouped,"M,V",,,
+UTRAN-Vector,1415,7.3.19,Grouped,"M,V",,,
+GERAN-Vector,1416,7.3.20,Grouped,"M,V",,,
+Network-Access-Mode,1417,7.3.21,Enumerated,"M,V",,,
+HPLMN-ODB,1418,7.3.22,Unsigned32,"M,V",,,
+Item-Number,1419,7.3.23,Unsigned32,"M,V",,,
+Cancellation-Type,1420,7.3.24,Enumerated,"M,V",,,
+DSR-Flags,1421,7.3.25,Unsigned32,"M,V",,,
+DSA-Flags,1422,7.3.26,Unsigned32,"M,V",,,
+Context-Identifier,1423,7.3.27,Unsigned32,"M,V",,,
+Subscriber-Status,1424,7.3.29,Enumerated,"M,V",,,
+Operator-Determined-Barring,1425,7.3.30,Unsigned32,"M,V",,,
+Access-Restriction-Data,1426,7.3.31,Unsigned32,"M,V",,,
+APN-OI-Replacement,1427,7.3.32,UTF8String,"M,V",,,
+All-APN-Configurations-Included-Indicator,1428,7.3.33,Enumerated,"M,V",,,
+APN-Configuration-Profile,1429,7.3.34,Grouped,"M,V",,,
+APN-Configuration,1430,7.3.35,Grouped,"M,V",,,
+EPS-Subscribed-QoS-Profile,1431,7.3.37,Grouped,"M,V",,,
+VPLMN-Dynamic-Address-Allowed,1432,7.3.38,Enumerated,"M,V",,,
+STN-SR,1433,7.3.39,OctetString,"M,V",,,
+Alert-Reason,1434,7.3.83,Enumerated,"M,V",,,
+AMBR,1435,7.3.41,Grouped,"M,V",,,
+CSG-Subscription-Data,1436,7.3.78,Grouped,"M,V",,,
+CSG-Id,1437,7.3.79,Unsigned32,"M,V",,,
+PDN-GW-Allocation-Type,1438,7.3.44,Enumerated,"M,V",,,
+Expiration-Date,1439,7.3.80,Time,"M,V",,,
+RAT-Frequency-Selection-Priority-ID,1440,7.3.46,Unsigned32,"M,V",,,
+IDA-Flags,1441,7.3.47,Unsigned32,"M,V",,,
+PUA-Flags,1442,7.3.48,Unsigned32,"M,V",,,
+NOR-Flags,1443,7.3.49,Unsigned32,"M,V",,,
+User-Id,1444,7.3.50,UTF8String,V,,,M
+Equipment-Status,1445,7.3.51,Enumerated,"M,V",,,
+Regional-Subscription-Zone-Code,1446,7.3.52,OctetString,"M,V",,,
+RAND,1447,7.3.53,OctetString,"M,V",,,
+XRES,1448,7.3.54,OctetString,"M,V",,,
+AUTN,1449,7.3.55,OctetString,"M,V",,,
+KASME,1450,7.3.56,OctetString,"M,V",,,
+Trace-Collection-Entity,1452,7.3.98,Address,"M,V",,,
+Kc,1453,7.3.59,OctetString,"M,V",,,
+SRES,1454,7.3.60,OctetString,"M,V",,,
+PDN-Type,1456,7.3.62,Enumerated,"M,V",,,
+Roaming-Restricted-Due-To-Unsupported-Feature,1457,7.3.81,Enumerated,"M,V",,,
+Trace-Data,1458,7.3.63,Grouped,"M,V",,,
+Trace-Reference,1459,7.3.64,OctetString,"M,V",,,
+Trace-Depth,1462,7.3.67,Enumerated,"M,V",,,
+Trace-NE-Type-List,1463,7.3.68,OctetString,"M,V",,,
+Trace-Interface-List,1464,7.3.69,OctetString,"M,V",,,
+Trace-Event-List,1465,7.3.70,OctetString,"M,V",,,
+OMC-Id,1466,7.3.71,OctetString,"M,V",,,
+GPRS-Subscription-Data,1467,7.3.72,Grouped,"M,V",,,
+Complete-Data-List-Included-Indicator,1468,7.3.73,Enumerated,"M,V",,,
+PDP-Context,1469,7.3.74,Grouped,"M,V",,,
+PDP-Type,1470,7.3.75,OctetString,"M,V",,,
+3GPP2-MEID,1471,7.3.6,OctetString,"M,V",,,
+Specific-APN-Info,1472,7.3.82,Grouped,"M,V",,,
+LCS-Info,1473,7.3.84,Grouped,"M,V",,,
+GMLC-Number,1474,7.3.85,OctetString,"M,V",,,
+LCS-PrivacyException,1475,7.3.86,Grouped,"M,V",,,
+SS-Code,1476,7.3.87,OctetString,"M,V",,,
+# Note: 3GPP TS 29.272 V12.5.0 (2014-06) Table 7.3.1/1,,,,,,,
+# changed row SS-Status (1477) to be OctetString instead of Grouped.,,,,,,,
+# Clause 7.3.88 already described SS-Status (1147) as OctetString.,,,,,,,
+# ,,,,,,,
+# Change-1.4.0: SS-Status (1477) type changed from Grouped to OctetString.,,,,,,,
+SS-Status,1477,7.3.88,OctetString,"M,V",,,
+Notification-To-UE-User,1478,7.3.89,Enumerated,"M,V",,,
+External-Client,1479,7.3.90,Grouped,"M,V",,,
+Client-Identity,1480,7.3.91,OctetString,"M,V",,,
+GMLC-Restriction,1481,7.3.92,Enumerated,"M,V",,,
+PLMN-Client,1482,7.3.93,Enumerated,"M,V",,,
+Service-Type,1483,7.3.94,Grouped,"M,V",,,
+ServiceTypeIdentity,1484,7.3.95,Unsigned32,"M,V",,,
+MO-LR,1485,7.3.96,Grouped,"M,V",,,
+Teleservice-List,1486,7.3.99,Grouped,"M,V",,,
+TS-Code,1487,7.3.100,OctetString,"M,V",,,
+# Note: 3GPP TS 29.272 V12.4.0 (2014-03) renamed,,,,,,,
+# Call-Barring-Infor-List (1488) to Call-Barring-Info (1488).,,,,,,,
+# ,,,,,,,
+# Change-1.4.0: Call-Barring-Infor-List (1488) renamed to Call-Barring-Info (1488).,,,,,,,
+Call-Barring-Info,1488,7.3.101,Grouped,"M,V",,,
+SGSN-Number,1489,7.3.102,OctetString,"M,V",,,
+IDR-Flags,1490,7.3.103,Unsigned32,"M,V",,,
+ICS-Indicator,1491,7.3.104,Enumerated,V,,,M
+IMS-Voice-Over-PS-Sessions-Supported,1492,7.3.106,Enumerated,V,,,M
+Homogeneous-Support-of-IMS-Voice-Over-PS-Sessions,1493,7.3.107,Enumerated,V,,,M
+Last-UE-Activity-Time,1494,7.3.108,Time,V,,,M
+EPS-User-State,1495,7.3.110,Grouped,V,,,M
+EPS-Location-Information,1496,7.3.111,Grouped,V,,,M
+MME-User-State,1497,7.3.112,Grouped,V,,,M
+SGSN-User-State,1498,7.3.113,Grouped,V,,,M
+User-State,1499,7.3.114,Enumerated,V,,,M
+# Note: 3GPP TS 29.272 Table 7.3.1/1 row MME-Location-Information (1600),,,,,,,
+# incorrectly has a space instead of hyphen in the name.,,,,,,,
+# ,,,,,,,
+# Change-1.4.0: MME-LocationInformation (1600) renamed to MME-Location-Information(1600).,,,,,,,
+MME-Location-Information,1600,7.3.115,Grouped,V,,,M
+SGSN-Location-Information,1601,7.3.116,Grouped,V,,,M
+E-UTRAN-Cell-Global-Identity,1602,7.3.117,OctetString,V,,,M
+Tracking-Area-Identity,1603,7.3.118,OctetString,V,,,M
+Cell-Global-Identity,1604,7.3.119,OctetString,V,,,M
+Routing-Area-Identity,1605,7.3.120,OctetString,V,,,M
+Location-Area-Identity,1606,7.3.121,OctetString,V,,,M
+Service-Area-Identity,1607,7.3.122,OctetString,V,,,M
+Geographical-Information,1608,7.3.123,OctetString,V,,,M
+Geodetic-Information,1609,7.3.124,OctetString,V,,,M
+Current-Location-Retrieved,1610,7.3.125,Enumerated,V,,,M
+Age-Of-Location-Information,1611,7.3.126,Unsigned32,V,,,M
+Active-APN,1612,7.3.127,Grouped,V,,,M
+Error-Diagnostic,1614,7.3.128,Enumerated,V,,,M
+Ext-PDP-Address,1621,7.3.129,Address,V,,,M
+UE-SRVCC-Capability,1615,7.3.130,Enumerated,V,,,M
+MPS-Priority,1616,7.3.131,Unsigned32,V,,,M
+VPLMN-LIPA-Allowed,1617,7.3.132,Enumerated,V,,,M
+LIPA-Permission,1618,7.3.133,Enumerated,V,,,M
+Subscribed-Periodic-RAU-TAU-Timer,1619,7.3.134,Unsigned32,V,,,M
+Ext-PDP-Type,1620,7.3.75A,OctetString,V,,,M
+SIPTO-Permission,1613,7.3.135,Enumerated,V,,,M
+MDT-Configuration,1622,7.3.136,Grouped,V,,,M
+Job-Type,1623,7.3.137,Enumerated,V,,,M
+Area-Scope,1624,7.3.138,Grouped,V,,,M
+List-Of-Measurements,1625,7.3.139,Unsigned32,V,,,M
+Reporting-Trigger,1626,7.3.140,Unsigned32,V,,,M
+Report-Interval,1627,7.3.141,Enumerated,V,,,M
+Report-Amount,1628,7.3.142,Enumerated,V,,,M
+Event-Threshold-RSRP,1629,7.3.143,Unsigned32,V,,,M
+Event-Threshold-RSRQ,1630,7.3.144,Unsigned32,V,,,M
+Logging-Interval,1631,7.3.145,Enumerated,V,,,M
+Logging-Duration,1632,7.3.146,Enumerated,V,,,M
+Relay-Node-Indicator,1633,7.3.147,Enumerated,V,,,M
+MDT-User-Consent,1634,7.3.148,Enumerated,V,,,M
+PUR-Flags,1635,7.3.149,Unsigned32,V,,,M
+Subscribed-VSRVCC,1636,7.3.150,Enumerated,V,,,M
+Equivalent-PLMN-List,1637,7.3.151,Grouped,V,,,M
+CLR-Flags,1638,7.3.152,Unsigned32,V,,,M
+UVR-Flags,1639,7.3.153,Unsigned32,"M,V",,,
+UVA-Flags,1640,7.3.154,Unsigned32,"M,V",,,
+VPLMN-CSG-Subscription-Data,1641,7.3.155,Grouped,"M,V",,,
+Time-Zone,1642,7.3.163,UTF8String,V,,,M
+A-MSISDN,1643,7.3.157,OctetString,V,,,M
+MME-Number-for-MT-SMS,1645,7.3.159,OctetString,V,,,M
+SMS-Register-Request,1648,7.3.162,Enumerated,V,,,M
+Local-Time-Zone,1649,7.3.156,Grouped,V,,,M
+Daylight-Saving-Time,1650,7.3.164,Enumerated,V,,,M
+Subscription-Data-Flags,1654,7.3.165,Unsigned32,V,,,M
+# Note: 3GPP TS 29.272 V12.9.0 (2015-12) changed AVP code of,,,,,,,
+# Measurement-Period-LTE (1655) from 1656.,,,,,,,
+# ,,,,,,,
+# Change-1.4.0: Measurement-Period-LTE (1656) code changed to Measurement-Period-LTE (1655).,,,,,,,
+Measurement-Period-LTE,1655,7.3.166,Enumerated,V,,,M
+# Note: 3GPP TS 29.272 V12.9.0 (2015-12) changed AVP code of,,,,,,,
+# Measurement-Period-UMTS (1656) from 1655.,,,,,,,
+# ,,,,,,,
+# Change-1.4.0: Measurement-Period-UMTS (1655) code changed to Measurement-Period-UMTS (1656).,,,,,,,
+Measurement-Period-UMTS,1656,7.3.167,Enumerated,V,,,M
+Collection-Period-RRM-LTE,1657,7.3.168,Enumerated,V,,,M
+Collection-Period-RRM-UMTS,1658,7.3.169,Enumerated,V,,,M
+Positioning-Method,1659,7.3.170,OctetString,V,,,M
+Measurement-Quantity,1660,7.3.171,OctetString,V,,,M
+Event-Threshold-Event-1F,1661,7.3.172,Integer32,V,,,M
+Event-Threshold-Event-1I,1662,7.3.173,Integer32,V,,,M
+Restoration-Priority,1663,7.3.174,Unsigned32,V,,,M
+SGs-MME-Identity,1664,7.3.175,UTF8String,V,,,M
+SIPTO-Local-Network-Permission,1665,7.3.176,Unsigned32,V,,,M
+Coupled-Node-Diameter-ID,1666,7.3.177,DiameterIdentity,V,,,M
+WLAN-offloadability,1667,7.3.181,Grouped,V,,,M
+WLAN-offloadability-EUTRAN,1668,7.3.182,Unsigned32,V,,,M
+WLAN-offloadability-UTRAN,1669,7.3.183,Unsigned32,V,,,M
+Reset-ID,1670,7.3.184,OctetString,V,,,M
+MDT-Allowed-PLMN-Id,1671,7.3.185,OctetString,V,,,M
+Adjacent-PLMNs,1672,7.3.186,Grouped,V,,,M
+Adjacent-Access-Restriction-Data,1673,7.3.187,Grouped,V,,,M
+DL-Buffering-Suggested-Packet-Count,1674,7.3.188,Integer32,V,,,M
+IMSI-Group-Id,1675,7.3.189,Grouped,V,,,M
+Group-Service-Id,1676,7.3.190,Unsigned32,V,,,M
+Group-PLMN-Id,1677,7.3.191,OctetString,V,,,M
+Local-Group-Id,1678,7.3.192,OctetString,V,,,M
+AIR-Flags,1679,7.3.201,Unsigned32,V,,,M
+UE-Usage-Type,1680,7.3.202,Unsigned32,V,,,M
+Non-IP-PDN-Type-Indicator,1681,7.3.204,Enumerated,V,,,M
+Non-IP-Data-Delivery-Mechanism,1682,7.3.205,Unsigned32,V,,,M
+# Note: 3GPP TS 29.272 Table 7.3.1/1 row Additional-Context-ID (1683) has,,,,,,,
+"# incorrect name and should be ""Additional-Context-Identifier"" per clause 7.3.206.",,,,,,,
+# ,,,,,,,
+# Fix: Additional-Context-ID (1683) renamed to Additional-Context-Identifier (1683).,,,,,,,
+Additional-Context-Identifier,1683,7.3.206,Unsigned32,V,,,M
+SCEF-Realm,1684,7.3.207,DiameterIdentity,V,,,M
+Subscription-Data-Deletion,1685,7.3.208,Grouped,V,,,M
+# Note: 3GPP TS 29.272 Table 7.3.1/1 row Preferred-Data-Mode (1686),,,,,,,
+"# incorrectly has value type Grouped instead of Unsigned32,",,,,,,,
+# conflicting with clause 7.3.209.,,,,,,,
+# ,,,,,,,
+# Fix: Preferred-Data-Mode (1686) type changed from Grouped to Unsigned32.,,,,,,,
+Preferred-Data-Mode,1686,7.3.209,Unsigned32,V,,,M
+Emergency-Info,1687,7.3.210,Grouped,V,,,M
+V2X-Subscription-Data,1688,7.3.212,Grouped,V,,,M
+V2X-Permission,1689,7.3.213,Unsigned32,V,,,M
+PDN-Connection-Continuity,1690,7.3.214,Unsigned32,V,,,M
+eDRX-Cycle-Length,1691,7.3.215,Grouped,V,,,M
+eDRX-Cycle-Length-Value,1692,7.3.216,OctetString,V,,,M
+UE-PC5-AMBR,1693,7.3.217,Unsigned32,V,,,M
+MBSFN-Area,1694,7.3.219,Grouped,V,,,M
+MBSFN-Area-ID,1695,7.3.220,Unsigned32,V,,,M
+Carrier-Frequency,1696,7.3.221,Unsigned32,V,,,M
+RDS-Indicator,1697,7.3.222,Enumerated,V,,,M
+Service-Gap-Time,1698,7.3.223,Unsigned32,V,,,M
+Aerial-UE-Subscription-Information,1699,7.3.224,Unsigned32,V,,,M
+Broadcast-Location-Assistance-Data-Types,1700,7.3.225,Unsigned64,V,,,M
+Paging-Time-Window,1701,7.3.226,Grouped,V,,,M
+Operation-Mode,1702,7.3.227,Unsigned32,V,,,M
+Paging-Time-Window-Length,1703,7.3.228,OctetString,V,,,M
+Core-Network-Restrictions,1704,7.3.230,Unsigned32,V,,,M
+eDRX-Related-RAT,1705,7.3.229,Grouped,V,,,M
+Interworking-5GS-Indicator,1706,7.3.231,Enumerated,V,,,M
+,,,,,,,
+@standard,3GPP TS 29.273,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.273 V15.4.0 (2019-09),,,,,,,
+# Evolved Packet System (EPS);,,,,,,,
+# 3GPP EPS AAA interfaces,,,,,,,
+# ,,,,,,,
+# From 3GPP 29273-f40.docx,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.273 Table 5.2.3.1/1: Diameter STa AVPs,,,,,,,
+# ,,,,,,,
+# Note: AVPs referenced from other sources are not added here.,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+ANID,1504,5.2.3.7,UTF8String,"M,V",,,P
+AN-Trusted,1503,5.2.3.9,Enumerated,"M,V",,,P
+MIP-FA-RK,1506,5.2.3.12,OctetString,"M,V",,,P
+MIP-FA-RK-SPI,1507,5.2.3.13,Unsigned32,"M,V",,,P
+Full-Network-Name,1516,5.2.3.14,OctetString,V,,,"M,P"
+Short-Network-Name,1517,5.2.3.15,OctetString,V,,,"M,P"
+WLAN-Identifier,1509,5.2.3.18,Grouped,V,,,"M,P"
+AAA-Failure-Indication,1518,8.2.3.21,Unsigned32,V,,,"M,P"
+Transport-Access-Type,1519,5.2.3.19,Enumerated,V,,,"M,P"
+DER-Flags,1520,5.2.3.20,Unsigned32,V,,,"M,P"
+DEA-Flags,1521,5.2.3.21,Unsigned32,V,,,"M,P"
+SSID,1524,5.2.3.22,UTF8String,V,,,"M,P"
+HESSID,1525,5.2.3.23,UTF8String,V,,,"M,P"
+Access-Network-Info,1526,5.2.3.24,Grouped,V,,,"M,P"
+TWAN-Connection-Mode,1527,5.2.3.25,Unsigned32,V,,,"M,P"
+TWAN-Connectivity-Parameters,1528,5.2.3.26,Grouped,V,,,"M,P"
+Connectivity-Flags,1529,5.2.3.27,Unsigned32,V,,,"M,P"
+TWAN-PCO,1530,5.2.3.28,OctetString,V,,,"M,P"
+TWAG-CP-Address,1531,5.2.3.29,Address,V,,,"M,P"
+TWAG-UP-Address,1532,5.2.3.30,UTF8String,V,,,"M,P"
+TWAN-S2a-Failure-Cause,1533,5.2.3.31,Unsigned32,V,,,"M,P"
+SM-Back-Off-Timer,1534,5.2.3.32,Unsigned32,V,,,"M,P"
+WLCP-Key,1535,5.2.3.33,OctetString,V,,,"M,P"
+Emergency-Services,1538,7.2.3.4,Unsigned32,V,,,"M,P"
+IMEI-Check-In-VPLMN-Result,1540,5.2.3.35,Unsigned32,V,,,"M,P"
+#,,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.273 Table 6.2.3.1/1: Diameter SWd AVPs,,,,,,,
+# ,,,,,,,
+# Note: No AVPs are first defined in this table.,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.273 Table 7.2.3.1/1: Diameter SWm AVPs,,,,,,,
+# ,,,,,,,
+# Note: AVPs referenced from other sources are not added here.,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+Trace-Info,1505,8.2.3.1.3,Grouped,V,,,"M,P"
+AAR-Flags,1539,7.2.3.5,Unsigned32,V,,,"M,P"
+#,,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.273 Table 8.2.3.0/1: Diameter SWx AVPs,,,,,,,
+# ,,,,,,,
+# Note: AVPs referenced from other sources are not added here.,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+Non-3GPP-User-Data,1500,8.2.3.1,Grouped,"M,V",,,P
+Non-3GPP-IP-Access,1501,8.2.3.3,Enumerated,"M,V",,,P
+Non-3GPP-IP-Access-APN,1502,8.2.3.4,Enumerated,"M,V",,,P
+PPR-Flags,1508,8.2.3.17,Unsigned32,V,,,"M,P"
+TWAN-Default-APN-Context-Id,1512,8.2.3.18,Unsigned32,V,,,"M,P"
+TWAN-Access-Info,1510,8.2.3.19,Grouped,V,,,"M,P"
+Access-Authorization-Flags,1511,8.2.3.20,Unsigned32,V,,,"M,P"
+3GPP-AAA-Server-Name,318,8.2.3.24,DiameterIdentity,"M, V",,,P
+ERP-Authorization,1541,8.2.3.27,Unsigned32,V,,,"M,P"
+#,,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.273 Table 9.2.3.1.1/1: Diameter S6b AVPs for DSMIPv6,,,,,,,
+# ,,,,,,,
+# Note: AVPs referenced from other sources are not added here.,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+RAR-Flags,1522,9.2.3.1.5,Unsigned32,V,,,"M,P"
+# Note: Trust-Relationship-Update (1515) Enumerated removed in 3GPP TS 29.273 V11.4.0 (2012-12).,,,,,,,
+#,,,,,,,
+DER-S6b-Flags,1523,9.2.3.7,Unsigned32,V,,,"M,P"
+#,,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.273 Table 9.2.3.2.1/1: Diameter S6b AVPs for PMIPv6 or GTPv2,,,,,,,
+# ,,,,,,,
+# Note: AVPs referenced from other sources are not added here.,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+Origination-Time-Stamp,1536,9.2.3.2.6,Unsigned64,V,,,"M,P"
+Maximum-Wait-Time,1537,9.2.3.2.7,Unsigned32,V,,,"M,P"
+#,,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.273 Table 9.2.3.6.1/1: Diameter S6b AVPs for MIPv4 FACoA,,,,,,,
+# ,,,,,,,
+# Note: No AVPs are first defined in this table.,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+,,,,,,,
+@standard,3GPP TS 29.283,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.283 V15.1.0 (2019-09),,,,,,,
+# Diameter Data Management Applications,,,,,,,
+# ,,,,,,,
+# From 3GPP 29283-f10.doc,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+#=,,,,,,,
+"# 3GPP TS 29.283 Table 7.3.1-1: MCPTT-2, MCVideo-2, MCData-2 and CSC-13 specific Diameter AVPs",,,,,,,
+#=,,,,,,,
+#,,,,,,,
+MCPTT-ID,4500,7.3.2,UTF8String,"M, V",,,
+Data-Identification,4501,7.3.3,Grouped,"M, V",,,
+Data-Identification-Prefix,4502,7.3.11,Unsigned32,"M,V",,,
+Data-Identification-Flags,4503,7.3.12,Unsigned64,"M,V",,,
+DPR-Flags,4504,7.3.13,Unsigned32,"M,V",,,
+DPA-Flags,4505,7.3.14,Unsigned32,"M,V",,,
+DUR-Flags,4506,7.3.15,Unsigned32,"M,V",,,
+DUA-Flags,4507,7.3.16,Unsigned32,"M,V",,,
+NDR-Flags,4508,7.3.17,Unsigned32,"M,V",,,
+NDA-Flags,4509,7.3.18,Unsigned32,"M,V",,,
+User-Data-Id,4510,7.3.19,Unsigned32,"M,V",,,
+MC-Service-User-Profile-Data,4511,7.3.20,Grouped,"M,V",,,
+# Note: Name conflict with 3GPP TS 29.140 Sequence-Number (1107).,,,,,,,
+# and 3GPP TS 29.329 Sequence-Number (716).,,,,,,,
+# 3GPP TS 29.140 V6.1.0 (2005-06) allocated Sequence-Number (1107).,,,,,,,
+# 3GPP TS 29.329 V10.0.0 (2010-09) CR 0163 added Sequence-Number (716).,,,,,,,
+# 3GPP TS 29.283 V13.1.0 (2016-06) allocated Sequence-Number (4512).,,,,,,,
+# ,,,,,,,
+# Fix: Sequence-Number (4512) renamed to Sequence-Number-29.283 (4512).,,,,,,,
+Sequence-Number-29.283,4512,7.3.21,Unsigned32,"M,V",,,
+Data,4513,7.3.22,Grouped,"M,V",,,
+MCVideo-ID,4514,7.3.24,UTF8String,V,,,M
+MCData-ID,4515,7.3.25,UTF8String,V,,,M
+,,,,,,,
+@standard,3GPP TS 29.329,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.329 V15.2.0 (2019-09),,,,,,,
+# Sh Interface based on the Diameter protocol;,,,,,,,
+# Protocol details,,,,,,,
+# ,,,,,,,
+# From 3GPP 29329-f20.doc,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.329 Table 6.3.1: Table 6.3.1: Diameter Multimedia Application AVPs,,,,,,,
+# ,,,,,,,
+# Note: AVPs referenced from other sources are not added here.,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+User-Identity,700,6.3.1,Grouped,"M, V",,,
+MSISDN,701,6.3.2,OctetString,"M, V",,,
+# Note: Name conflict with 3GPP TS 29.229 User-Data (606).,,,,,,,
+# 3GPP TS 29.229 V6.2.0 (2004-09) allocated User-Data (606).,,,,,,,
+# 3GPP TS 29.329 V6.2.0 (2004-09) allocated User-Data (702).,,,,,,,
+# ,,,,,,,
+# Fix: User-Data (702) renamed to User-Data-29.329 (702).,,,,,,,
+User-Data-29.329,702,6.3.3,OctetString,"M, V",,,
+Data-Reference,703,6.3.4,Enumerated,"M, V",,,
+Service-Indication,704,6.3.5,OctetString,"M, V",,,
+Subs-Req-Type,705,6.3.6,Enumerated,"M, V",,,
+Requested-Domain,706,6.3.7,Enumerated,"M, V",,,
+Current-Location,707,6.3.8,Enumerated,"M, V",,,
+Identity-Set,708,6.3.10,Enumerated,V,,,M
+Expiry-Time,709,6.3.16,Time,V,,,M
+Send-Data-Indication,710,6.3.17,Enumerated,V,,,M
+DSAI-Tag,711,6.3.18,OctetString,"M, V",,,
+One-Time-Notification,712,6.3.22,Enumerated,V,,,M
+Requested-Nodes,713,6.3.7A,Unsigned32,V,,,M
+Serving-Node-Indication,714,6.3.23,Enumerated,V,,,M
+Repository-Data-ID,715,6.3.24,Grouped,V,,,M
+# Note: Name conflict with 3GPP TS 29.140 Sequence-Number (1107),,,,,,,
+# and 3GPP TS 29.283 Sequence-Number (4512).,,,,,,,
+# 3GPP TS 29.140 V6.1.0 (2005-06) allocated Sequence-Number (1107).,,,,,,,
+# 3GPP TS 29.329 V10.0.0 (2010-09) CR 0163 added Sequence-Number (716).,,,,,,,
+# 3GPP TS 29.283 V13.1.0 (2016-06) allocated Sequence-Number (4512).,,,,,,,
+Sequence-Number,716,6.3.25,Unsigned32,V,,,M
+Pre-paging-Supported,717,6.3.26,Enumerated,V,,,M
+Local-Time-Zone-Indication,718,6.3.27,Enumerated,V,,,M
+UDR-Flags,719,6.3.28,Unsigned32,V,,,M
+Call-Reference-Info,720,6.3.29,Grouped,V,,,M
+Call-Reference-Number,721,6.3.30,OctetString,V,,,M
+AS-Number,722,6.3.31,OctetString,V,,,M
+,,,,,,,
+@standard,3GPP TS 29.336,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.336 V15.7.0 (2019-09),,,,,,,
+# Home Subscriber Server (HSS) diameter interfaces for,,,,,,,
+# interworking with packet data networks and applications,,,,,,,
+# ,,,,,,,
+# From 3GPP 29336-f70.docx,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.336 Table 6.4.1/1: S6m/S6n specific Diameter AVPs,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+IP-SM-GW-Number,3100,6.4.14,OctetString,"M,V",,,
+IP-SM-GW-Name,3101,6.4.15,DiameterIdentity,"M,V",,,
+User-Identifier,3102,6.4.2,Grouped,"M,V",,,
+Service-ID,3103,6.4.3,Enumerated,"M,V",,,
+SCS-Identity,3104,6.4.4,OctetString,"M,V",,,
+Service-Parameters,3105,6.4.5,Grouped,"M,V",,,
+T4-Parameters,3106,6.4.6,Grouped,"M,V",,,
+Service-Data,3107,6.4.7,Grouped,"M,V",,,
+T4-Data,3108,6.4.8,Grouped,"M,V",,,
+HSS-Cause,3109,6.4.9,Unsigned32,"M,V",,,
+SIR-Flags,3110,6.4.10,Unsigned32,"M,V",,,
+# Note: 3GPP TS 29.061 External-Identifier (28) OctetString replaced by,,,,,,,
+# 3GPP TS 29.336 External-Identifier (3111) UTF8String.,,,,,,,
+# ,,,,,,,
+# Change-1.4.0: External-Identifier (28) OctetString replaced by External-Identifier (3111) UTF8String.,,,,,,,
+External-Identifier,3111,6.4.11,UTF8String,"M,V",,,
+IP-SM-GW-Realm,3112,6.4.18,DiameterIdentity,"M,V",,,
+#=,,,,,,,
+# 3GPP TS 29.336 Table 8.4.1-1: S6t specific Diameter AVPs,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+AESE-Communication-Pattern,3113,8.4.25,Grouped,"M,V",,,
+Communication-Pattern-Set,3114,8.4.26,Grouped,"M,V",,,
+Periodic-Communication-Indicator,3115,8.4.27,Unsigned32,"M,V",,,
+Communication-Duration-Time,3116,8.4.28,Unsigned32,"M,V",,,
+# Note: 3GPP TS 29.336 Table 8.4.1-1 row Periodic-time (3117) has,,,,,,,
+"# incorrect name and should be ""Periodic-Time"" per majority use.",,,,,,,
+# ,,,,,,,
+# Fix: Periodic-time (3117) renamed to Periodic-Time (931).,,,,,,,
+Periodic-Time,3117,8.4.29,Unsigned32,"M,V",,,
+Scheduled-Communication-Time,3118,8.4.30,Grouped,"M,V",,,
+Stationary-Indication,3119,8.4.31,Unsigned32,"M,V",,,
+AESE-Communication-Pattern-Config-Status,3120,8.4.32,Grouped,"M,V",,,
+AESE-Error-Report,3121,8.4.33,Grouped,"M,V",,,
+Monitoring-Event-Configuration,3122,8.4.2,Grouped,"M,V",,,
+Monitoring-Event-Report,3123,8.4.3,Grouped,"M,V",,,
+SCEF-Reference-ID,3124,8.4.4,Unsigned32,"M,V",,,
+SCEF-ID,3125,8.4.5,DiameterIdentity,"M,V",,,
+SCEF-Reference-ID-for-Deletion,3126,8.4.6,Unsigned32,"M,V",,,
+Monitoring-Type,3127,8.4.7,Unsigned32,"M,V",,,
+Maximum-Number-of-Reports,3128,8.4.8,Unsigned32,"M,V",,,
+UE-Reachability-Configuration,3129,8.4.9,Grouped,"M,V",,,
+Monitoring-Duration,3130,8.4.10,Time,"M,V",,,
+Maximum-Detection-Time,3131,8.4.11,Unsigned32,"M,V",,,
+Reachability-Type,3132,8.4.12,Unsigned32,"M,V",,,
+Maximum-Latency,3133,8.4.13,Unsigned32,"M,V",,,
+Maximum-Response-Time,3134,8.4.14,Unsigned32,"M,V",,,
+Location-Information-Configuration,3135,8.4.15,Grouped,"M,V",,,
+MONTE-Location-Type,3136,8.4.16,Unsigned32,"M,V",,,
+Accuracy,3137,8.4.17,Unsigned32,"M,V",,,
+Association-Type,3138,8.4.18,Unsigned32,"M,V",,,
+Roaming-Information,3139,8.4.19,Unsigned32,"M,V",,,
+Reachability-Information,3140,8.4.20,Unsigned32,"M,V",,,
+IMEI-Change,3141,8.4.22,Unsigned32,"M,V",,,
+Monitoring-Event-Config-Status,3142,8.4.24,Grouped,"M,V",,,
+Supported-Services,3143,8.4.40,Grouped,"M,V",,,
+Supported-Monitoring-Events,3144,8.4.41,Unsigned64,"M,V",,,
+CIR-Flags,3145,8.4.39,Unsigned32,"M,V",,,
+Service-Result,3146,8.4.37,Grouped,"M,V",,,
+Service-Result-Code,3147,8.4.38,Unsigned32,"M,V",,,
+Reference-ID-Validity-Time,3148,8.4.42,Time,"M,V",,,
+Event-Handling,3149,8.4.43,Unsigned32,"M,V",,,
+NIDD-Authorization-Request,3150,8.4.44,Grouped,"M,V",,,
+NIDD-Authorization-Response,3151,8.4.45,Grouped,"M,V",,,
+Service-Report,3152,8.4.47,Grouped,"M,V",,,
+Node-Type,3153,8.4.48,Unsigned32,"M,V",,,
+S6t-HSS-Cause,3154,8.4.50,Unsigned32,"M,V",,,
+Enhanced-Coverage-Restriction,3155,8.4.51,Grouped,V,,,M
+Enhanced-Coverage-Restriction-Data,3156,8.4.52,Grouped,V,,,M
+Restricted-PLMN-List,3157,8.4.53,Grouped,V,,,M
+Allowed-PLMN-List,3158,8.4.54,Grouped,V,,,M
+Requested-Validity-Time,3159,8.4.55,Time,V,,,M
+Granted-Validity-Time,3160,8.4.56,Time,V,,,M
+NIDD-Authorization-Update,3161,8.4.57,Grouped,V,,,M
+Loss-Of-Connectivity-Reason,3162,8.4.58,Unsigned32,V,,,M
+Group-Reporting-Guard-Timer,3163,8.4.59,Unsigned32,V,,,M
+CIA-Flags,3164,8.4.60,Unsigned32,V,,,M
+Group-Monitoring-Event-Report,3165,8.4.61,Grouped,V,,,M
+Group-Monitoring-Event-Report-Item,3166,8.4.62,Grouped,V,,,M
+RIR-Flags,3167,8.4.63,Unsigned32,V,,,M
+Type-Of-External-Identifier,3168,8.4.64,Unsigned32,V,,,M
+APN-Validity-Time,3169,8.4.65,Grouped,V,,,M
+Suggested-Network-Configuration,3170,8.4.66,Grouped,V,,,M
+Monitoring-Event-Report-Status,3171,8.4.67,Grouped,V,,,M
+PLMN-ID-Requested,3172,8.4.68,Enumerated,V,,,M
+AdditionalIdentifiers,3173,8.4.69,Grouped,V,,,M
+NIR-Flags,3174,8.4.70,Unsigned32,V,,,M
+Reporting-Time-Stamp,3175,8.4.71,Time,V,,,M
+NIA-Flags,3176,8.4.72,Unsigned32,V,,,M
+Group-User-Identifier,3177,8.4.73,Grouped,V,,,M
+MTC-Provider-Info,3178,8.4.74,Grouped,V,,,M
+MTC-Provider-ID,3179,8.4.75,UTF8String,V,,,M
+,,,,,,,
+@standard,3GPP TS 29.337,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.337 V15.0.0 (2018-06),,,,,,,
+# Diameter-based T4 interface for communications with packet,,,,,,,
+# data networks and applications,,,,,,,
+# ,,,,,,,
+# From 3GPP 29337-f00.doc,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.337 Table 6.3.1/1: T4 specific Diameter AVPs,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+SM-Delivery-Outcome-T4,3200,6.3.1,Enumerated,"M, V",,,
+Absent-Subscriber-Diagnostic-T4,3201,6.3.2,Enumerated,"M, V",,,
+Trigger-Action,3202,6.3.6,Unsigned32,V,,,M
+MTC-Error-Diagnostic,3203,6.3.7,Unsigned32,V,,,M
+,,,,,,,
+@standard,3GPP TS 29.338,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.338 V15.1.0 (2018-12),,,,,,,
+# Diameter based protocols to support,,,,,,,
+# Short Message Service (SMS) capable,,,,,,,
+# Mobile Management Entities (MMEs),,,,,,,
+# ,,,,,,,
+# From 3GPP 29338-f10.doc,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.338 Table 5.3.3.1/1: S6c specific Diameter AVPs,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+SM-RP-MTI,3308,5.3.3.2,Enumerated,"M, V",,,
+SM-RP-SMEA,3309,5.3.3.3,OctetString,"M, V",,,
+SRR-Flags,3310,5.3.3.4,Unsigned32,"M, V",,,
+SM-Delivery-Not-Intended,3311,5.3.3.5,Enumerated,"M, V",,,
+MWD-Status,3312,5.3.3.8,Unsigned32,"M, V",,,
+MME-Absent-User-Diagnostic-SM,3313,5.3.3.9,Unsigned32,"M, V",,,
+MSC-Absent-User-Diagnostic-SM,3314,5.3.3.10,Unsigned32,"M, V",,,
+SGSN-Absent-User-Diagnostic-SM,3315,5.3.3.11,Unsigned32,"M, V",,,
+SM-Delivery-Outcome,3316,5.3.3.14,Grouped,"M, V",,,
+MME-SM-Delivery-Outcome,3317,5.3.3.15,Grouped,"M, V",,,
+MSC-SM-Delivery-Outcome,3318,5.3.3.16,Grouped,"M, V",,,
+SGSN-SM-Delivery-Outcome,3319,5.3.3.17,Grouped,"M, V",,,
+IP-SM-GW-SM-Delivery-Outcome,3320,5.3.3.18,Grouped,"M, V",,,
+SM-Delivery-Cause,3321,5.3.3.19,Enumerated,"M, V",,,
+Absent-User-Diagnostic-SM,3322,5.3.3.20,Unsigned32,"M, V",,,
+RDR-Flags,3323,5.3.3.21,Unsigned32,V,,,M
+Maximum-UE-Availability-Time,3329,5.3.3.22,Time,V,,,M
+SMS-GMSC-Alert-Event,3333,5.3.3.23,Unsigned32,V,,,M
+#=,,,,,,,
+# 3GPP TS 29.338 Table 6.3.3.1/1: SGd/Gdd specific Diameter AVPs,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+SC-Address,3300,6.3.3.2,OctetString,"M, V",,,
+SM-RP-UI,3301,6.3.3.3,OctetString,"M, V",,,
+TFR-Flags,3302,6.3.3.4,Unsigned32,"M, V",,,
+SM-Delivery-Failure-Cause,3303,6.3.3.5,Grouped,"M, V",,,
+SM-Enumerated-Delivery-Failure-Cause,3304,6.3.3.6,Enumerated,"M, V",,,
+SM-Diagnostic-Info,3305,6.3.3.7,OctetString,"M, V",,,
+SM-Delivery-Timer,3306,6.3.3.10,Unsigned32,"M, V",,,
+SM-Delivery-Start-Time,3307,6.3.3.11,Time,"M, V",,,
+SMSMI-Correlation-ID,3324,6.3.3.13,Grouped,V,,,M
+# Note: 3GPP TS 29.338 Table 6.3.3.1/1 row HSS-ID (3325),,,,,,,
+# incorrectly lists type as OctetString instead of UTF8String.,,,,,,,
+# 3GPP TS 29.338 clause 6.3.3.14 uses UTF8String.,,,,,,,
+# ,,,,,,,
+# Fix: HSS-ID (3325) type changed from OctetString to UTF8String.,,,,,,,
+HSS-ID,3325,6.3.3.14,UTF8String,V,,,M
+Originating-SIP-URI,3326,6.3.3.15,UTF8String,V,,,M
+Destination-SIP-URI,3327,6.3.3.16,UTF8String,V,,,M
+OFR-Flags,3328,6.3.3.12,Unsigned32,V,,,M
+Maximum-Retransmission-Time,3330,6.3.3.17,Time,V,,,M
+Requested-Retransmission-Time,3331,6.3.3.18,Time,V,,,M
+SMS-GMSC-Address,3332,6.3.3.19,OctetString,V,,,M
+,,,,,,,
+@standard,3GPP TS 29.343,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.343 V15.1.0 (2019-09),,,,,,,
+# Proximity-services (ProSe) function to,,,,,,,
+# ProSe application server aspects (PC2);,,,,,,,
+# Stage 3,,,,,,,
+# ,,,,,,,
+# From 3GPP 29343-f10.doc,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.343 Table 6.4.1-1: PC2 specific Diameter AVPs,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+Origin-App-Layer-User-Id,3600,6.4.2,UTF8String,"M,V",P,,
+Target-App-Layer-User-Id,3601,6.4.3,UTF8String,"M,V",P,,
+ProSe-Function-ID,3602,6.4.4,OctetString,"M,V",P,,
+ProSe-Request-Type,3603,6.4.5,Unsigned32,"M,V",P,,
+PDUID,3604,6.4.6,OctetString,V,P,,M
+Application-Data,3605,6.4.7,UTF8String,V,P,,M
+Allowed-Suffixes-Number,3606,6.4.8,Unsigned32,V,P,,M
+Monitor-Target,3607,6.4.9,Grouped,V,P,,M
+ProSe-Code-Suffix-Mask,3608,6.4.10,Grouped,V,P,,M
+Suffix-Code,3609,6.4.11,OctetString,V,P,,M
+Suffix-Mask,3610,6.4.12,OctetString,V,P,,M
+Banned-User-Target,3611,6.4.17,Grouped,V,P,,M
+Metadata-Indicator,3612,6.4.18,Unsigned32,V,P,,M
+,,,,,,,
+@standard,3GPP TS 29.344,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.344 V15.1.0 (2019-09),,,,,,,
+# Proximity-services (ProSe) Function to Home Subscriber,,,,,,,
+# Server (HSS) aspects;,,,,,,,
+# Stage 3,,,,,,,
+# ,,,,,,,
+# From 3GPP 29344-f10.doc,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.344 Table 6.3.1-1: PC4a specific Diameter AVPs,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+ProSe-Subscription-Data,3701,6.3.2,Grouped,"M,V",,,
+ProSe-Permission,3702,6.3.3,Unsigned32,"M,V",,,
+ProSe-Allowed-PLMN,3703,6.3.4,Grouped,"M,V",,,
+ProSe-Direct-Allowed,3704,6.3.5,Unsigned32,"M,V",,,
+UPR-Flags,3705,6.3.6,Unsigned32,"M,V",,,
+PNR-Flags,3706,6.3.7,Unsigned32,"M,V",,,
+ProSe-Initial-Location-Information,3707,6.3.9,Grouped,"M,V",,,
+# Note: 3GPP TS 29.344 Table 6.3.1-1 missing Authorized-Discovery-Range.,,,,,,,
+# Present in 3GPP TS 29.344 clause 6.3.13 and 3GPP TS 29.230 Table 7.1.,,,,,,,
+# ,,,,,,,
+# Fix: Add Authorized-Discovery-Range (3708) Unsigned32.,,,,,,,
+Authorized-Discovery-Range,3708,6.3.13,Unsigned32,V,,,M
+,,,,,,,
+@standard,3GPP TS 29.345,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.345 V15.1.0 (2019-09),,,,,,,
+# Inter-Proximity-services (ProSe) Function signalling aspects;,,,,,,,
+# Stage 3,,,,,,,
+# ,,,,,,,
+# From 3GPP 29345-f10.doc,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.345 Table 6.3.1-1: PC6/PC7 specific Diameter AVPs,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+App-Layer-User-Id,3801,6.3.2,UTF8String,"M, V",,,
+# Note: 3GPP TS 29.345 Table 6.3.1-1 row Assistance-info (3802) has,,,,,,,
+"# incorrect name and should be ""Assistance-Info"" per clause 6.3.3.",,,,,,,
+# ,,,,,,,
+# Fix: Assistance-info (3802) renamed to Assistance-Info (3802).,,,,,,,
+Assistance-Info,3802,6.3.3,Grouped,"M, V",,,
+Assistance-Info-Validity-Timer,3803,6.3.4,Unsigned32,"M, V",,,
+Discovery-Type,3804,6.3.5,Unsigned32,"M, V",,,
+Filter-Id,3805,6.3.9,OctetString,"M, V",,,
+MAC-Address,3806,6.3.11,UTF8String,"M, V",,,
+Match-Report,3807,6.3.12,Grouped,"M, V",,,
+Operating-Channel,3808,6.3.14,Unsigned32,"M, V",,,
+P2P-Features,3809,6.3.15,Unsigned32,"M, V",,,
+ProSe-App-Code,3810,6.3.16,OctetString,"M, V",,,
+ProSe-App-Id,3811,6.3.17,UTF8String,"M, V",,,
+ProSe-App-Mask,3812,6.3.18,OctetString,"M, V",,,
+ProSe-Discovery-Filter,3813,6.3.20,Grouped,"M, V",,,
+PRR-Flags,3814,6.3.21,Unsigned32,"M, V",,,
+ProSe-Validity-Timer,3815,6.3.22,Unsigned32,"M, V",,,
+Requesting-EPUID,3816,6.3.23,UTF8String,"M, V",,,
+Targeted-EPUID,3817,6.3.26,UTF8String,"M, V",,,
+# Note: Name conflict with 3GPP TS 29.154 Time-Window (4204).,,,,,,,
+# Time-Window (3818) in 3GPP TS 29.345 V12.1.0 (2014-12) predates,,,,,,,
+# Time-Window (4204) in 3GPP TS 29.154 V13.1.0 (2016-03).,,,,,,,
+Time-Window,3818,6.3.27,Unsigned32,"M, V",,,
+WiFi-P2P-Assistance-Info,3819,6.3.30,Grouped,"M, V",,,
+WLAN-Assistance-Info,3820,6.3.31,Grouped,"M, V",,,
+WLAN-Link-Layer-Id,3821,6.3.32,OctetString,"M, V",,,
+WLAN-Link-Layer-Id-List,3822,6.3.33,Grouped,"M, V",,,
+Location-Update-Trigger,3823,6.3.42,Grouped,"M,V",,,
+Location-Update-Event-Type,3824,6.3.43,Unsigned32,"M,V",,,
+Change-Of-Area-Type,3825,6.3.44,Grouped,"M,V",,,
+Location-Update-Event-Trigger,3826,6.3.45,Unsigned32,"M,V",,,
+Report-Cardinality,3827,6.3.46,Enumerated,"M,V",,,
+Minimum-Interval-Time,3828,6.3.47,Unsigned32,"M,V",,,
+Periodic-Location-Type,3829,6.3.48,Grouped,"M,V",,,
+Location-Report-Interval-Time,3830,6.3.49,Unsigned32,"M,V",,,
+Total-Number-Of-Reports,3831,6.3.50,Unsigned32,"M,V",,,
+Validity-Time-Announce,3832,6.3.36,Unsigned32,"M, V",,,
+Validity-Time-Monitor,3833,6.3.37,Unsigned32,"M, V",,,
+Validity-Time-Communication,3834,6.3.38,Unsigned32,"M, V",,,
+ProSe-App-Code-Info,3835,6.3.39,Grouped,"M, V",,,
+MIC,3836,6.3.40,OctetString,"M, V",,,
+UTC-based-Counter,3837,6.3.41,Unsigned32,"M, V",,,
+ProSe-Match-Refresh-Timer,3838,6.3.52,Unsigned32,"M, V",,,
+ProSe-Metadata-Index-Mask,3839,6.3.60,OctetString,V,,,M
+App-Identifier,3840,6.3.61,Grouped,V,,,M
+OS-ID,3841,6.3.62,OctetString,V,,,M
+OS-App-ID,3842,6.3.63,UTF8String,V,,,M
+Requesting-RPAUID,3843,6.3.64,UTF8String,V,,,M
+Target-RPAUID,3844,6.3.65,UTF8String,V,,,M
+Target-PDUID,3845,6.3.66,OctetString,V,,,M
+ProSe-Restricted-Code,3846,6.3.67,OctetString,V,,,M
+ProSe-Restricted-Code-Suffix-Range,3847,6.3.68,OctetString,V,,,M
+Beginning-Suffix,3848,6.3.69,OctetString,V,,,M
+Ending-Suffix,3849,6.3.70,OctetString,V,,,M
+Discovery-Entry-ID,3850,6.3.59,Unsigned32,V,,,M
+Match-Timestamp,3851,6.3.71,Time,V,,,M
+PMR-Flags,3852,6.3.57,Unsigned32,"M,V",,,
+ProSe-Application-Metadata,3853,6.3.58,UTF8String,"M,V",,,
+Discovery-Auth-Request,3854,6.3.53,Grouped,"M, V",,,
+Discovery-Auth-Response,3855,6.3.54,Grouped,"M, V",,,
+Match-Request,3856,6.3.55,Grouped,"M, V",,,
+Match-Report-Info,3857,6.3.56,Grouped,"M, V",,,
+Banned-RPAUID,3858,6.3.73,UTF8String,V,,,M
+Banned-PDUID,3859,6.3.74,OctetString,V,,,M
+Code-Receiving-Security-Material,3860,6.3.75,Grouped,V,,,M
+Code-Sending-Security-Material,3861,6.3.76,Grouped,V,,,M
+DUSK,3862,6.3.77,OctetString,V,,,M
+DUIK,3863,6.3.78,OctetString,V,,,M
+DUCK,3864,6.3.79,OctetString,V,,,M
+# Note: 3GPP TS 29.345 Table 6.3.1-1 row MIC-Check-indicator (3865) has,,,,,,,
+"# incorrect name and should be ""MIC-Check-Indicator"" per clause 6.3.80.",,,,,,,
+# ,,,,,,,
+# Fix: MIC-Check-indicator (3865) renamed to MIC-Check-Indicator (3865).,,,,,,,
+MIC-Check-Indicator,3865,6.3.80,Unsigned32,V,,,M
+Encrypted-Bitmask,3866,6.3.81,OctetString,V,,,M
+ProSe-App-Code-Suffix-Range,3867,6.3.82,OctetString,V,,,M
+PC5-tech,3868,6.3.84,OctetString,V,,,M
+,,,,,,,
+@standard,3GPP TS 29.368,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.368 V15.1.0 (2019-09),,,,,,,
+# Tsp interface protocol between the MTC Interworking Function,,,,,,,
+# (MTC-IWF) and Service Capability Server (SCS),,,,,,,
+# ,,,,,,,
+# From 3GPP 29368-f10.doc,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.368 Table 6.4.1.1: Tsp specific Diameter AVPs,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+Device-Action,3001,6. 4.2,Grouped,"M,V",P,,
+Device-Notification,3002,6.4.3,Grouped,"M,V",P,,
+Trigger-Data,3003,6.4.4,Grouped,"M,V",P,,
+Payload,3004,6.4.5,OctetString,"M,V",P,,
+Action-Type,3005,6.4.6,Enumerated,"M,V",P,,
+Priority-Indication,3006,6.4.7,Enumerated,"M,V",P,,
+Reference-Number,3007,6.4.8,Unsigned32,"M,V",P,,
+Request-Status,3008,6.4.9,Enumerated,"M,V",P,,
+Delivery-Outcome,3009,6.4.10,Enumerated,"M,V",P,,
+Application-Port-Identifier,3010,6.4.11,Unsigned32,"M,V",P,,
+Old-Reference-Number,3011,6.4.12,Unsigned32,V,P,,M
+Feature-Supported-In-Final-Target,3012,6.4.13,Unsigned32,V,P,,M
+,,,,,,,
+@standard,3GPP TS 29.388,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.388 V15.1.0 (2019-09),,,,,,,
+# V2X Control Function to Home Subscriber Server (HSS),,,,,,,
+# aspects (V4);,,,,,,,
+# Stage 3,,,,,,,
+# ,,,,,,,
+# From 3GPP 29388-f10.doc,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.388 Table 6.3.1-1: V4 specific Diameter AVPs,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+V2X-PC5-Allowed-PLMN,4600,6.3.3,Grouped,"M,V",,,
+V2X-Update-Flags,4601,6.3.4,Unsigned32,"M,V",,,
+V2X-Notify-Flags,4602,6.3.5,Unsigned32,"M,V",,,
+,,,,,,,
+@standard,3GPP TS 29.389,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.389 V15.1.0 (2019-09),,,,,,,
+# Inter-V2X Control Function Signalling aspects (V6);,,,,,,,
+# Stage 3,,,,,,,
+# ,,,,,,,
+# From 3GPP 29389-f10.doc,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.389 Table 6.3.1-1: V6 specific Diameter AVPs,,,,,,,
+# ,,,,,,,
+# Fix: All AVPs were missing M and V; assume MUST for both.,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+V2X-Authorization-Data,4700,6.3.2,Grouped,"M,V",,,
+V2X-Permission-in-VPLMN,4701,6.3.3,Unsigned32,"M,V",,,
+V2X-Application-Server,4702,6.3.4,Grouped,"M,V",,,
+,,,,,,,
+@standard,3GPP TS 29.468,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.468 V15.8.0 (2019-12),,,,,,,
+# Group Communication System Enablers for LTE (GCSE_LTE);,,,,,,,
+# MB2 Reference Point;,,,,,,,
+# Stage 3,,,,,,,
+# ,,,,,,,
+# From 3GPP 29468-f80.doc,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.468 Table 6.4.1 1: MB2 C specific Diameter AVPs,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+BMSC-Address,3500,6.4.2,Address,"M,V",P,,
+BMSC-Port,3501,6.4.3,Unsigned32,"M,V",P,,
+Common-Tunnel-Endpoint-Identifier,3524,6.4.26,OctetString,V,P,,M
+FEC-Request,3525,6.4.27,OctetString,V,P,,M
+FEC-Result,3531,6.4.33,Unsigned32,V,P,,M
+Local-M1-Information,3518,6.4.20,Grouped,V,P,,M
+Local-MB2-U-Information,3519,6.4.21,Grouped,V,P,,M
+MB2U-Security,3517,6.4.19,Unsigned32,"M,V",P,,
+MBMS-Bearer-Event,3502,6.4.4,Unsigned32,"M,V",P,,
+MBMS-Bearer-Event-Notification,3503,6.4.5,Grouped,"M,V",P,,
+MBMS-Bearer-Request,3504,6.4.6,Grouped,"M,V",P,,
+MBMS-Bearer-Response,3505,6.4.7,Grouped,"M,V",P,,
+MBMS-Bearer-Result,3506,6.4.8,Unsigned32,"M,V",P,,
+MBMS-eNB-IP-Multicast-Address,3520,6.4.22,Address,V,P,,M
+MBMS-eNB-IPv6-Multicast-Address,3521,6.4.23,Address,V,P,,M
+# Note: Name conflict with 3GPP TS 29.061 MBMS-GW-SSM-IP-Address (924).,,,,,,,
+# 3GPP TS 29.061 V10.4.0 (2011-09) CR 0355 added MBMS-GW-SSM-IP-Address (924).,,,,,,,
+# 3GPP TS 29.468 V14.0.0 (2016-12) CR 0021 added MBMS-GW-SSM-IP-Address (3522).,,,,,,,
+# ,,,,,,,
+# Fix: MBMS-GW-SSM-IP-Address (3522) renamed to MBMS-GW-SSM-IP-Address-29.468 (3522).,,,,,,,
+MBMS-GW-SSM-IP-Address-29.468,3522,6.4.24,Address,V,P,,M
+# Note: Name conflict with 3GPP TS 29.061 MBMS-GW-SSM-IPv6-Address (925).,,,,,,,
+# 3GPP TS 29.061 V10.4.0 (2011-09) CR 0355 added MBMS-GW-SSM-IPv6-Address (925).,,,,,,,
+# 3GPP TS 29.061 V12.6.0 (2014-06) renamed,,,,,,,
+# MBMS-GW-SSM-IPv6-Address (925) to MBMS-GW-SSM-Ipv6-Address.,,,,,,,
+# 3GPP TS 29.468 V14.0.0 (2016-12) CR 0021 added MBMS-GW-SSM-IPv6-Address (3523).,,,,,,,
+# ,,,,,,,
+# Fix: MBMS-GW-SSM-IPv6-Address (3523) renamed to MBMS-GW-SSM-IPv6-Address-29.468 (3523).,,,,,,,
+MBMS-GW-SSM-IPv6-Address-29.468,3523,6.4.25,Address,V,P,,M
+MBMS-Start-Time,3507,6.4.9,Time,"M,V",P,,
+# Note: Name conflict with 3GPP TS 32.299 Radio-Frequency (3462).,,,,,,,
+# 3GPP TS 29.468 V12.0.0 (2014-09) added Radio-Frequency (3508).,,,,,,,
+# 3GPP TS 32.299 V13.1.0 (2015-06) CR 0638 added Radio-Frequency (3462).,,,,,,,
+# ,,,,,,,
+# Fix: Radio-Frequency (3508) renamed to Radio-Frequency-29.468 (3508).,,,,,,,
+Radio-Frequency-29.468,3508,6.4.10,Unsigned32,"M,V",P,,
+ROHC-Full-Header-Periodicity,3527,6.4.29,Float32,V,P,,M
+ROHC-Max-CID,3532,6.4.34,Unsigned32,V,P,,M
+ROHC-Profile,3528,6.4.30,Unsigned32,V,P,,M
+ROHC-Request,3526,6.4.28,Grouped,V,P,,M
+ROHC-Result,3530,6.4.32,Unsigned32,V,P,,M
+TMGI-Allocation-Request,3509,6.4.11,Grouped,"M,V",P,,
+TMGI-Allocation-Response,3510,6.4.12,Grouped,"M,V",P,,
+TMGI-Allocation-Result,3511,6.4.13,Unsigned32,"M,V",P,,
+TMGI-Deallocation-Request,3512,6.4.14,Grouped,"M,V",P,,
+TMGI-Deallocation-Response,3513,6.4.15,Grouped,"M,V",P,,
+TMGI-Deallocation-Result,3514,6.4.16,Unsigned32,"M,V",P,,
+TMGI-Expiry,3515,6.4.17,Grouped,"M,V",P,,
+TMGI-Number,3516,6.4.18,Unsigned32,"M,V",P,,
+Userplane-Protocol-Result,3529,6.4.31,Grouped,V,P,,M
+,,,,,,,
+@standard,3GPP TS 29.561,,,,,,
+#=,,,,,,,
+# 3GPP TS 29.561 V16.3.0 (2020-03),,,,,,,
+# 5G System; Interworking between 5G Network and external,,,,,,,
+# Data Networks;,,,,,,,
+# Stage 3,,,,,,,
+# ,,,,,,,
+# From 3GPP 29561-g30.doc,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+#=,,,,,,,
+# Table 12.4-1: N6 re-used Diameter AVPs,,,,,,,
+#,,,,,,,
+# Note: Only AVPs defined in 3GPP TS 29.561.,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+3GPP-Notification,110,11.3.1,OctetString,V,P,,M
+3GPP-UE-MAC-Address,111,11.3.1,OctetString,V,P,,M
+3GPP-Authorization-Reference,112,11.3.1,OctetString,V,P,,M
+3GPP-Policy-Reference,113,11.3.1,OctetString,V,P,,M
+3GPP-Session-AMBR,114,11.3.1,OctetString,V,P,,M
+3GPP-NAI,115,11.3.1,OctetString,V,P,,M
+3GPP-Session-AMBR-v2,116,11.3.1,OctetString,V,P,,M
+3GPP-IP-Address-Pool-Id,118,11.3.1,OctetString,V,P,,M
+#=,,,,,,,
+# Table 17.4-1: Additional information needed for network slice specific authentication,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+3GPP-S-NSSAI,200,16.3.1,UTF8String,V,P,,M
+,,,,,,,
+@standard,3GPP TS 32.299,,,,,,
+#=,,,,,,,
+# 3GPP TS 32.299 V15.7.0 (2019-06),,,,,,,
+# Charging management;,,,,,,,
+# Diameter charging applications,,,,,,,
+# ,,,,,,,
+# From 3GPP 32299-f70.doc,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+#=,,,,,,,
+# 3GPP TS 32.299 Table 7.2.0.1: 3GPP specific AVPs,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+3GPP-OC-Specific-Reduction,1320,,Grouped,V,,,M
+3GPP-OC-Rating-Group,1321,,Unsigned32,V,,,M
+3GPP-OC-Request-Type,1322,,Enumerated,V,,,M
+# Note: Name conflict with 3GPP TS 29.212 3GPP-PS-Data-Off-Status (2847).,,,,,,,
+# 3GPP TS 29.212 V14.3.0 (2017-03) CR 1559 added 3GPP-PS-Data-Off-Status (2847).,,,,,,,
+# 3GPP TS 32.299 V14.3.0 (2017-03) CR 0760 added 3GPP-PS-Data-Off-Status (4406).,,,,,,,
+# ,,,,,,,
+# Fix: 3GPP-PS-Data-Off-Status (4406) renamed to 3GPP-PS-Data-Off-Status-32.299 (4406).,,,,,,,
+3GPP-PS-Data-Off-Status-32.299,4406,,Enumerated,"V,M",,,
+Access-Network-Info-Change,4401,,Grouped,"V,M",,,
+Access-Network-Information,1263,,OctetString,"V,M",,,
+Access-Transfer-Information,2709,,Grouped,"V,M",,,
+Access-Transfer-Type,2710,,Enumerated,"V,M",,,
+Account-Expiration,2309,,Time,"V,M",,,
+Accumulated-Cost,2052,,Grouped,"V,M",,,
+Adaptations,1217,,Enumerated,"V,M",,,
+Additional-Content-Information,1207,,Grouped,"V,M",,,
+Additional-Exception-Reports,3936,,Enumerated,"V,M",,,
+Additional-Type-Information,1205,,UTF8String,"V,M",,,
+Address-Data,897,,UTF8String,"V,M",,,
+Address-Domain,898,,Grouped,"V,M",,,
+Addressee-Type,1208,,Enumerated,"V,M",,,
+Address-Type,899,,Enumerated,"V,M",,,
+AF-Correlation-Information,1276,,Grouped,"V,M",,,
+Alternate-Charged-Party-Address,1280,,UTF8String,"V,M",,,
+Announcement-Identifier,3905,,Unsigned32,"V,M",,,
+Announcement-Information,3904,,Grouped,"V,M",,,
+Announcement-Order,3906,,Unsigned32,"V,M",,,
+Announcing-PLMN-ID,4408,,UTF8String,"V,M",,,
+Announcing-UE-HPLMN-Identifier,3426,,UTF8String,"V,M",,,
+Announcing-UE-VPLMN-Identifier,3427,,UTF8String,"V,M",,,
+AoC-Cost-Information,2053,,Grouped,"V,M",,,
+AoC-Format,2310,,Enumerated,"V,M",,,
+AoC-Information,2054,,Grouped,"V,M",,,
+AoC-Request-Type,2055,,Enumerated,"V,M",,,
+AoC-Service,2311,,Grouped,"V,M",,,
+AoC-Service-Obligatory-Type,2312,,Enumerated,"V,M",,,
+AoC-Service-Type,2313,,Enumerated,"V,M",,,
+AoC-Subscription-Information,2314,,Grouped,"V,M",,,
+API-Content,1309,,UTF8String,V,,,M
+API-Direction,1310,,Enumerated,V,,,M
+API-Identifier,1311,,OctetString,V,,,M
+API-Invocation-Timestamp,1312,,Time,V,,,M
+API-Network-Service-Node,1315,,Enumerated,V,,,M
+API-Result-Code,1313,,Unsigned32,V,,,M
+API-Size,1314,,Unsigned64,V,,,M
+APN-Rate-Control,3933,,Grouped,"V,M",,,
+APN-Rate-Control-Downlink,3934,,Grouped,"V,M",,,
+APN-Rate-Control-Uplink,3935,,Grouped,"V,M",,,
+Applic-ID,1218,,UTF8String,"V,M",,,
+Application-Provided-Called-Party-Address,837,,UTF8String,"V,M",,,
+Application-Server,836,,UTF8String,"V,M",,,
+Application-Server-Information,850,,Grouped,"V,M",,,
+Application-Specific-Data,3458,,OctetString,"V,M",,,
+Associated-Party-Address,2035,,UTF8String,"V,M",,,
+Associated-URI,856,,UTF8String,"V,M",,,
+Authorised-QoS,849,,UTF8String,"V,M",,,
+Aux-Applic-Info,1219,,UTF8String,"V,M",,,
+Base-Time-Interval,1265,,Unsigned32,"V,M",,,
+Basic-Service-Code,3411,,Grouped,"V,M",,,
+Bearer-Capability,3412,,OctetString,"V,M",,,
+Bearer-Service,854,,OctetString,"V,M",,,
+BSSID,2716,,UTF8String,"V,M",,,
+Called-Asserted-Identity,1250,,UTF8String,"V,M",,,
+Called-Identity,3916,,UTF8String,"V,M",,,
+Called-Identity-Change,3917,,Grouped,"V,M",,,
+Called-Party-Address,832,,UTF8String,"V,M",,,
+Calling-Party-Address,831,,UTF8String,"V,M",,,
+Carrier-Select-Routing-Information,2023,,UTF8String,"V,M",,,
+Cause-Code,861,,Integer32,"V,M",,,
+Cellular-Network-Information,3924,,OctetString,"V,M",,,
+CG-Address,846,,Address,"V,M",,,
+Change-Condition,2037,,Integer32,"V,M",,,
+Change-Time,2038,,Time,"V,M",,,
+Charge-Reason-Code,2118,,Enumerated,"V,M",,,
+Charged-Party,857,,UTF8String,"V,M",,,
+Charging-Characteristics-Selection-Mode,2066,,Enumerated,"V,M",,,
+Charging-Per-IP-CAN-Session-Indicator,4400,,Enumerated,"V,M",,,
+Civic-Address-Information,1305,,UTF8String,V,,,M
+Class-Identifier,1214,,Enumerated,"V,M",,,
+Client-Address,2018,,Address,"V,M",,,
+CN-Operator-Selection-Entity,3421,,Enumerated,"V,M",,,
+Content-Class,1220,,Enumerated,"V,M",,,
+Content-Disposition,828,,UTF8String,"V,M",,,
+Content-Length,827,,Unsigned32,"V,M",,,
+Content-Size,1206,,Unsigned32,"V,M",,,
+Content-Type,826,,UTF8String,"V,M",,,
+Coverage-Info,3459,,Grouped,"V,M",,,
+Coverage-Status,3428,,Enumerated,"V,M",,,
+CP-CIoT-EPS-Optimisation-Indicator,3930,,Enumerated,"V,M",,,
+CPDT-Information,3927,,Grouped,"V,M",,,
+CSG-Access-Mode,2317,,Enumerated,"V,M",,,
+CSG-Membership-Indication,2318,,Enumerated,"V,M",,,
+CUG-Information,2304,,OctetString,"V,M",,,
+Current-Tariff,2056,,Grouped,"V,M",,,
+Data-Coding-Scheme,2001,,Integer32,"V,M",,,
+Deferred-Location-Event-Type,1230,,UTF8String,"V,M",,,
+Delivery-Report-Requested,1216,,Enumerated,"V,M",,,
+Destination-Interface,2002,,Grouped,"V,M",,,
+Diagnostics,2039,,Integer32,"V,M",,,
+Discoveree-UE-HPLMN-Identifier,4402,,UTF8String,"V,M",,,
+Discoveree-UE-VPLMN-Identifier,4403,,UTF8String,"V,M",,,
+Discoverer-UE-HPLMN-Identifier,4404,,UTF8String,"V,M",,,
+Discoverer-UE-VPLMN-Identifier,4405,,UTF8String,"V,M",,,
+Domain-Name,1200,,UTF8String,"V,M",,,
+DRM-Content,1221,,Enumerated,"V,M",,,
+Dynamic-Address-Flag,2051,,Enumerated,"V,M",,,
+Dynamic-Address-Flag-Extension,2068,,Enumerated,"V,M",,,
+Early-Media-Description,1272,,Grouped,"V,M",,,
+Enhanced-Diagnostics,3901,,Grouped,"V,M",,,
+Envelope,1266,,Grouped,"V,M",,,
+Envelope-End-Time,1267,,Time,"V,M",,,
+Envelope-Reporting,1268,,Enumerated,"V,M",,,
+Envelope-Start-Time,1269,,Time,"V,M",,,
+EPDG-Address,3425,,Address,"V,M",,,
+Event,825,,UTF8String,"V,M",,,
+Event-Charging-TimeStamp,1258,,Time,"V,M",,,
+Event-Type,823,,Grouped,"V,M",,,
+Expires,888,,Unsigned32,"V,M",,,
+Exposure-Function-API-Information,1316,,Grouped,V,,,M
+FE-Identifier-List,4413,,UTF8String,"V,M",,,
+File-Repair-Supported,1224,,Enumerated,"V,M",,,
+Forwarding-Pending,3415,,Enumerated,"V,M",,,
+From-Address,2708,,UTF8String,"V,M",,,
+GGSN-Address,847,,Address,"V,M",,,
+IMS-Application-Reference-Identifier,2601,,UTF8String,"V,M",,,
+IMS-Charging-Identifier,841,,UTF8String,"V,M",,,
+IMS-Communication-Service-Identifier,1281,,UTF8String,"V,M",,,
+IMS-Emergency-Indicator,2322,,Enumerated,"V,M",,,
+IMS-Information,876,,Grouped,"V,M",,,
+IMS-Visited-Network-Identifier,2713,,UTF8String,"V,M",,,
+IMSI-Unauthenticated-Flag,2308,,Enumerated,"V,M",,,
+Incoming-Trunk-Group-Id,852,,UTF8String,"V,M",,,
+Incremental-Cost,2062,,Grouped,"V,M",,,
+Initial-IMS-Charging-Identifier,2321,,UTF8String,"V,M",,,
+Instance-Id,3402,,UTF8String,"V,M",,,
+Interface-Id,2003,,UTF8String,"V,M",,,
+Interface-Port,2004,,UTF8String,"V,M",,,
+Interface-Text,2005,,UTF8String,"V,M",,,
+Interface-Type,2006,,Enumerated,"V,M",,,
+Inter-Operator-Identifier,838,,Grouped,"V,M",,,
+Inter-UE-Transfer,3902,,Enumerated,"V,M",,,
+IP-Realm-Default-Indication,2603,,Enumerated,"V,M",,,
+ISUP-Cause,3416,,Grouped,"V,M",,,
+ISUP-Cause-Diagnostics,3422,,OctetString,"V,M",,,
+ISUP-Cause-Location,3423,,Unsigned32,"V,M",,,
+ISUP-Cause-Value,3424,,Unsigned32,"V,M",,,
+ISUP-Location-Number,3414,,OctetString,"V,M",,,
+Language,3914,,UTF8String,"V,M",,,
+Layer-2-Group-ID,3429,,OctetString,"V,M",,,
+LCS-APN,1231,,UTF8String,"V,M",,,
+LCS-Client-Dialed-By-MS,1233,,UTF8String,"V,M",,,
+LCS-Client-External-ID,1234,,UTF8String,"V,M",,,
+LCS-Client-Id,1232,,Grouped,"V,M",,,
+LCS-Client-Name,1235,,Grouped,"V,M",,,
+LCS-Client-Type,1241,,Enumerated,"V,M",,,
+LCS-Data-Coding-Scheme,1236,,UTF8String,"V,M",,,
+LCS-Format-Indicator,1237,,Enumerated,"V,M",,,
+LCS-Information,878,,Grouped,"V,M",,,
+LCS-Name-String,1238,,UTF8String,"V,M",,,
+# Note: 3GPP TS 32.299 V11.8.0 (2013-07) renamed,,,,,,,
+# LCS-Requestor-Id (1239) to LCS-Requestor-ID (1239).,,,,,,,
+# ,,,,,,,
+# Change-1.4.0: LCS-Requestor-Id (1239) renamed to LCS-Requestor-ID (1239).,,,,,,,
+LCS-Requestor-ID,1239,,Grouped,"V,M",,,
+# Note: 3GPP TS 32.299 V11.8.0 (2013-07) renamed,,,,,,,
+# LCS-Requestor-Id-String (1240) to LCS-Requestor-ID-String (1240).,,,,,,,
+# ,,,,,,,
+# Change-1.4.0: LCS-Requestor-Id-String (1240) renamed to LCS-Requestor-ID-String (1240).,,,,,,,
+LCS-Requestor-ID-String,1240,,UTF8String,"V,M",,,
+Local-GW-Inserted-Indication,2604,,Enumerated,"V,M",,,
+Local-Sequence-Number,2063,,Unsigned32,"V,M",,,
+Location-Estimate,1242,,OctetString,"V,M",,,
+Location-Estimate-Type,1243,,Enumerated,"V,M",,,
+Location-Info,3460,,Grouped,"V,M",,,
+Location-Type,1244,,Grouped,"V,M",,,
+Low-Balance-Indication,2020,,Enumerated,"V,M",,,
+Low-Priority-Indicator,2602,,Enumerated,"V,M",,,
+MBMS-Charged-Party,2323,,Enumerated,"V,M",,,
+# Note: 3GPP TS 32.299 V11.8.0 (2013-07) Table 7.2 changed,,,,,,,
+# row MBMS-GW-Address (2307) to have a hyphen instead of space.,,,,,,,
+# ,,,,,,,
+# Change-1.4.0: MBMSGW-Address (2307) renamed to MBMS-GW-Address (2307).,,,,,,,
+MBMS-GW-Address,2307,,Address,"V,M",,,
+MBMS-Information,880,,Grouped,"V,M",,,
+MBMS-User-Service-Type,1225,,Enumerated,"V,M",,,
+Media-Initiator-Flag,882,,Enumerated,"V,M",,,
+Media-Initiator-Party,1288,,UTF8String,"V,M",,,
+Message-Body,889,,Grouped,"V,M",,,
+Message-Class,1213,,Grouped,"V,M",,,
+Message-ID,1210,,UTF8String,"V,M",,,
+Message-Size,1212,,Unsigned32,"V,M",,,
+Message-Type,1211,,Enumerated,"V,M",,,
+MMBox-Storage-Requested,1248,,Enumerated,"V,M",,,
+MM-Content-Type,1203,,Grouped,"V,M",,,
+MMS-Information,877,,Grouped,"V,M",,,
+MMTel-Information,2030,,Grouped,"V,M",,,
+MMTel-SService-Type,2031,,Unsigned32,"V,M",,,
+Monitored-PLMN-Identifier,3430,,UTF8String,"V,M",,,
+Monitoring-Event-Configuration-Activity,3919,,Integer32,"V,M",,,
+Monitoring-Event-Functionality,3922,,Integer32,"V,M",,,
+Monitoring-Event-Information,3921,,Grouped,"V,M",,,
+Monitoring-Event-Report-Data,3920,,Grouped,"V,M",,,
+Monitoring-Event-Report-Number,3923,,Unsigned32,"V,M",,,
+Monitoring-UE-HPLMN-Identifier,3431,,UTF8String,"V,M",,,
+Monitoring-UE-Identifier,3432,,UTF8String,"V,M",,,
+Monitoring-UE-VPLMN-Identifier,3433,,UTF8String,"V,M",,,
+MSC-Address,3417,,OctetString,"V,M",,,
+MTC-IWF-Address,3406,,Address,"V,M",,,
+Neighbour-Node-Address,2705,,Address,"V,M",,,
+Network-Call-Reference-Number,3418,,OctetString,"V,M",,,
+Next-Tariff,2057,,Grouped,"V,M",,,
+NIDD-Submission,3928,,Grouped,"V,M",,,
+NNI-Information,2703,,Grouped,"V,M",,,
+NNI-Type,2704,,Enumerated,"V,M",,,
+Node-Functionality,862,,Enumerated,"V,M",,,
+Node-Id,2064,,UTF8String,"V,M",,,
+Number-Of-Diversions,2034,,Unsigned32,"V,M",,,
+Number-Of-Messages-Sent,2019,,Unsigned32,"V,M",,,
+Number-Of-Participants,885,,Unsigned32,"V,M",,,
+Number-Of-Received-Talk-Bursts,1282,,Unsigned32,"V,M",,,
+Number-Of-Talk-Bursts,1283,,Unsigned32,"V,M",,,
+Number-Portability-Routing-Information,2024,,UTF8String,"V,M",,,
+Offline-Charging,1278,,Grouped,"V,M",,,
+Online-Charging-Flag,2303,,Enumerated,"V,M",,,
+Originating-IOI,839,,UTF8String,"V,M",,,
+Originator,864,,Enumerated,"V,M",,,
+Originator-Address,886,,Grouped,"V,M",,,
+Originator-Interface,2009,,Grouped,"V,M",,,
+Originator-Received-Address,2027,,Grouped,"V,M",,,
+Originator-SCCP-Address,2008,,Address,"V,M",,,
+Outgoing-Session-Id,2320,,UTF8String,"V,M",,,
+Outgoing-Trunk-Group-Id,853,,UTF8String,"V,M",,,
+Participant-Access-Priority,1259,,Enumerated,"V,M",,,
+Participant-Action-Type,2049,,Enumerated,"V,M",,,
+Participant-Group,1260,,Grouped,"V,M",,,
+Participants-Involved,887,,UTF8String,"V,M",,,
+PC3-Control-Protocol-Cause,3434,,Integer32,"V,M",,,
+PC3-EPC-Control-Protocol-Cause,3435,,Integer32,"V,M",,,
+PC5-Radio-Technology,1300,,Enumerated,V,,,M
+PDN-Connection-Charging-ID,2050,,Unsigned32,"V,M",,,
+PDP-Address,1227,,Address,"V,M",,,
+PDP-Address-Prefix-Length,2606,,Unsigned32,"V,M",,,
+PDP-Context-Type,1247,,Enumerated,"V,M",,,
+# Change-1.4.0: PDG-Address (895) Address removed in 3GPP TS 32.299 V12.6.0 (2014-09).,,,,,,,
+#,,,,,,,
+# Change-1.4.0: PDG-Charging-Id (896) Unsigned32 removed in 3GPP TS 32.299 V12.6.0 (2014-09).,,,,,,,
+#,,,,,,,
+Play-Alternative,3913,,Enumerated,"V,M",,,
+PoC-Change-Condition,1261,,Enumerated,"V,M",,,
+PoC-Change-Time,1262,,Time,"V,M",,,
+PoC-Controlling-Address,858,,UTF8String,"V,M",,,
+PoC-Event-Type,2025,,Enumerated,"V,M",,,
+PoC-Group-Name,859,,UTF8String,"V,M",,,
+PoC-Information,879,,Grouped,"V,M",,,
+PoC-Server-Role,883,,Enumerated,"V,M",,,
+PoC-Session-Id,1229,,UTF8String,"V,M",,,
+PoC-Session-Initiation-type,1277,,Enumerated,"V,M",,,
+PoC-Session-Type,884,,Enumerated,"V,M",,,
+PoC-User-Role,1252,,Grouped,"V,M",,,
+PoC-User-Role-IDs,1253,,UTF8String,"V,M",,,
+# Note: 3GPP TS 32.299 V13.1.0 (2015-06) renamed,,,,,,,
+# PoC-User-Role-info-Units (1254) to PoC-User-Role-Info-Units (1254).,,,,,,,
+# ,,,,,,,
+# Change-1.4.0: PoC-User-Role-info-Units (1254) renamed to PoC-User-Role-Info-Units (1254).,,,,,,,
+PoC-User-Role-Info-Units,1254,,Enumerated,"V,M",,,
+Positioning-Data,1245,,UTF8String,"V,M",,,
+Preferred-AoC-Currency,2315,,Unsigned32,"V,M",,,
+Priority,1209,,Enumerated,"V,M",,,
+Privacy-Indicator,3915,,Enumerated,"V,M",,,
+ProSe-3rd-Party-Application-ID,3440,,UTF8String,"V,M",,,
+ProSe-Direct-Communication-Reception-Data-Container,3461,,Grouped,"V,M",,,
+ProSe-Direct-Communication-Transmission-Data-Container,3441,,Grouped,"V,M",,,
+ProSe-Direct-Discovery-Model,3442,,Enumerated,"V,M",,,
+ProSe-Event-Type,3443,,Enumerated,"V,M",,,
+ProSe-Function-IP-Address,3444,,Address,"V,M",,,
+ProSe-Function-PLMN-Identifier,3457,,UTF8String,"V,M",,,
+ProSe-Functionality,3445,,Enumerated,"V,M",,,
+ProSe-Group-IP-Multicast-Address,3446,,Address,"V,M",,,
+ProSe-Information,3447,,Grouped,"V,M",,,
+ProSe-Range-Class,3448,,Enumerated,"V,M",,,
+ProSe-Reason-For-Cancellation,3449,,Enumerated,"V,M",,,
+ProSe-Request-Timestamp,3450,,Time,"V,M",,,
+ProSe-Role-Of-UE,3451,,Enumerated,"V,M",,,
+ProSe-Source-IP-Address,3452,,Address,"V,M",,,
+ProSe-Target-Layer-2-ID,4410,,OctetString,"V,M",,,
+ProSe-UE-ID,3453,,OctetString,"V,M",,,
+ProSe-UE-to-Network-Relay-UE-ID,4409,,OctetString,"V,M",,,
+Proximity-Alert-Indication,3454,,Enumerated,"V,M",,,
+Proximity-Alert-Timestamp,3455,,Time,"V,M",,,
+Proximity-Cancellation-Timestamp,3456,,Time,"V,M",,,
+PS-Append-Free-Format-Data,867,,Enumerated,"V,M",,,
+PS-Free-Format-Data,866,,OctetString,"V,M",,,
+PS-Furnish-Charging-Information,865,,Grouped,"V,M",,,
+PS-Information,874,,Grouped,"V,M",,,
+Quota-Consumption-Time,881,,Unsigned32,"V,M",,,
+Quota-Holding-Time,871,,Unsigned32,"V,M",,,
+Quota-Indicator,3912,,Enumerated,"V,M",,,
+# Note: Name conflict with 3GPP TS 32.299 Radio-Frequency (3508),,,,,,,
+# 3GPP TS 29.468 V12.0.0 (2014-09) added Radio-Frequency (3508).,,,,,,,
+# 3GPP TS 32.299 V13.1.0 (2015-06) CR 0638 added Radio-Frequency (3462).,,,,,,,
+Radio-Frequency,3462,,OctetString,"V,M",,,
+Radio-Parameter-Set-Info,3463,,Grouped,"V,M",,,
+Radio-Parameter-Set-Values,3464,,OctetString,"V,M",,,
+Radio-Resources-Indicator,3465,,Integer32,"V,M",,,
+RAN-End-Time,1301,,Time,V,,,M
+RAN-Secondary-RAT-Usage-Report,1302,,Grouped,V,,,M
+RAN-Start-Time,1303,,Time,V,,,M
+Rate-Control-Max-Message-Size,3937,,Unsigned32,"V,M",,,
+Rate-Control-Max-Rate,3938,,Unsigned32,"V,M",,,
+Rate-Control-Time-Unit,3939,,Unsigned32,"V,M",,,
+Rate-Element,2058,,Grouped,"V,M",,,
+Read-Reply-Report-Requested,1222,,Enumerated,"V,M",,,
+Real-Time-Tariff-Information,2305,,Grouped,"V,M",,,
+Reason-Header,3401,,UTF8String,"V,M",,,
+Received-Talk-Burst-Time,1284,,Unsigned32,"V,M",,,
+Received-Talk-Burst-Volume,1285,,Unsigned32,"V,M",,,
+# Note: Name conflict with 3GPP TS 32.299 Recipient-Address (1201);,,,,,,,
+# 3GPP TS 29.140 V6.1.0 (2005-06) allocated Recipient-Address (1108).,,,,,,,
+# 3GPP TS 32.299 V6.4.0 (2005-09) CR 0028 added Recipient-Address (1201).,,,,,,,
+Recipient-Address,1201,,Grouped,"V,M",,,
+Recipient-Info,2026,,Grouped,"V,M",,,
+Recipient-Received-Address,2028,,Grouped,"V,M",,,
+Recipient-SCCP-Address,2010,,Address,"V,M",,,
+Refund-Information,2022,,OctetString,"V,M",,,
+Related-Change-Condition-Information,3925,,Grouped,"V,M",,,
+Related-Trigger,3926,,Grouped,"V,M",,,
+Related-IMS-Charging-Identifier,2711,,UTF8String,"V,M",,,
+Related-IMS-Charging-Identifier-Node,2712,,Address,"V,M",,,
+Relationship-Mode,2706,,Enumerated,"V,M",,,
+Relay-IP-address,4411,,Address,"V,M",,,
+Remaining-Balance,2021,,Grouped,"V,M",,,
+Reply-Applic-ID,1223,,UTF8String,"V,M",,,
+Reply-Path-Requested,2011,,Enumerated,"V,M",,,
+Reporting-Reason,872,,Enumerated,"V,M",,,
+Requested-Party-Address,1251,,UTF8String,"V,M",,,
+Requested-PLMN-Identifier,3436,,UTF8String,"V,M",,,
+Requestor-PLMN-Identifier,3437,,UTF8String,"V,M",,,
+Role-Of-Node,829,,Enumerated,"V,M",,,
+Role-Of-ProSe-Function,3438,,Enumerated,"V,M",,,
+Route-Header-Received,3403,,UTF8String,"V,M",,,
+Route-Header-Transmitted,3404,,UTF8String,"V,M",,,
+Scale-Factor,2059,,Grouped,"V,M",,,
+SCEF-Address,1317,,Address,V,,,M
+SCS-Address,3941,,Address,"V,M",,,
+SCS-AS-Address,3940,,Grouped,"V,M",,,
+SCS-Realm,3942,,DiameterIdentity,"V,M",,,
+SDP-Answer-Timestamp,1275,,Time,"V,M",,,
+SDP-Media-Component,843,,Grouped,"V,M",,,
+SDP-Media-Description,845,,UTF8String,"V,M",,,
+SDP-Media-Name,844,,UTF8String,"V,M",,,
+SDP-Offer-Timestamp,1274,,Time,"V,M",,,
+SDP-Session-Description,842,,UTF8String,"V,M",,,
+SDP-TimeStamps,1273,,Grouped,"V,M",,,
+SDP-Type,2036,,Enumerated,"V,M",,,
+Secondary-RAT-Type,1304,,OctetString,V,,,M
+Serving-Node-Identity,3929,,DiameterIdentity,"V,M",,,
+Served-Party-IP-Address,848,,Address,"V,M",,,
+Service-Data-Container,2040,,Grouped,"V,M",,,
+Service-Id,855,,UTF8String,"V,M",,,
+Service-Information,873,,Grouped,"V,M",,,
+Service-Mode,2032,,Unsigned32,"V,M",,,
+Service-Specific-Data,863,,UTF8String,"V,M",,,
+Service-Specific-Info,1249,,Grouped,"V,M",,,
+Service-Specific-Type,1257,,Unsigned32,"V,M",,,
+Serving-Node-Type,2047,,Enumerated,"V,M",,,
+Session-Direction,2707,,Enumerated,"V,M",,,
+SGi-PtP-Tunnelling-Method,3931,,Enumerated,"V,M",,,
+SGSN-Address,1228,,Address,"V,M",,,
+SGW-Address,2067,,Address,"V,M",,,
+SGW-Change,2065,,Enumerated,"V,M",,,
+SIP-Method,824,,UTF8String,"V,M",,,
+SIP-Request-Timestamp,834,,Time,"V,M",,,
+SIP-Request-Timestamp-Fraction,2301,,Unsigned32,"V,M",,,
+SIP-Response-Timestamp,835,,Time,"V,M",,,
+SIP-Response-Timestamp-Fraction,2302,,Unsigned32,"V,M",,,
+SM-Device-Trigger-Indicator,3407,,Enumerated,"V,M",,,
+SM-Device-Trigger-Information,3405,,Grouped,"V,M",,,
+SM-Discharge-Time,2012,,Time,"V,M",,,
+SM-Message-Type,2007,,Enumerated,"V,M",,,
+SM-Protocol-ID,2013,,OctetString,"V,M",,,
+SM-Sequence-Number,3408,,Unsigned32,"V,M",,,
+SM-Service-Type,2029,,Enumerated,"V,M",,,
+SM-Status,2014,,OctetString,"V,M",,,
+SM-User-Data-Header,2015,,OctetString,"V,M",,,
+SMS-Information,2000,,Grouped,"V,M",,,
+SMS-Node,2016,,Enumerated,"V,M",,,
+SMS-Result,3409,,Unsigned32,"V,M",,,
+SMSC-Address,2017,,Address,"V,M",,,
+Start-of-Charging,3419,,Time,"V,M",,,
+Start-Time,2041,,Time,"V,M",,,
+# Note: 3GPP TS 32.299 V11.10.0 (2013-12) CR 0566 renamed,,,,,,,
+# Status (2702) to Status-Code (2702).,,,,,,,
+# 3GPP TS 32.299 V11.14.0 (2014-12) CR 0617 renamed,,,,,,,
+# Status-Code (2702) to Status-AS-Code (2702).,,,,,,,
+# ,,,,,,,
+# Change-1.4.0: Status (2702) renamed to Status-AS-Code (2702).,,,,,,,
+Status-AS-Code,2702,,Enumerated,"V,M",,,
+Stop-Time,2042,,Time,"V,M",,,
+Submission-Time,1202,,Time,"V,M",,,
+Subscriber-Role,2033,,Enumerated,"V,M",,,
+Supplementary-Service,2048,,Grouped,"V,M",,,
+TAD-Identifier,2717,,Enumerated,"V,M",,,
+Talk-Burst-Exchange,1255,,Grouped,"V,M",,,
+Talk-Burst-Time,1286,,Unsigned32,"V,M",,,
+Talk-Burst-Volume,1287,,Unsigned32,"V,M",,,
+Target-IP-Address,4412,,Address,VM,,,
+Tariff-Information,2060,,Grouped,"V,M",,,
+Tariff-XML,2306,,UTF8String,"V,M",,,
+Teleservice,3413,,OctetString,"V,M",,,
+Terminating-IOI,840,,UTF8String,"V,M",,,
+Time-First-Reception,3466,,Time,"V,M",,,
+Time-First-Transmission,3467,,Time,"V,M",,,
+Time-First-Usage,2043,,Time,"V,M",,,
+Time-Indicator,3911,,Unsigned32,"V,M",,,
+Time-Last-Usage,2044,,Time,"V,M",,,
+Time-Quota-Mechanism,1270,,Grouped,"V,M",,,
+Time-Quota-Threshold,868,,Unsigned32,"V,M",,,
+Time-Quota-Type,1271,,Enumerated,"V,M",,,
+Time-Stamps,833,,Grouped,"V,M",,,
+Time-Usage,2045,,Unsigned32,"V,M",,,
+TLTRI,1318,,Unsigned32,V,,,M
+Token-Text,1215,,UTF8String,"V,M",,,
+Traffic-Data-Volumes,2046,,Grouped,"V,M",,,
+Transcoder-Inserted-Indication,2605,,Enumerated,"V,M",,,
+Transit-IOI-List,2701,,UTF8String,"V,M",,,
+Transmitter-Info,3468,,Grouped,"V,M",,,
+Trigger,1264,,Grouped,"V,M",,,
+Trigger-Type,870,,Enumerated,"V,M",,,
+Trunk-Group-Id,851,,Grouped,"V,M",,,
+TWAG-Address,3903,,Address,"V,M",,,
+TWAN-User-Location-Info,2714,,Grouped,"V,M",,,
+Type-Number,1204,,Enumerated,"V,M",,,
+UNI-PDU-CP-Only-Flag,3932,,Enumerated,"V,M",,,
+Unit-Cost,2061,,Grouped,"V,M",,,
+Unit-Quota-Threshold,1226,,Unsigned32,"V,M",,,
+Unused-Quota-Timer,4407,,Unsigned32,"V,M",,,
+Usage-Information-Report-Sequence-Number,3439,,Integer32,"V,M",,,
+User-CSG-Information,2319,,Grouped,"V,M",,,
+User-Participating-Type,1279,,Enumerated,"V,M",,,
+User-Session-Id,830,,UTF8String,"V,M",,,
+UWAN-User-Location-Info,3918,,Grouped,"V,M",,,
+Variable-Part,3907,,Grouped,"V,M",,,
+Variable-Part-Order,3908,,Unsigned32,"V,M",,,
+Variable-Part-Type,3909,,Unsigned32,"V,M",,,
+Variable-Part-Value,3910,,UTF8String,"V,M",,,
+VCS-Information,3410,,Grouped,"V,M",,,
+VLR-Number,3420,,OctetString,"V,M",,,
+Volume-Quota-Threshold,869,,Unsigned32,"V,M",,,
+# Change-1.4.0: WAG-Address (890) Address removed in 3GPP TS 32.299 V12.6.0 (2014-09).,,,,,,,
+#,,,,,,,
+# Change-1.4.0: WAG-PLMN-Id (891) OctetString removed in 3GPP TS 32.299 V12.6.0 (2014-09).,,,,,,,
+#,,,,,,,
+# Change-1.4.0: WLAN-Information (875) Grouped removed in 3GPP TS 32.299 V12.6.0 (2014-09).,,,,,,,
+#,,,,,,,
+WLAN-Operator-Id,1306,,Grouped,V,,,M
+WLAN-Operator-Name,1307,,UTF8String,V,,,M
+WLAN-PLMN-Id,1308,,UTF8String,V,,,M
+# Change-1.4.0: WLAN-Radio-Container (892) Grouped removed in 3GPP TS 32.299 V12.6.0 (2014-09).,,,,,,,
+#,,,,,,,
+# Change-1.4.0: WLAN-Session-Id (1246) UTF8String removed in 3GPP TS 32.299 V12.6.0 (2014-09).,,,,,,,
+#,,,,,,,
+# Change-1.4.0: WLAN-Technology (893) Unsigned32 removed in 3GPP TS 32.299 V12.6.0 (2014-09).,,,,,,,
+#,,,,,,,
+# Change-1.4.0: WLAN-UE-Local-IPAddress (894) Address removed in 3GPP TS 32.299 V12.6.0 (2014-09).,,,,,,,
+#,,,,,,,
+,,,,,,,
+@standard,OMA DDS Charging Data,,,,,,
+#=,,,,,,,
+# OMA DDS Charging_Data V1.0 20110201-A,,,,,,,
+# Charging Data,,,,,,,
+# ,,,,,,,
+# From OMA OMA-DDS-Charging_Data-V1_0-20110201-A.pdf,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+Application-Server-Id,2101,8.4,UTF8String,"M,V",,,
+# Change-1.4.0: Application-Service-Type (2102) type changed from UTF8String to Enumerated.,,,,,,,
+Application-Service-Type,2102,8.4,Enumerated,"M,V",,,
+# Change-1.4.0: Application-Session-Id (2103) type changed from UTF8String to Unsigned32.,,,,,,,
+Application-Session-Id,2103,8.4,Unsigned32,"M,V",,,
+Content-ID,2116,8.4,UTF8String,"M,V",,,
+Content-provider-ID,2117,8.4,UTF8String,"M,V",,,
+DCD-Information,2115,8.5.5,Grouped,"M,V",,,
+Delivery-Status,2104,8.4,UTF8String,"M,V",,,
+IM-Information,2110,8.5.6,Grouped,"M,V",,,
+Number-Of-Messages-Successfully-Exploded,2111,8.4,Unsigned32,"M,V",,,
+Number-Of-Messages-Successfully-Sent,2112,8.4,Unsigned32,"M,V",,,
+Service-Generic-Information,1256,8.5.10,Grouped,"M,V",,,
+Total-Number-Of-Messages-Exploded,2113,8.4,Unsigned32,"M,V",,,
+Total-Number-Of-Messages-Sent,2114,8.4,Unsigned32,"M,V",,,
+,,,,,,,
+,,,,,,,
+@vendor,5535,,,,,,
+,,,,,,,
+@standard,X.S0057-0,,,,,,
+#=,,,,,,,
+# 3GPP2 X.S0057-0 v2.0,,,,,,,
+# E-UTRAN - eHRPD Connectivity and Interworking:,,,,,,,
+# Core Network Aspects,,,,,,,
+# ,,,,,,,
+# From 3GPP2 X.S0057-0_v2.0_091215.pdf,,,,,,,
+#=,,,,,,,
+#,,,,,,,
+# ,,,,,,,
+# Change-1.4.0: 3GPP2-BSID (9010) type changed from OctetString to UTF8String.,,,,,,,
+# Change-1.4.0: 3GPP2-BSID (9010) flag M MUST.,,,,,,,
+3GPP2-BSID,9010,5.6.2.1.1,UTF8String,"M,V",P,,

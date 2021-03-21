@@ -2,7 +2,7 @@
 * Software License Agreement (BSD License)                                                               *
 * Author: Sebastien Decugis <sdecugis@freediameter.net>							 *
 *													 *
-* Copyright (c) 2013, WIDE Project and NICT								 *
+* Copyright (c) 2020, WIDE Project and NICT								 *
 * All rights reserved.											 *
 * 													 *
 * Redistribution and use of this software in source and binary forms, with or without modification, are  *
@@ -548,7 +548,7 @@ int rgw_clients_create_origin(struct rgw_radius_msg_meta *msg, struct rgw_client
 	int idx;
 	int valid_nas_info = 0;
 	struct radius_attr_hdr *nas_ip = NULL, *nas_ip6 = NULL, *nas_id = NULL;
-	size_t nas_id_len;
+	size_t nas_id_len = 0;
 	char * oh_str = NULL; size_t oh_strlen = 0; int oh_free = 0;
 	char * or_str = NULL; size_t or_strlen = 0;
 	char * rr_str = NULL; size_t rr_strlen = 0;
@@ -710,7 +710,7 @@ int rgw_clients_create_origin(struct rgw_radius_msg_meta *msg, struct rgw_client
 	ASSERT(nas_id);
 	
 	{
-		int found, ret;
+		int found = 0, ret;
 		struct addrinfo hint, *res, *ptr;
 		
 		/*
@@ -763,7 +763,7 @@ int rgw_clients_create_origin(struct rgw_radius_msg_meta *msg, struct rgw_client
 		hint.ai_flags  = AI_CANONNAME;
 		ret = getaddrinfo(buf, NULL, &hint, &res);
 		if (ret == 0) {
-			strncpy(buf, res->ai_canonname, sizeof(buf));
+			snprintf(buf, sizeof(buf), "%s", res->ai_canonname);
 			/* The name was resolved correctly, does it match the IP of the client? */
 			for (ptr = res; ptr != NULL; ptr = ptr->ai_next) {
 				if (cli->sa->sa_family != ptr->ai_family)

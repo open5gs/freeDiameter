@@ -2,7 +2,7 @@
 * Software License Agreement (BSD License)                                                               *
 * Author: Sebastien Decugis <sdecugis@freediameter.net>							 *
 *													 *
-* Copyright (c) 2015, WIDE Project and NICT								 *
+* Copyright (c) 2020, WIDE Project and NICT								 *
 * All rights reserved.											 *
 * 													 *
 * Redistribution and use of this software in source and binary forms, with or without modification, are  *
@@ -45,6 +45,10 @@
 #include <locale.h>
 #include <syslog.h>
 #include <stdarg.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
 
 /* forward declarations */
 static int main_cmdline(int argc, char *argv[]);
@@ -52,19 +56,69 @@ static void * catch_signals(void * arg);
 static pthread_t signals_thr;
 
 static char *conffile = NULL;
+static int daemon_mode = 0;
 static int gnutls_debug = 0;
+static char *pidfile = NULL;
 
 /* gnutls debug */
 static void fd_gnutls_debug(int level, const char * str) {
 	fd_log_debug(" [gnutls:%d] %s", level, str);
 }
 
+static void pidfile_cleanup(void)
+{
+	if (pidfile != NULL) {
+		LOG_I("Removing pidfile '%s'", pidfile);
+		CHECK_SYS_DO( unlink(pidfile), /* ignore */ );
+		pidfile = NULL;
+	}
+}
+
+static int pidfile_create(void)
+{
+	if (pidfile == NULL) {
+		return 0;
+	}
+
+	/* Create pidfile */
+	FILE * fp = fopen(pidfile, "w");
+	if (fp == NULL) {
+		int ret = errno;
+		LOG_F("Unable to write pidfile '%s'; Error: %s",
+			pidfile, strerror(ret));
+		pidfile = NULL;	/* disable pidfile_cleanup() */
+		return ret;
+	}
+
+	/* Cleanup pidfile on exit */
+	if (atexit(pidfile_cleanup) != 0) {
+		LOG_F("Unable to setup pidfile cleanup");
+		CHECK_SYS( fclose(fp) );
+		pidfile_cleanup();
+		return EINVAL;
+	}
+
+	/* Write the pid and close pidfile */
+	fprintf(fp, "%d\n", getpid());
+	CHECK_SYS_DO( fclose(fp), { pidfile_cleanup(); return __ret__; } );
+
+	LOG_I("Created pidfile '%s'", pidfile);
+	return 0;
+}
+
 
 static void syslog_logger(int loglevel, const char * format, va_list args)
 {
+	if (loglevel < fd_g_debug_lvl) {
+		return;
+	}
+
 	int level;
 
 	switch (loglevel) {
+	case FD_LOG_INFO:
+		level = LOG_INFO;
+		break;
 	case FD_LOG_NOTICE:
 		level = LOG_NOTICE;
 		break;
@@ -76,17 +130,13 @@ static void syslog_logger(int loglevel, const char * format, va_list args)
 		break;
 	default:
 		/* fallthrough */
+	case FD_LOG_ANNOYING:
 	case FD_LOG_DEBUG:
-		/* some systems log LOG_DEBUG to a file; but
-		 * freeDiameter debug output is too verbose */
-		return;
-#if 0
 		level = LOG_DEBUG;
 		break;
-#endif
 	}
 
-	vsyslog(level, format, args);
+	vsyslog(level | LOG_DAEMON, format, args);
 }
 
 
@@ -104,14 +154,21 @@ int main(int argc, char * argv[])
 	/* Parse the command-line */
 	ret = main_cmdline(argc, argv);
 	if (ret != 0) {
-		return ret;
+		return EXIT_FAILURE;
 	}
+
+	if (daemon_mode) {
+		TRACE_DEBUG(INFO, "entering background mode");
+		CHECK_SYS_DO( daemon(1, 0), return EXIT_FAILURE );
+	}
+
+	CHECK_FCT_DO( pidfile_create(), return EXIT_FAILURE );
 
 	/* Initialize the core library */
 	ret = fd_core_initialize();
 	if (ret != 0) {
 		fprintf(stderr, "An error occurred during freeDiameter core library initialization.\n");
-		return ret;
+		return EXIT_FAILURE;
 	}
 
 	/* Set gnutls debug level ? */
@@ -133,17 +190,17 @@ int main(int argc, char * argv[])
 	TRACE_DEBUG(INFO, FD_PROJECT_BINARY " daemon initialized.");
 
 	/* Now, just wait for termination */
-	CHECK_FCT( fd_core_wait_shutdown_complete() );
+	CHECK_FCT_DO( fd_core_wait_shutdown_complete(), return EXIT_FAILURE );
 
 	/* Just in case it was not the result of a signal, we cancel signals_thr */
 	fd_thr_term(&signals_thr);
 
-	return 0;
+	return EXIT_SUCCESS;
 error:
 	CHECK_FCT_DO( fd_core_shutdown(),  );
-	CHECK_FCT( fd_core_wait_shutdown_complete() );
+	CHECK_FCT_DO( fd_core_wait_shutdown_complete(), return EXIT_FAILURE );
 	fd_thr_term(&signals_thr);
-	return -1;
+	return EXIT_FAILURE;
 }
 
 
@@ -169,19 +226,21 @@ static void main_help( void )
 	printf(	"  This daemon is an implementation of the Diameter protocol\n"
 		"  used for Authentication, Authorization, and Accounting (AAA).\n");
 	printf("\nUsage:  " FD_PROJECT_BINARY " [OPTIONS]...\n");
-	printf( "  -h, --help             Print help and exit\n"
-  		"  -V, --version          Print version and exit\n"
-  		"  -c, --config=filename  Read configuration from this file instead of the \n"
-		"                           default location (" DEFAULT_CONF_PATH "/" FD_DEFAULT_CONF_FILENAME ").\n"
+	printf( "  -h, --help              Print help and exit\n"
+  		"  -V, --version           Print version and exit\n"
+  		"  -c, --config=filename   Read configuration from this file instead of the \n"
+		"                          default location (" DEFAULT_CONF_PATH "/" FD_DEFAULT_CONF_FILENAME ")\n"
+		"  -D, --daemon            Start program in background\n"
+		"  -p, --pidfile=filename  Write PID to filename\n"
 		"  -s, --syslog            Write log output to syslog (instead of stdout)\n");
  	printf( "\nDebug:\n"
   		"  These options are mostly useful for developers\n"
-  		"  -l, --dbglocale         Set the locale for error messages\n"
-  		"  -d, --debug             Increase verbosity of debug messages if default logger is used\n"
-  		"  -q, --quiet             Decrease verbosity if default logger is used\n"
+		"  -d, --debug             Increase verbosity of log messages\n"
   		"  -f, --dbg_func <func>   Enable all traces within the function <func>\n"
   		"  -F, --dbg_file <file.c> Enable all traces within the file <file.c> (basename match)\n"
-  		"  --dbg_gnutls <int>      Enable GNU TLS debug at level <int>\n"
+		"  -g, --dbg_gnutls <int>  Enable GNU TLS debug at level <int>\n"
+  		"  -l, --dbglocale         Set the locale for error messages\n"
+		"  -q, --quiet             Decrease verbosity of log messages\n"
 	);
 }
 
@@ -197,6 +256,8 @@ static int main_cmdline(int argc, char *argv[])
 		{ "version",	no_argument, 		NULL, 'V' },
 		{ "config",	required_argument, 	NULL, 'c' },
 		{ "syslog",     no_argument,            NULL, 's' },
+		{ "daemon",	no_argument, 		NULL, 'D' },
+		{ "pidfile",	required_argument,	NULL, 'p' },
 		{ "debug",	no_argument, 		NULL, 'd' },
 		{ "quiet",	no_argument, 		NULL, 'q' },
 		{ "dbglocale",	optional_argument, 	NULL, 'l' },
@@ -208,18 +269,18 @@ static int main_cmdline(int argc, char *argv[])
 
 	/* Loop on arguments */
 	while (1) {
-		c = getopt_long (argc, argv, "hVc:dql:f:F:g:s", long_options, &option_index);
+		c = getopt_long (argc, argv, "hVc:Dp:dql:f:F:g:s", long_options, &option_index);
 		if (c == -1)
 			break;	/* Exit from the loop.  */
 
 		switch (c) {
 			case 'h':	/* Print help and exit.  */
 				main_help();
-				exit(0);
+				exit(EXIT_SUCCESS);
 
 			case 'V':	/* Print version and exit.  */
 				main_version();
-				exit(0);
+				exit(EXIT_SUCCESS);
 
 			case 'c':	/* Read configuration from this file instead of the default location..  */
 				if (optarg == NULL ) {
@@ -227,6 +288,18 @@ static int main_cmdline(int argc, char *argv[])
 					return EINVAL;
 				}
 				conffile = optarg;
+				break;
+
+			case 'D':
+				daemon_mode = 1;
+				break;
+
+			case 'p':	/* Write pidfile */
+				if (optarg == NULL ) {
+					fprintf(stderr, "Missing argument with --pidfile directive\n");
+					return EINVAL;
+				}
+				pidfile = optarg;
 				break;
 
 			case 'l':	/* Change the locale.  */

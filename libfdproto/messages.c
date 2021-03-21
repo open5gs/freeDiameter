@@ -2,7 +2,7 @@
 * Software License Agreement (BSD License)                                                               *
 * Author: Sebastien Decugis <sdecugis@freediameter.net>							 *
 *													 *
-* Copyright (c) 2015, WIDE Project and NICT								 *
+* Copyright (c) 2020, WIDE Project and NICT								 *
 * All rights reserved.											 *
 * 													 *
 * Redistribution and use of this software in source and binary forms, with or without modification, are  *
@@ -596,29 +596,29 @@ int fd_msg_avp_add ( msg_or_avp * reference, enum msg_brw_dir dir, struct avp *a
 	return 0;
 }
 
-/* Search a given AVP model in a message */
-int fd_msg_search_avp ( struct msg * msg, struct dict_object * what, struct avp ** avp )
+/* Search a given AVP model in a message or AVP */
+int fd_msg_search_avp ( msg_or_avp * reference, struct dict_object * what, struct avp ** avp )
 {
 	struct avp * nextavp;
 	struct dict_avp_data 	dictdata;
 	enum dict_object_type 	dicttype;
 	
-	TRACE_ENTRY("%p %p %p", msg, what, avp);
+	TRACE_ENTRY("%p %p %p", reference, what, avp);
 	
-	CHECK_PARAMS( CHECK_MSG(msg) && what );
+	CHECK_PARAMS( VALIDATE_OBJ(reference) && what );
 	
 	CHECK_PARAMS( (fd_dict_gettype(what, &dicttype) == 0) && (dicttype == DICT_AVP) );
 	CHECK_FCT(  fd_dict_getval(what, &dictdata)  );
 	
-	/* Loop on all top AVPs */
-	CHECK_FCT(  fd_msg_browse(msg, MSG_BRW_FIRST_CHILD, (void *)&nextavp, NULL)  );
+	/* Loop on all top AVPs in message or AVP */
+	CHECK_FCT(  fd_msg_browse(reference, MSG_BRW_FIRST_CHILD, (void *)&nextavp, NULL)  );
 	while (nextavp) {
 		
 		if ( (nextavp->avp_public.avp_code   == dictdata.avp_code)
 		  && (nextavp->avp_public.avp_vendor == dictdata.avp_vendor) ) /* always 0 if no V flag */
 			break;
 		
-		/* Otherwise move to next AVP in the message */
+		/* Otherwise move to next AVP in the message or AVP */
 		CHECK_FCT( fd_msg_browse(nextavp, MSG_BRW_NEXT, (void *)&nextavp, NULL) );
 	}
 	
@@ -1946,6 +1946,14 @@ static int parsebuf_list(unsigned char * buf, size_t buflen, struct fd_list * he
 			offset += 4;
 		}
 		
+		/* Check the length is valid */
+		if ( avp->avp_public.avp_len < GETAVPHDRSZ(avp->avp_public.avp_flags) ) {
+			TRACE_DEBUG(INFO, "Invalid AVP size %d",
+					avp->avp_public.avp_len);
+			free(avp);
+			return EBADMSG;
+		}
+
 		/* Check there is enough remaining data in the buffer */
 		if ( (avp->avp_public.avp_len > GETAVPHDRSZ(avp->avp_public.avp_flags))
 		&& (buflen - offset < avp->avp_public.avp_len - GETAVPHDRSZ(avp->avp_public.avp_flags))) {
@@ -1991,6 +1999,10 @@ int fd_msg_parse_buffer ( unsigned char ** buffer, size_t buflen, struct msg ** 
 	if ( buflen < msglen ) {  
 		TRACE_DEBUG(INFO, "Truncated message (%zd / %d)", buflen, msglen );
 		return EBADMSG; 
+	}
+	if ( msglen < GETMSGHDRSZ() ) {
+		TRACE_DEBUG(INFO, "Invalid message length (%d)", msglen );
+		return EBADMSG;
 	}
 	
 	/* Create a new object */
@@ -2234,7 +2246,7 @@ static int parsedict_do_avp(struct dictionary * dict, struct avp * avp, int mand
 				if (error_info) {				
 						error_info->pei_errcode = "DIAMETER_INVALID_AVP_VALUE";
 						error_info->pei_avp = avp;
-						strncpy(error_message, err, sizeof(error_message));
+						snprintf(error_message, sizeof(error_message), "%s", err);
 						error_info->pei_message = error_message;
 				} else {
 					char * buf = NULL;
@@ -2284,7 +2296,9 @@ static int parsedict_do_msg(struct dictionary * dict, struct msg * msg, int only
 	/* First, check if we already have a model. */
 	if (msg->msg_model != NULL) {
 		/* Check if this model is still valid for the message data */
+#ifndef NDEBUG
 		enum dict_object_type 	 dicttype;
+#endif
 		struct dict_cmd_data     data;
 		ASSERT(((fd_dict_gettype(msg->msg_model, &dicttype) == 0) && (dicttype == DICT_COMMAND)));
 		(void)fd_dict_getval( msg->msg_model, &data);

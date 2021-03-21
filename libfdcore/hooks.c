@@ -2,7 +2,7 @@
 * Software License Agreement (BSD License)                                                               *
 * Author: Sebastien Decugis <sdecugis@freediameter.net>							 *
 *													 *
-* Copyright (c) 2015, WIDE Project and NICT								 *
+* Copyright (c) 2020, WIDE Project and NICT								 *
 * All rights reserved.											 *
 * 													 *
 * Redistribution and use of this software in source and binary forms, with or without modification, are  *
@@ -332,7 +332,9 @@ void   fd_hook_call(enum fd_hook_type type, struct msg * msg, struct fd_peer * p
 		/* There was no registered handler, default behavior for this hook */
 		switch (type) {
 			case HOOK_DATA_RECEIVED: {
+#ifdef DEBUG
 				struct fd_cnx_rcvdata *rcv_data = other;
+#endif
 				LOG_A("RCV: %zd bytes", rcv_data->length);
 				break;
 			}

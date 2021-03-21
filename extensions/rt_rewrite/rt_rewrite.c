@@ -86,6 +86,7 @@ static void store_free(struct store *store)
 	return;
 }
 
+/* TODO: convert to fd_msg_search_avp ? */
 static int fd_avp_search_avp(msg_or_avp *where, struct dict_object *what, struct avp **avp)
 {
 	struct avp *nextavp;
@@ -391,26 +392,40 @@ static int rt_rewrite(void * cbdata, struct msg **msg)
 		return 0;
 	}
 
-	if ((store=store_new()) == NULL) {
-		fd_log_error("%s: malloc failure");
-		return ENOMEM;
+	if (pthread_rwlock_wrlock(&rt_rewrite_lock) != 0) {
+		fd_log_error("%s: locking failed, aborting message rewrite", MODULE_NAME);
+		return errno;
 	}
+
 	if ((ret = fd_msg_parse_dict(*msg, fd_g_config->cnf_dict, NULL)) != 0) {
 		fd_log_notice("%s: error parsing message", MODULE_NAME);
-		free(store);
+		pthread_rwlock_unlock(&rt_rewrite_lock);
 		return ret;
 	}
 	if ((ret=fd_msg_browse(*msg, MSG_BRW_FIRST_CHILD, &avp, NULL)) != 0) {
 		fd_log_notice("internal error: message has no child");
-		free(store);
+		pthread_rwlock_unlock(&rt_rewrite_lock);
 		return ret;
+	}
+	if ((store=store_new()) == NULL) {
+		fd_log_error("%s: malloc failure");
+		pthread_rwlock_unlock(&rt_rewrite_lock);
+		return ENOMEM;
 	}
 	if (replace_avps(*msg, avp, avp_match_start->children, store) != 0) {
 		fd_log_error("%s: replace AVP function failed", MODULE_NAME);
 		store_free(store);
+		pthread_rwlock_unlock(&rt_rewrite_lock);
 		return -1;
 	}
-	return store_apply(*msg, &store);
+	ret = store_apply(*msg, &store);
+
+	if (pthread_rwlock_unlock(&rt_rewrite_lock) != 0) {
+		fd_log_error("%s: unlocking failed, returning error", MODULE_NAME);
+		return errno;
+	}
+
+	return ret;
 }
 
 /* entry point */

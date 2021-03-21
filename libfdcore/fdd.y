@@ -2,7 +2,7 @@
 * Software License Agreement (BSD License)                                                               *
 * Author: Sebastien Decugis <sdecugis@freediameter.net>							 *
 *													 *
-* Copyright (c) 2015, WIDE Project and NICT								 *
+* Copyright (c) 2019, WIDE Project and NICT								 *
 * All rights reserved.											 *
 * 													 *
 * Redistribution and use of this software in source and binary forms, with or without modification, are  *
@@ -107,8 +107,15 @@ struct peer_info fddpi;
 %token		NOTLS
 %token		SCTPSTREAMS
 %token		APPSERVTHREADS
+%token		ROUTINGINTHREADS
+%token		ROUTINGOUTTHREADS
+%token		QINLIMIT
+%token		QOUTLIMIT
+%token		QLOCALLIMIT
 %token		LISTENON
 %token		THRPERSRV
+%token		PROCESSINGPEERSPATTERN
+%token		PROCESSINGPEERSMINIMUM
 %token		TCTIMER
 %token		TWTIMER
 %token		NORELAY
@@ -141,8 +148,15 @@ conffile:		/* Empty is OK -- for simplicity here, we reject in daemon later */
 			| conffile sctpstreams
 			| conffile listenon
 			| conffile thrpersrv
+			| conffile processingpeerspattern
+			| conffile processingpeersminimum
 			| conffile norelay
 			| conffile appservthreads
+			| conffile routinginthreads
+			| conffile routingoutthreads
+			| conffile qinlimit
+			| conffile qoutlimit
+			| conffile qlocallimit
 			| conffile noip
 			| conffile noip6
 			| conffile notcp
@@ -252,6 +266,45 @@ thrpersrv:		THRPERSRV '=' INTEGER ';'
 			}
 			;
 
+processingpeerspattern:		PROCESSINGPEERSPATTERN '=' QSTRING ';'
+			{
+				char *pattern = $3;
+				int err;
+				CHECK_FCT_DO( err=regcomp(&conf->cnf_processing_peers_pattern_regex, pattern, REG_EXTENDED | REG_NOSUB),
+					{
+						char * buf;
+						size_t bl;
+
+						/* Error while compiling the regex */
+						TRACE_DEBUG(INFO, "error while compiling the regular expression '%s':", pattern);
+
+						/* Get the error message size */
+						bl = regerror(err, &conf->cnf_processing_peers_pattern_regex, NULL, 0);
+
+						/* Alloc the buffer for error message */
+						CHECK_MALLOC( buf = malloc(bl) );
+
+						/* Get the error message content */
+						regerror(err, &conf->cnf_processing_peers_pattern_regex, buf, bl);
+						TRACE_DEBUG(INFO, "\t%s", buf);
+
+						/* Free the buffer, return the error */
+						free(buf);
+
+						yyerror (&yylloc, conf, "Invalid regular expression in ProcessingPeersPattern");
+						YYERROR;
+					} );
+			}
+			;
+
+processingpeersminimum:		PROCESSINGPEERSMINIMUM '=' INTEGER ';'
+			{
+				CHECK_PARAMS_DO( ($3 >= 0),
+					{ yyerror (&yylloc, conf, "Invalid value"); YYERROR; } );
+				conf->cnf_processing_peers_minimum = $3;
+			}
+			;
+
 norelay:		NORELAY ';'
 			{
 				conf->cnf_flags.no_fwd = 1;
@@ -263,6 +316,46 @@ appservthreads:		APPSERVTHREADS '=' INTEGER ';'
 				CHECK_PARAMS_DO( ($3 > 0) && ($3 < 256),
 					{ yyerror (&yylloc, conf, "Invalid value"); YYERROR; } );
 				conf->cnf_dispthr = (uint16_t)$3;
+			}
+			;
+
+routinginthreads:		ROUTINGINTHREADS '=' INTEGER ';'
+			{
+				CHECK_PARAMS_DO( ($3 > 0) && ($3 < 256),
+					{ yyerror (&yylloc, conf, "Invalid value"); YYERROR; } );
+				conf->cnf_rtinthr = (uint16_t)$3;
+			}
+			;
+
+routingoutthreads:		ROUTINGOUTTHREADS '=' INTEGER ';'
+			{
+				CHECK_PARAMS_DO( ($3 > 0) && ($3 < 256),
+					{ yyerror (&yylloc, conf, "Invalid value"); YYERROR; } );
+				conf->cnf_rtoutthr = (uint16_t)$3;
+			}
+			;
+
+qinlimit:		QINLIMIT '=' INTEGER ';'
+			{
+				CHECK_PARAMS_DO( ($3 >= 0),
+					{ yyerror (&yylloc, conf, "Invalid value"); YYERROR; } );
+				conf->cnf_qin_limit = $3;
+			}
+			;
+
+qoutlimit:		QOUTLIMIT '=' INTEGER ';'
+			{
+				CHECK_PARAMS_DO( ($3 >= 0),
+					{ yyerror (&yylloc, conf, "Invalid value"); YYERROR; } );
+				conf->cnf_qout_limit = $3;
+			}
+			;
+
+qlocallimit:		QLOCALLIMIT '=' INTEGER ';'
+			{
+				CHECK_PARAMS_DO( ($3 >= 0),
+					{ yyerror (&yylloc, conf, "Invalid value"); YYERROR; } );
+				conf->cnf_qlocal_limit = $3;
 			}
 			;
 

@@ -2,7 +2,7 @@
 * Software License Agreement (BSD License)                                                               *
 * Author: Sebastien Decugis <sdecugis@freediameter.net>							 *
 *													 *
-* Copyright (c) 2013, WIDE Project and NICT								 *
+* Copyright (c) 2019, WIDE Project and NICT								 *
 * All rights reserved.											 *
 * 													 *
 * Redistribution and use of this software in source and binary forms, with or without modification, are  *
@@ -315,6 +315,8 @@ static int fd_core_start_int(void)
 int fd_core_start(void)
 {
 	int ret;
+	CHECK_FCT( fd_queues_init_after_conf() );
+
 	CHECK_POSIX( pthread_mutex_lock(&core_lock) );
 	ret = fd_core_start_int();
 	CHECK_POSIX( pthread_mutex_unlock(&core_lock) );

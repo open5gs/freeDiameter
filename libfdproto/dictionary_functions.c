@@ -2,7 +2,7 @@
 * Software License Agreement (BSD License)                                                               *
 * Author: Sebastien Decugis <sdecugis@freediameter.net>							 *
 *													 *
-* Copyright (c) 2015, WIDE Project and NICT								 *
+* Copyright (c) 2020, WIDE Project and NICT								 *
 * All rights reserved.											 *
 * 													 *
 * Redistribution and use of this software in source and binary forms, with or without modification, are  *
@@ -287,7 +287,7 @@ static int time_t_to_diameter_string(time_t time_stamp, char **result) {
 
 int fd_dictfct_Time_encode(void * data, union avp_value * avp_value)
 {
-	char * buf;
+	char * buf = NULL;
 	size_t len;
 	
 	TRACE_ENTRY("%p %p", data, avp_value);

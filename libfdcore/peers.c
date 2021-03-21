@@ -2,7 +2,7 @@
 * Software License Agreement (BSD License)                                                               *
 * Author: Sebastien Decugis <sdecugis@freediameter.net>							 *
 *													 *
-* Copyright (c) 2013, WIDE Project and NICT								 *
+* Copyright (c) 2019, WIDE Project and NICT								 *
 * All rights reserved.											 *
 * 													 *
 * Redistribution and use of this software in source and binary forms, with or without modification, are  *
@@ -40,7 +40,7 @@ struct fd_list   fd_g_peers = FD_LIST_INITIALIZER(fd_g_peers);
 pthread_rwlock_t fd_g_peers_rw = PTHREAD_RWLOCK_INITIALIZER;
 
 /* List of active peers */
-struct fd_list   fd_g_activ_peers = FD_LIST_INITIALIZER(fd_g_activ_peers);	/* peers linked by their p_actives oredered by p_diamid */
+struct fd_list   fd_g_activ_peers = FD_LIST_INITIALIZER(fd_g_activ_peers);	/* peers linked by their p_actives ordered by p_diamid */
 pthread_rwlock_t fd_g_activ_peers_rw = PTHREAD_RWLOCK_INITIALIZER;
 
 /* List of validation callbacks (registered with fd_peer_validate_register) */

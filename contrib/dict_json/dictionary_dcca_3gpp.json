@@ -33,21 +33,21 @@
           "Max": 1
         },
         {
-          "AVP": "Used-Service-Unit",
+          "AVP": "Used-Service-Unit"
         },
         {
           "AVP": "Tariff-Change-Usage",
           "Max": 1
         },
         {
-          "AVP": "Service-Identifier",
+          "AVP": "Service-Identifier"
         },
         {
           "AVP": "Rating-Group",
           "Max": 1
         },
         {
-          "AVP": "G-S-U-Pool-Reference",
+          "AVP": "G-S-U-Pool-Reference"
         },
         {
           "AVP": "Validity-Time",
@@ -2930,36 +2930,6 @@
       "Vendor": 10415
     },
     {
-      "Code": 28,
-      "Flags": {
-        "Must": "V",
-        "MustNot": "M"
-      },
-      "Name": "External-Identifier",
-      "Type": "OctetString",
-      "Vendor": 10415
-    },
-    {
-      "Code": 124,
-      "Flags": {
-        "Must": "M",
-        "MustNot": "VP"
-      },
-      "Name": "MIP6-Feature-Vector",
-      "Type": "Unsigned64",
-      "Vendor": 10415
-    },
-    {
-      "Code": 493,
-      "Flags": {
-        "Must": "M",
-        "MustNot": "VP"
-      },
-      "Name": "Service-Selection",
-      "Type": "UTF8String",
-      "Vendor": 10415
-    },
-    {
       "Code": 500,
       "Flags": {
         "Must": "VM",
@@ -3017,16 +2987,6 @@
       },
       "Name": "AF-Charging-Identifier",
       "Type": "OctetString",
-      "Vendor": 10415
-    },
-    {
-      "Code": 506,
-      "Flags": {
-        "Must": "M",
-        "MustNot": "VP"
-      },
-      "Name": "Mobile-Node-Identifier",
-      "Type": "UTF8String",
       "Vendor": 10415
     },
     {
@@ -3557,16 +3517,6 @@
       },
       "Name": "Extended-Min-Requested-BW-UL",
       "Type": "Unsigned32",
-      "Vendor": 10415
-    },
-    {
-      "Code": 578,
-      "Flags": {
-        "Must": "M",
-        "MustNot": "VP"
-      },
-      "Name": "QoS-Capability",
-      "Type": "Grouped",
       "Vendor": 10415
     },
     {
@@ -7956,7 +7906,7 @@
         "MustNot": ""
       },
       "Name": "SS-Status",
-      "Type": "Grouped",
+      "Type": "OctetString",
       "Vendor": 10415
     },
     {
@@ -8065,7 +8015,7 @@
         "Must": "VM",
         "MustNot": ""
       },
-      "Name": "Call-Barring-Infor-List",
+      "Name": "Call-Barring-Info",
       "Type": "Grouped",
       "Vendor": 10415
     },
@@ -8435,7 +8385,7 @@
         "Must": "V",
         "MustNot": "M"
       },
-      "Name": "MME-LocationInformation",
+      "Name": "MME-Location-Information",
       "Type": "Grouped",
       "Vendor": 10415
     },
@@ -10850,6 +10800,16 @@
       "Vendor": 10415
     },
     {
+      "Code": 3111,
+      "Flags": {
+        "Must": "V",
+        "MustNot": "M"
+      },
+      "Name": "External-Identifier",
+      "Type": "UTF8String",
+      "Vendor": 10415
+    },
+    {
       "Code": 3401,
       "Flags": {
         "Must": "VM",
@@ -12588,7 +12548,7 @@
         },
         {
           "AVP": "Event-Trigger",
-          "Vendor": 10415,
+          "Vendor": 10415
         },
         {
           "AVP": "Event-Report-Indication",
@@ -12686,7 +12646,7 @@
           "Vendor": 10415
         },
         {
-          "AVP": "Subscription-Id",
+          "AVP": "Subscription-Id"
         },
         {
           "AVP": "Abort-Cause",
@@ -12753,7 +12713,7 @@
           "Max": 1
         },
         {
-          "AVP": "Class",
+          "AVP": "Class"
         }
       ]
     },
@@ -12848,11 +12808,11 @@
           "Max": 1
         },
         {
-          "AVP": "Class",
-        },
+          "AVP": "Class"
+        }
 
       ]
-    },
+    }
   ],
   "Vendors": [
     {

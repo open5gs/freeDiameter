@@ -2,7 +2,7 @@
 * Software License Agreement (BSD License)                                                               *
 * Author: Sebastien Decugis <sdecugis@freediameter.net>							 *
 *													 *
-* Copyright (c) 2013, WIDE Project and NICT								 *
+* Copyright (c) 2020, WIDE Project and NICT								 *
 * All rights reserved.											 *
 * 													 *
 * Redistribution and use of this software in source and binary forms, with or without modification, are  *
@@ -137,7 +137,7 @@ fatal:
 static void * decipher(void * arg)
 {
 	struct sctp3436_ctx * ctx = arg;
-	struct cnxctx 	 *cnx;
+	struct cnxctx 	 *cnx = NULL;
 
 	TRACE_ENTRY("%p", arg);
 	CHECK_PARAMS_DO(ctx && ctx->raw_recv && ctx->parent, goto error);
