@@ -39,6 +39,10 @@
 #include <netinet/sctp.h>
 #include <sys/uio.h>
 
+#if 1 /* Open5GS : for SCTP patch */
+#include "sctp-internal.h"
+#endif
+
 /* Size of buffer to receive ancilliary data. May need to be enlarged if more sockopt are set... */
 #ifndef CMSG_BUF_LEN
 #define CMSG_BUF_LEN	1024
@@ -48,7 +52,7 @@
 /* #define OLD_SCTP_SOCKET_API */
 
 /* Automatically fallback to old API if some of the new symbols are not defined */
-#if (!defined(SCTP_CONNECTX_4_ARGS) || (!defined(SCTP_RECVRCVINFO)) || (!defined(SCTP_SNDINFO)) || (!defined(SCTP_SEND_FAILED_EVENT)))
+#if (!defined(SCTP_CONNECTX_4_ARGS) || (!defined(SCTP_RECVRCVINFO)) || (!defined(SCTP_SNDINFO)) || (!defined(SCTP_SEND_FAILED_EVENT)) || (!defined(SCTP_NOTIFICATIONS_STOPPED_EVENT)))
 # define OLD_SCTP_SOCKET_API
 #endif
 
@@ -341,13 +345,24 @@ static int fd_setsockopt_prebind(int sk)
 		
 		/* Some kernel versions need this to be set */
 		parms.spp_address.ss_family = AF_INET;
+
+#if 1 /* Open5GS : workaround for SCTP  */
+		if (determine_sctp_sockopt_paddrparams_size() < 0) {
+			LOG_E("Cannot determine SCTP_EVENTS socket option size");
+			return -1;
+		}
+#endif
 		
 		if (TRACE_BOOL(ANNOYING)) {
 			sz = sizeof(parms);
 
 			/* Read socket defaults */
 			CHECK_SYS(  sctp_opt_info(sk, 0, SCTP_PEER_ADDR_PARAMS, &parms, &sz)  );
+#if 0 /* Open5GS : workaround for SCTP */
 			if (sz != sizeof(parms))
+#else
+			if (sz != sizeof(parms) && sz != sctp_sockopt_paddrparams_size)
+#endif
 			{
 				TRACE_DEBUG(INFO, "Invalid size of socket option: %d / %d", sz, (socklen_t)sizeof(parms));
 				return ENOTSUP;
@@ -371,7 +386,11 @@ static int fd_setsockopt_prebind(int sk)
 #endif /* ADJUST_RTX_PARAMS */
 
 		/* Set the option to the socket */
+#if 0 /* Open5GS : workaround for SCTP  */
 		CHECK_SYS(  setsockopt(sk, IPPROTO_SCTP, SCTP_PEER_ADDR_PARAMS, &parms, sizeof(parms)) );
+#else
+        CHECK_SYS(  sctp_setsockopt_paddrparams_workaround(sk, &parms) );
+#endif
 		
 		if (TRACE_BOOL(ANNOYING)) {
 			/* Check new values */
@@ -410,12 +429,20 @@ static int fd_setsockopt_prebind(int sk)
 		// event.sctp_authentication_event = 0;	/* when new key is made active */
 
 		/* Set the option to the socket */
+#if 0 /* Open5GS : workaround for SCTP */
 		CHECK_SYS(  setsockopt(sk, IPPROTO_SCTP, SCTP_EVENTS, &event, sizeof(event)) );
+#else
+        CHECK_SYS(  sctp_setsockopt_event_subscribe_workaround(sk, &event) );
+#endif
 		
 		if (TRACE_BOOL(ANNOYING)) {
 			sz = sizeof(event);
 			CHECK_SYS(  getsockopt(sk, IPPROTO_SCTP, SCTP_EVENTS, &event, &sz) );
+#if 0 /* Open5GS : workaround for SCTP */
 			if (sz != sizeof(event))
+#else
+			if (sz != sizeof(event) && sz != sctp_sockopt_event_subscribe_size)
+#endif
 			{
 				TRACE_DEBUG(INFO, "Invalid size of socket option: %d / %d", sz, (socklen_t)sizeof(event));
 				return ENOTSUP;
@@ -1138,10 +1165,12 @@ ssize_t fd_sctp_sendstrv(struct cnxctx * conn, uint16_t strid, const struct iove
 	hdr->cmsg_type  = SCTP_SNDRCV;
 	sndrcv = (struct sctp_sndrcvinfo *)CMSG_DATA(hdr);
 	sndrcv->sinfo_stream = strid;
+	sndrcv->sinfo_ppid = htonl(46);
 #else /* OLD_SCTP_SOCKET_API */
 	hdr->cmsg_type  = SCTP_SNDINFO;
 	sndinf = (struct sctp_sndinfo *)CMSG_DATA(hdr);
 	sndinf->snd_sid = strid;
+	sndinf->snd_ppid = htonl(46);
 #endif /* OLD_SCTP_SOCKET_API */
 	/* note : we could store other data also, for example in .sinfo_ppid for remote peer or in .sinfo_context for errors. */
 	

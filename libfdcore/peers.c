@@ -397,7 +397,11 @@ int fd_peer_fini()
 		wait_until.tv_nsec = now.tv_nsec;
 	}
 	
+#if 0 /* Open5GS : not stable to finish freeDiameter */
 	while ((!list_empty) && (TS_IS_INFERIOR(&now, &wait_until))) {
+#else
+	if (!list_empty) {
+#endif
 		
 		/* Allow the PSM(s) to execute */
 		usleep(100000);

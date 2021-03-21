@@ -298,7 +298,7 @@ static char * file_bname_init(char * full) { file_bname = basename(full); return
 
 
 /* In DEBUG mode, we add meta-information along each trace. This makes multi-threading problems easier to debug. */
-#if (defined(DEBUG) && defined(DEBUG_WITH_META))
+#if 1 /* Open5GS : enable log file and line number */
 # define STD_TRACE_FMT_STRING "pid:%s in %s@%s:%d: "
 # define STD_TRACE_FMT_ARGS   , ((char *)pthread_getspecific(fd_log_thname) ?: "unnamed"), __PRETTY_FUNCTION__, __STRIPPED_FILE__, __LINE__
 #else /* DEBUG && DEBUG_WITH_META */
