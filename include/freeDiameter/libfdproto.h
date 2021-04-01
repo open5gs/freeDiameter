@@ -208,7 +208,11 @@ char * fd_log_time ( struct timespec * ts, char * buf, size_t len, int incl_date
  * RETURN VALUE:
  * int          : Success or failure
  */
+#if 0 /* For Open5GS from v1.1.0 to v2.2.2 */
 int fd_log_handler_register ( void (*logger)(int loglevel, const char * format, va_list args) );
+#else
+int fd_log_handler_register ( void (*logger)(int loglevel, const char *fname, int line, const char * format, va_list args) );
+#endif
 
 /*
  * FUNCTION:    fd_log_handler_unregister
