@@ -264,11 +264,7 @@ int add_avps()
 		struct dict_avp_data data = {
 			15,	/* Code */
 			10415,	/* Vendor */
-#if 0 /* For Open5GS from v1.1.0 to v2.2.2 */
 			"3GPP-SGSN-Ipv6-Address",	/* Name */
-#else
-			"3GPP-SGSN-IPv6-Address",	/* Name */
-#endif
 			AVP_FLAG_VENDOR |AVP_FLAG_MANDATORY,	/* Fixed flags */
 			AVP_FLAG_VENDOR |AVP_FLAG_MANDATORY,	/* Fixed flag values */
 			AVP_TYPE_OCTETSTRING	/* base type of data */
@@ -9060,11 +9056,7 @@ int add_avps()
 		struct dict_avp_data data = {
 			1488,	/* Code */
 			10415,	/* Vendor */
-#if 0 /* For Open5GS from v1.1.0 to v2.2.2 */
 			"Call-Barring-Info",	/* Name */
-#else
-			"Call-Barring-Infor-List",	/* Name */
-#endif
 			AVP_FLAG_VENDOR |AVP_FLAG_MANDATORY,	/* Fixed flags */
 			AVP_FLAG_VENDOR |AVP_FLAG_MANDATORY,	/* Fixed flag values */
 			AVP_TYPE_GROUPED	/* base type of data */

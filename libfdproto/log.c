@@ -41,11 +41,7 @@ pthread_mutex_t fd_log_lock = PTHREAD_MUTEX_INITIALIZER;
 pthread_key_t	fd_log_thname;
 int fd_g_debug_lvl = FD_LOG_NOTICE;
 
-#if 0 /* For Open5GS from v1.1.0 to v2.2.2 */
 static void fd_internal_logger( int, const char *, va_list );
-#else
-static void fd_internal_logger( int, const char *, int, const char *, va_list );
-#endif
 static int use_colors = 0; /* 0: not init, 1: yes, 2: no */
 
 /* These may be used to pass specific debug requests via the command-line parameters */
@@ -57,18 +53,10 @@ int fd_breaks = 0;
 int fd_breakhere(void) { return ++fd_breaks; }
 
 /* Allow passing of the log and debug information from base stack to extensions */
-#if 0 /* For Open5GS from v1.1.0 to v2.2.2 */
 void (*fd_logger)( int loglevel, const char * format, va_list args ) = fd_internal_logger;
-#else
-void (*fd_logger)( int loglevel, const char *fname, int line, const char * format, va_list args ) = fd_internal_logger;
-#endif
 
 /* Register an external call back for tracing and debug */
-#if 0 /* For Open5GS from v1.1.0 to v2.2.2 */
 int fd_log_handler_register( void (*logger)(int loglevel, const char * format, va_list args) )
-#else
-int fd_log_handler_register ( void (*logger)(int loglevel, const char *fname, int line, const char * format, va_list args) )
-#endif
 {
         CHECK_PARAMS( logger );
 
@@ -97,11 +85,7 @@ static void fd_cleanup_mutex_silent( void * mutex )
 }
 
 
-#if 0 /* For Open5GS from v1.1.0 to v2.2.2 */
 static void fd_internal_logger( int printlevel, const char *format, va_list ap )
-#else
-static void fd_internal_logger( int printlevel, const char *fname, int line, const char *format, va_list ap )
-#endif
 {
     char buf[25];
 
@@ -152,11 +136,7 @@ void fd_log ( int loglevel, const char * format, ... )
 	pthread_cleanup_push(fd_cleanup_mutex_silent, &fd_log_lock);
 	
 	va_start(ap, format);
-#if 0 /* For Open5GS from v1.1.0 to v2.2.2 */
 	fd_logger(loglevel, format, ap);
-#else
-	fd_logger(loglevel, NULL, 0, format, ap);
-#endif
 	va_end(ap);
 
 	pthread_cleanup_pop(0);
@@ -170,11 +150,7 @@ void fd_log_va ( int loglevel, const char * format, va_list args )
 	(void)pthread_mutex_lock(&fd_log_lock);
 	
 	pthread_cleanup_push(fd_cleanup_mutex_silent, &fd_log_lock);
-#if 0 /* For Open5GS from v1.1.0 to v2.2.2 */
 	fd_logger(loglevel, format, args);
-#else
-	fd_logger(loglevel, NULL, 0, format, args);
-#endif
 	pthread_cleanup_pop(0);
 	
 	(void)pthread_mutex_unlock(&fd_log_lock);
