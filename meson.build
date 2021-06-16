@@ -16,7 +16,7 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 project('freediameter', 'c',
-    version : '1.3.2',
+    version : '1.5.0',
     license : 'BSD-3-clause',
     meson_version : '>= 0.43.0',
     default_options : [
