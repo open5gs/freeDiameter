@@ -45,3 +45,5 @@ shared_module('dict_dcca_3gpp',
   name_suffix : 'fdx',
   install : true,
   install_dir : freeDiameter_extensionsdir)
+
+subdir('acl_wl')
