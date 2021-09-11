@@ -35,15 +35,5 @@ foreach s : fd_ext_sources
             install_dir : freeDiameter_extensionsdir)
 endforeach
 
-shared_module('dict_dcca_3gpp',
-  sources : [files(
-    'dict_dcca_3gpp/dict_dcca_3gpp.c',
-    'dict_dcca_3gpp/add_avps.c')],
-  include_directories : freeDiameter_includes,
-  dependencies : libfdcore_dep,
-  name_prefix : '',
-  name_suffix : 'fdx',
-  install : true,
-  install_dir : freeDiameter_extensionsdir)
-
+subdir('dict_dcca_3gpp')
 subdir('acl_wl')
