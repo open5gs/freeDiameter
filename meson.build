@@ -51,7 +51,6 @@ if cc.get_id() == 'gcc' or cc.get_id() == 'clang'
         '-Wno-maybe-uninitialized',
         '-Wno-format-truncation',
         '-Wno-stringop-truncation',
-        '-DDISABLE_PEER_EXPIRY',
     ]
 else
     possible_cc_flags = []
