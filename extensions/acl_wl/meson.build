@@ -9,7 +9,7 @@ pgen = generator(bison,
                  '@INPUT@', '--defines=@OUTPUT1@', '--output=@OUTPUT0@'])
 pfiles = pgen.process('aw_conf.y')
 
-shared_module('../acl_wl',
+shared_module('acl_wl',
     sources : [lfiles, pfiles, files(
       'acl_wl.c',
       'aw_tree.c')],

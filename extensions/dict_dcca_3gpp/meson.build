@@ -1,4 +1,4 @@
-shared_module('../dict_dcca_3gpp',
+shared_module('dict_dcca_3gpp',
     sources : [files(
       'dict_dcca_3gpp.c',
       'add_avps.c')],
