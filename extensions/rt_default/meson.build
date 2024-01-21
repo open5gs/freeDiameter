@@ -2,8 +2,7 @@ if cc.has_function('regexec', prefix : '#include <regex.h>')
   conf_data = configuration_data()
   conf_data.set('HAVE_REG_STARTEND', 1)
 endif
-configure_file(input : 'rt_default-host.h.in',
-                output : 'rt_default-host.h',
+configure_file(output : 'rt_default-host.h',
                 configuration : conf_data)
 
 

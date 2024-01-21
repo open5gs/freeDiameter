@@ -37,6 +37,6 @@
 #ifndef RTD_IS_CONFIG
 #define RTD_IS_CONFIG
 
-#mesondefine HAVE_REG_STARTEND
+#cmakedefine HAVE_REG_STARTEND
 
 #endif /* RTD_IS_CONFIG */
