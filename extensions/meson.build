@@ -37,3 +37,5 @@ endforeach
 
 subdir('dict_dcca_3gpp')
 subdir('acl_wl')
+subdir('rt_redirect')
+subdir('rt_default')
