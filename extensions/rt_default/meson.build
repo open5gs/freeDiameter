@@ -1,5 +1,5 @@
-if cc.has_function('regexec', prefix : '#include <regex.h>')
-  conf_data = configuration_data()
+conf_data = configuration_data()
+if cc.has_header_symbol('regex.h', 'REG_STARTEND')
   conf_data.set('HAVE_REG_STARTEND', 1)
 endif
 configure_file(output : 'rt_default-host.h',
