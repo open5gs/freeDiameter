@@ -22,7 +22,6 @@ project('freediameter', 'c',
     default_options : [
         'warning_level=1',
         'c_std=gnu89',
-        'prefix=/usr',
     ],
 )
 
