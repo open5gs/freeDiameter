@@ -504,7 +504,24 @@ static int msg_dispatch(struct msg * msg)
 	}
 	
 	/* Retrieve the session of the message */
+#if 0 /* modified by acetcom */
 	CHECK_FCT( fd_msg_sess_get(fd_g_config->cnf_dict, msgptr, &sess, NULL) );
+#else
+    /* Retrieve the session of the message */
+	CHECK_FCT_DO( fd_msg_sess_get(fd_g_config->cnf_dict, msgptr, &sess, NULL),
+		{
+			/* A malformed Session-Id (e.g. one containing a NUL byte, which
+			   fd_os_is_valid_os0() rejects) is a per-message data error from a
+			   single peer. It must NOT propagate as a fatal error: process_thr()
+			   treats any non-zero return as unrecoverable and calls
+			   fd_core_shutdown(), taking down the whole Diameter listener.
+			   Drop just this message and keep serving every other peer. */
+			fd_hook_call(HOOK_MESSAGE_DROPPED, msgptr, NULL,
+				"Invalid Session-Id in received message", fd_msg_pmdl_get(msgptr));
+			fd_msg_free(msgptr);
+			return 0;
+		} );
+#endif
 
 	/* Now, call any callback registered for the message */
 	CHECK_FCT( fd_msg_dispatch ( &msgptr, sess, &action, &ec, &em, &error) );
