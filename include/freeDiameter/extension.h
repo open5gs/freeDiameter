@@ -44,13 +44,21 @@ extern "C" {
 #include <freeDiameter/freeDiameter-host.h>
 #include <freeDiameter/libfdcore.h>
 
+/* Keep ELF references local to avoid ASan ODR violations between extensions.
+ * Other targets, including Mach-O, must use default visibility for exports. */
+#if defined(__ELF__)
+#define FD_EXTENSION_EXPORT __attribute__((visibility("protected")))
+#else
+#define FD_EXTENSION_EXPORT __attribute__((visibility("default")))
+#endif
+
 /* Macro that define the entry point of the extension */
 #define EXTENSION_ENTRY(_name, _function, _depends...)					\
-__attribute__((visibility("protected")))						\
+FD_EXTENSION_EXPORT									\
 const char *fd_ext_depends[] = { _name , ## _depends , NULL };				\
 static int extension_loaded = 0;							\
 											\
-__attribute__((visibility("protected")))						\
+FD_EXTENSION_EXPORT									\
 int fd_ext_init(int major, int minor, char * conffile) {				\
 	if ((major != FD_PROJECT_VERSION_MAJOR)						\
 		|| (minor != FD_PROJECT_VERSION_MINOR)) {				\
@@ -69,7 +77,7 @@ int fd_ext_init(int major, int minor, char * conffile) {				\
 }
 
 /* Optional exit point (finish function) of the extension */
-__attribute__((visibility("protected")))
+FD_EXTENSION_EXPORT
 void fd_ext_fini(void);
 
 #ifdef __cplusplus
