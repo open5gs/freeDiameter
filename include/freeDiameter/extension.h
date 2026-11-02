@@ -46,11 +46,11 @@ extern "C" {
 
 /* Macro that define the entry point of the extension */
 #define EXTENSION_ENTRY(_name, _function, _depends...)					\
-__attribute__((visibility("default")))							\
+__attribute__((visibility("protected")))						\
 const char *fd_ext_depends[] = { _name , ## _depends , NULL };				\
 static int extension_loaded = 0;							\
 											\
-__attribute__((visibility("default")))							\
+__attribute__((visibility("protected")))						\
 int fd_ext_init(int major, int minor, char * conffile) {				\
 	if ((major != FD_PROJECT_VERSION_MAJOR)						\
 		|| (minor != FD_PROJECT_VERSION_MINOR)) {				\
@@ -69,7 +69,7 @@ int fd_ext_init(int major, int minor, char * conffile) {				\
 }
 
 /* Optional exit point (finish function) of the extension */
-__attribute__((visibility("default")))
+__attribute__((visibility("protected")))
 void fd_ext_fini(void);
 
 #ifdef __cplusplus
